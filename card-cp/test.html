@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Card - NFC</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(-50px, -50px);
+            }
+        }
+
+        .profile-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 420px;
+            width: 100%;
+            padding: 0;
+            position: relative;
+            z-index: 1;
+            animation: slideUp 0.6s ease-out;
+            overflow: hidden;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 180px;
+            position: relative;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .card-header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+        }
+
+        .avatar-container {
+            position: absolute;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        .avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 6px solid #fff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            object-fit: cover;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            }
+            50% {
+                box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4);
+            }
+        }
+
+        .online-badge {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 26px;
+            height: 26px;
+            background: #4caf50;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            animation: blink 2s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .card-body {
+            padding: 80px 30px 30px;
+            text-align: center;
+        }
+
+        .user-name {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+            animation: fadeIn 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .user-title {
+            font-size: 16px;
+            color: #777;
+            margin-bottom: 10px;
+            animation: fadeIn 0.8s ease-out 0.3s both;
+        }
+
+        .user-location {
+            font-size: 14px;
+            color: #999;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            animation: fadeIn 0.8s ease-out 0.4s both;
+        }
+
+        .user-bio {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            padding: 0 10px;
+            animation: fadeIn 0.8s ease-out 0.5s both;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+            padding: 20px 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            animation: fadeIn 0.8s ease-out 0.6s both;
+        }
+
+        .stat-item {
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            animation: fadeIn 0.8s ease-out 0.7s both;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .social-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .social-btn.facebook {
+            background: linear-gradient(135deg, #1877f2, #0c5dbf);
+        }
+
+        .social-btn.instagram {
+            background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af);
+        }
+
+        .social-btn.twitter {
+            background: linear-gradient(135deg, #1da1f2, #0d8bd9);
+        }
+
+        .social-btn.linkedin {
+            background: linear-gradient(135deg, #0077b5, #005582);
+        }
+
+        .social-btn.github {
+            background: linear-gradient(135deg, #333, #000);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            animation: fadeIn 0.8s ease-out 0.8s both;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .action-btn.primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .action-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .action-btn.secondary {
+            background: #f5f5f5;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .action-btn.secondary:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .contact-info {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 15px;
+            text-align: left;
+            animation: slideDown 0.4s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                max-height: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                max-height: 200px;
+                transform: translateY(0);
+            }
+        }
+
+        .contact-info.show {
+            display: block;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .contact-item i {
+            width: 20px;
+            color: #667eea;
+        }
+
+        .contact-item a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-card">
+        <div class="card-header">
+            <div class="avatar-container">
+                <img src="https://i.pravatar.cc/300?img=12" alt="Avatar" class="avatar" id="avatarImg">
+                <div class="online-badge"></div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <h1 class="user-name" id="userName">Nguyễn Văn An</h1>
+            <p class="user-title" id="userTitle">Full Stack Developer</p>
+            <p class="user-location">
+                <i class="fas fa-map-marker-alt"></i>
+                <span id="userLocation">Hồ Chí Minh, Việt Nam</span>
+            </p>
+
+            <p class="user-bio" id="userBio">
+                Passionate about creating beautiful and functional web experiences. Love coding, coffee, and solving complex problems.
+            </p>
+
+            <div class="stats-container">
+                <div class="stat-item">
+                    <span class="stat-number" id="projectCount">24</span>
+                    <span class="stat-label">Projects</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="followerCount">1.2K</span>
+                    <span class="stat-label">Followers</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="followingCount">856</span>
+                    <span class="stat-label">Following</span>
+                </div>
+            </div>
+
+            <div class="social-links">
+                <a href="#" class="social-btn facebook" id="facebookLink" title="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-btn instagram" id="instagramLink" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-btn twitter" id="twitterLink" title="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="social-btn linkedin" id="linkedinLink" title="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="#" class="social-btn github" id="githubLink" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+
+            <div class="action-buttons">
+                <button class="action-btn primary" onclick="followUser()">
+                    <i class="fas fa-user-plus"></i>
+                    Follow
+                </button>
+                <button class="action-btn secondary" onclick="toggleContact()">
+                    <i class="fas fa-envelope"></i>
+                    Contact
+                </button>
+            </div>
+
+            <div class="contact-info" id="contactInfo">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:nguyenvanan@email.com" id="userEmail">nguyenvanan@email.com</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:+84123456789" id="userPhone">+84 123 456 789</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-globe"></i>
+                    <a href="https://example.com" target="_blank" id="userWebsite">www.nguyenvanan.com</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dữ liệu người dùng - có thể thay đổi dựa trên NFC tag
+        const userData = {
+            name: "Nguyễn Văn An",
+            title: "Full Stack Developer",
+            location: "Hồ Chí Minh, Việt Nam",
+            bio: "Passionate about creating beautiful and functional web experiences. Love coding, coffee, and solving complex problems.",
+            avatar: "https://i.pravatar.cc/300?img=12",
+            stats: {
+                projects: 24,
+                followers: "1.2K",
+                following: 856
+            },
+            social: {
+                facebook: "https://facebook.com/username",
+                instagram: "https://instagram.com/username",
+                twitter: "https://twitter.com/username",
+                linkedin: "https://linkedin.com/in/username",
+                github: "https://github.com/username"
+            },
+            contact: {
+                email: "nguyenvanan@email.com",
+                phone: "+84 123 456 789",
+                website: "https://www.nguyenvanan.com"
+            }
+        };
+
+        // Load dữ liệu người dùng
+        function loadUserData(data) {
+            document.getElementById('userName').textContent = data.name;
+            document.getElementById('userTitle').textContent = data.title;
+            document.getElementById('userLocation').textContent = data.location;
+            document.getElementById('userBio').textContent = data.bio;
+            document.getElementById('avatarImg').src = data.avatar;
+
+            document.getElementById('projectCount').textContent = data.stats.projects;
+            document.getElementById('followerCount').textContent = data.stats.followers;
+            document.getElementById('followingCount').textContent = data.stats.following;
+
+            document.getElementById('facebookLink').href = data.social.facebook;
+            document.getElementById('instagramLink').href = data.social.instagram;
+            document.getElementById('twitterLink').href = data.social.twitter;
+            document.getElementById('linkedinLink').href = data.social.linkedin;
+            document.getElementById('githubLink').href = data.social.github;
+
+            document.getElementById('userEmail').href = `mailto:${data.contact.email}`;
+            document.getElementById('userEmail').textContent = data.contact.email;
+            document.getElementById('userPhone').href = `tel:${data.contact.phone}`;
+            document.getElementById('userPhone').textContent = data.contact.phone;
+            document.getElementById('userWebsite').href = data.contact.website;
+            document.getElementById('userWebsite').textContent = data.contact.website.replace('https://', '');
+        }
+
+        // Toggle contact info
+        function toggleContact() {
+            const contactInfo = document.getElementById('contactInfo');
+            contactInfo.classList.toggle('show');
+        }
+
+        // Follow user
+        function followUser() {
+            const btn = event.target.closest('.action-btn');
+            const icon = btn.querySelector('i');
+            
+            if (btn.textContent.includes('Follow')) {
+                btn.innerHTML = '<i class="fas fa-check"></i> Following';
+                btn.style.background = 'linear-gradient(135deg, #4caf50, #45a049)';
+            } else {
+                btn.innerHTML = '<i class="fas fa-user-plus"></i> Follow';
+                btn.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
+            }
+        }
+
+        // Khởi tạo dữ liệu
+        loadUserData(userData);
+
+        // Có thể thêm NFC reading logic ở đây
+        // if ('NDEFReader' in window) {
+        //     const reader = new NDEFReader();
+        //     reader.scan().then(() => {
+        //         reader.onreading = event => {
+        //             const data = parseNFCData(event);
+        //             loadUserData(data);
+        //         };
+        //     });
+        // }
+    </script>
+</body>
+</html>

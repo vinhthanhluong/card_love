@@ -1,0 +1,99 @@
+/*==========================================================================*/
+/*                        M O B I L E    D E V I C E                        */
+/*==========================================================================*/
+@media screen and (min-height: 1000px) {
+    .tpl-main {
+        &.tpl2 {
+            .love-slider {
+                .lover-slider-img {
+                    img {
+                        height: 90vh;
+                    }
+                }
+            }
+        }
+        &.tpl3 {
+            .love-slider {
+                .lover-slider-img {
+                    img {
+                        height: 90vh;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .tpl-main {
+        &.tpl3 {
+            .ilove {
+                &::after {
+                    // top: 70px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 424px) {
+    .ilove {
+        .ilove-img {
+            &::after {
+                --spaceX: max(calc(70 / 425 * 100vw), 40px);
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 374px) {
+    .ilove {
+        .ilove-img {
+            width: 78px;
+            height: 78px;
+            border-width: 2px;
+            margin-bottom: 10px;
+        }
+
+        .ilove-name {
+            font-size: 22px;
+        }
+
+        .ilove-age {
+            font-size: 10px;
+        }
+
+        .ilove-zodiac {
+            font-size: 10px;
+            margin-left: 4px;
+        }
+    }
+
+    .album1 {
+        .abm-box3 {
+            font-size: calc(8 / 320 * 100vw);
+        }
+    }
+}
+
+/*==========================================================================*/
+/*                 F O R   S P E C I F I E D   B R O W S E R                */
+/*==========================================================================*/
+
+/* EDGE  */
+@supports (-ms-ime-align: auto) {
+}
+
+/* FIREFOX */
+@-moz-document url-prefix() {
+}
+
+/* Safari 10.1+ (which is the latest version of Safari at this time) */
+@media not all and (min-resolution: 0.001dpcm) {
+}
+@supports (-webkit-touch-callout: none) {
+    /* CSS specific to iOS devices */
+}
+/*==========================================================================*/
+/*                             E N D   A L L                                */
+/*==========================================================================*/
