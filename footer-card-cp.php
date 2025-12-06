@@ -13,6 +13,7 @@
  <script src="<?php echo get_theme_file_uri()?>/card-cp/js/ScrollTrigger.min.js"></script>
  <script src="<?php echo get_theme_file_uri()?>/card-cp/js/infiniteslidev2.min.js"></script>
  <script src="<?php echo get_theme_file_uri()?>/card-cp/js/aos.js"></script>
+ <script src="<?php echo get_theme_file_uri()?>/card-cp/js/interact.min.js"></script>
  <script src="https://w.soundcloud.com/player/api.js"></script>
  <script src="<?php echo get_theme_file_uri()?>/card-cp/js/common.js"></script>
  <script src="<?php echo get_theme_file_uri()?>/card-cp/js/mp3.js"></script>

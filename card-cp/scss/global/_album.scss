@@ -9,7 +9,7 @@
     margin: 0 auto;
     @include hidden;
     overflow: hidden;
-    transition: all 0.6s ease;
+    // transition: all 0.6s ease;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 
     &.active {
@@ -24,12 +24,11 @@
         }
     }
 
-    &.hidden {
-        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-    }
+    // &.hidden {
+    //     clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    // }
 
     @keyframes album-bg-ctn {
-
         0%,
         100% {
             translate: 0px 0;
@@ -106,6 +105,7 @@
         z-index: -1;
         background-color: #000;
         opacity: 0.3;
+        // opacity: 0;
     }
 }
 
@@ -496,6 +496,15 @@
             aspect-ratio: 1;
             background: url("../images/ic-back.png") center/contain no-repeat;
             filter: brightness(0) invert(0);
+        }
+
+        &:after {
+            content: "";
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -5px;
+            bottom: -5px;
         }
     }
 
@@ -1458,7 +1467,6 @@
         z-index: 2;
 
         &.aos-animate {
-
             .abm9-eff,
             .abm9-eff1 {
                 // animation: opc 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s both;
@@ -1730,7 +1738,6 @@
                     opc 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s both,
                     slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s both,
                     poyoyon3 2s infinite;
-
             }
         }
 
@@ -2401,7 +2408,6 @@
 }
 
 @keyframes poyoyon3 {
-
     0%,
     40% {
         transform: skew(0deg, 0deg);

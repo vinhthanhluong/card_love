@@ -12,7 +12,6 @@ if (!empty($terms_album) && !is_wp_error($terms_album)) {
     ?>
     <div class="album-bg">
         <?php if ($taxonomy_slug_bg_album === "bg_alb1"): ?>
-
             <div class="alb alb1">
                 <p class="alb1-tt">Kỉ niệm</p>
                 <p class="alb1-img">
@@ -68,6 +67,6 @@ if (!empty($terms_album) && !is_wp_error($terms_album)) {
         <?php endif ?>
 
         <div class="album-bg-overlay"></div>
-        <div class="album-bg-ctn"><span>Nhấn để tiếp tục</span></div>
+        <div class="album-bg-ctn"><span>Kéo để tiếp tục</span></div>
     </div>
 <?php endif ?>

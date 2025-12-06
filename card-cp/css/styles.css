@@ -1,3 +1,6 @@
+/*==========================================================================*/
+/*                           Common-Setting                                 */
+/*==========================================================================*/
 @import "base.css";
 @import url(aos.css);
 @import url(slick.css);
@@ -838,6 +841,7 @@ body::-webkit-scrollbar-track {
   animation-delay: 0.2s;
 }
 
+/*============================= H_E_A_D_E_R =============================*/
 /*==========================================================================*/
 /*                              H E A D E R                                 */
 /*==========================================================================*/
@@ -885,6 +889,10 @@ body::-webkit-scrollbar-track {
   width: 28px;
 }
 
+/*============================= C_O_N_T_E_N_T =============================*/
+/*==========================================================================*/
+/*                                M A I N                                   */
+/*==========================================================================*/
 .icounter {
   position: absolute;
   top: 0;
@@ -1004,7 +1012,6 @@ body::-webkit-scrollbar-track {
   opacity: 0;
   visibility: hidden;
   overflow: hidden;
-  transition: all 0.6s ease;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 .album-bg.active {
@@ -1016,9 +1023,6 @@ body::-webkit-scrollbar-track {
 }
 .album-bg.active .alb {
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-}
-.album-bg.hidden {
-  clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
 }
 @keyframes album-bg-ctn {
   0%, 100% {
@@ -1409,6 +1413,14 @@ body::-webkit-scrollbar-track {
   aspect-ratio: 1;
   background: url("../images/ic-back.png") center/contain no-repeat;
   filter: brightness(0) invert(0);
+}
+.album .abm-close:after {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  right: -5px;
+  bottom: -5px;
 }
 .album .abm-img {
   max-width: 100%;
@@ -3404,9 +3416,6 @@ body::-webkit-scrollbar-track {
     transform: scale(0.8);
   }
 }
-/*==========================================================================*/
-/*                                M A I N                                   */
-/*==========================================================================*/
 .tpl-main {
   height: 100vh;
   min-height: 600px;
@@ -3703,6 +3712,7 @@ body::-webkit-scrollbar-track {
 @supports (-webkit-touch-callout: none) {
   /* CSS specific to iOS devices */
 }
+/*============================= F_O_O_T_E_R =============================*/
 /*==========================================================================*/
 /*                              F O O T E R                                 */
 /*==========================================================================*/
@@ -3714,12 +3724,5 @@ address {
   letter-spacing: 0.005em;
   display: none;
 }
-
-/*==========================================================================*/
-/*                           Common-Setting                                 */
-/*==========================================================================*/
-/*============================= H_E_A_D_E_R =============================*/
-/*============================= C_O_N_T_E_N_T =============================*/
-/*============================= F_O_O_T_E_R =============================*/
 
 /*# sourceMappingURL=styles.css.map */

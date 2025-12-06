@@ -85,49 +85,49 @@ jQuery(window).bind("load", function () {
 //   }
 // });
 
+// ========== SCROLL LOCK/UNLOCK ==========
+let scrollPos = 0;
+
+// Khóa scroll cho nhiều phần tử
+function lockElements(selectors) {
+  const els = document.querySelectorAll(selectors);
+  if (!els.length) return;
+
+  scrollPos = window.scrollY; // lưu vị trí scroll hiện tại
+
+  els.forEach(el => {
+    el.style.position = 'fixed';
+    el.style.top = `-${scrollPos}px`;
+    el.style.left = '0';
+    el.style.right = '0';
+    el.style.overflow = 'hidden';
+    el.style.width = 'min(100%, 768px)';
+    el.style.margin = 'auto';
+  });
+}
+
+// Mở lại scroll cho nhiều phần tử
+function unlockElements(selectors) {
+  const els = document.querySelectorAll(selectors);
+  if (!els.length) return;
+
+  els.forEach(el => {
+    el.style.removeProperty('position');
+    el.style.removeProperty('top');
+    el.style.removeProperty('left');
+    el.style.removeProperty('right');
+    el.style.removeProperty('overflow');
+    el.style.removeProperty('width');
+    el.style.removeProperty('margin');
+  });
+
+  window.scrollTo(0, scrollPos); // scroll trở về vị trí trước đó
+}
+// ========== END - SCROLL LOCK/UNLOCK ==========
+
 // DOCUMENT READY
 jQuery(document).ready(function () {
   "use strict";
-
-
-  let scrollPos = 0;
-
-  // Khóa scroll cho nhiều phần tử
-  function lockElements(selectors) {
-    const els = document.querySelectorAll(selectors);
-    if (!els.length) return;
-
-    scrollPos = window.scrollY; // lưu vị trí scroll hiện tại
-
-    els.forEach(el => {
-      el.style.position = 'fixed';
-      el.style.top = `-${scrollPos}px`;
-      el.style.left = '0';
-      el.style.right = '0';
-      el.style.overflow = 'hidden';
-      el.style.width = 'min(100%, 768px)';
-      el.style.margin = 'auto';
-    });
-  }
-
-  // Mở lại scroll cho nhiều phần tử
-  function unlockElements(selectors) {
-    const els = document.querySelectorAll(selectors);
-    if (!els.length) return;
-
-    els.forEach(el => {
-      el.style.removeProperty('position');
-      el.style.removeProperty('top');
-      el.style.removeProperty('left');
-      el.style.removeProperty('right');
-      el.style.removeProperty('overflow');
-      el.style.removeProperty('width');
-      el.style.removeProperty('margin');
-    });
-
-    window.scrollTo(0, scrollPos); // scroll trở về vị trí trước đó
-  }
-
 
   // CHANGE TAB
   jQuery("[data-tab]").click(function () {
@@ -254,11 +254,11 @@ jQuery(document).ready(function () {
     jQuery(".imessage").removeClass("active");
   });
 
-  jQuery(".album-bg .album-bg-ctn").on("click", function () {
-    jQuery(".album-bg").removeClass("active");
-    jQuery(".album-bg").addClass("hidden");
-    unlockElements('#index, .tpl-main, .album');
-  });
+  // jQuery(".album-bg .album-bg-ctn").on("click", function () {
+  //   jQuery(".album-bg").removeClass("active");
+  //   jQuery(".album-bg").addClass("hidden");
+  //   unlockElements('#index, .tpl-main, .album');
+  // });
 
   jQuery(".album .abm-close").on("click", function () {
     jQuery(".album-bg").removeClass("hidden");
@@ -324,3 +324,83 @@ function parallax() {
 }
 window.addEventListener("scroll", parallax);
 window.addEventListener("load", parallax);
+
+
+// drag 
+const sheet = document.querySelector(".album-bg");
+sheet.style.transition = "none"; // Bỏ transition khi dragging
+
+let isDraggingAlbum = false; // Flag để track drag state
+
+interact('.album-bg').draggable({
+  inertia: false, // Tắt inertia để có control tốt hơn
+
+  listeners: {
+    start(event) {
+      isDraggingAlbum = true;
+      const target = event.target;
+      // Bỏ transition khi bắt đầu drag
+      target.style.transition = "none";
+    },
+
+    move(event) {
+      const target = event.target;
+
+      let y = parseFloat(target.getAttribute('data-y')) || 0;
+
+      // Cập nhật trực tiếp dy (không nhân 0.9)
+      y += event.dy;
+
+      // không cho kéo xuống thêm
+      if (y > 0) y = 0;
+
+      target.style.transform = `translateY(${y}px)`;
+      target.setAttribute('data-y', y);
+    },
+
+    end(event) {
+      const target = event.target;
+      let y = parseFloat(target.getAttribute('data-y')) || 0;
+      isDraggingAlbum = false;
+
+      // Thêm transition mượt khi kết thúc drag
+      target.style.transition = "transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+
+      // ⭐ Điều kiện: Kéo lên từ 40px trở lên (y <= -40)
+      // Nếu kéo đủ 40px → tự động kéo tiếp và ẩn
+      if (y <= -40) {
+        // Auto slide lên mượt mà (kéo tổng cộng 500px để ẩn hoàn toàn)
+        target.style.transform = "translateY(-100%)";
+        target.setAttribute("data-y", -500);
+
+        // Chờ animation hoàn tất (500ms) rồi mới ẩn
+        setTimeout(() => {
+          // Unlock elements TRƯỚC để restore scroll position
+          unlockElements("#index, .tpl-main, .album");
+          
+          // Sau đó mới ẩn album-bg
+          jQuery(".album-bg").removeClass("active").addClass("hidden");
+          // jQuery(".album").removeClass("active");
+          // jQuery("[data-aos]").removeClass("aos-animate");
+          
+          // Reset về trạng thái ban đầu (nhưng vẫn ẩn)
+          target.style.transition = "none";
+          target.style.transform = "translateY(0px)";
+          target.setAttribute("data-y", 0);
+        }, 400);
+
+        return;
+      }
+
+      // Nếu không đủ 40px → trả sheet về như cũ với animation mượt
+      target.style.transform = "translateY(0px)";
+      target.setAttribute("data-y", 0);
+
+      // Bỏ transition sau khi animation hoàn tất
+      setTimeout(() => {
+        target.style.transition = "none";
+      }, 500);
+    }
+  }
+});
+
