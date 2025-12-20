@@ -5,8 +5,6 @@ let path = svg.querySelector("path");
 
 const pathLength = path.getTotalLength();
 
-console.log(pathLength);
-
 gsap.set(path, { strokeDasharray: pathLength });
 
 

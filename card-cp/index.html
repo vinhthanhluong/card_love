@@ -60,7 +60,7 @@
             <div class="hicon hd-mail">
               <img src="./images/ic-mail.png" alt="mail" />
             </div>
-              <button id="toggle-sound" class="hicon hd-sound">
+            <button id="toggle-sound" class="hicon hd-sound">
               <img id="sound-icon"
                 src="./images/ic-volume.svg"
                 alt="volume">
@@ -70,7 +70,7 @@
       </header>
       <!-- end <header>-->
       <main id="main">
-        <div class="tpl-main tpl1">
+        <div class="tpl-main theme4" data-theme="theme4">
           <div class="love-slider">
             <div class="love-slr">
               <div class="lover-slider-img">
@@ -86,6 +86,7 @@
                 <img src="./images/mvs-img4.jpg" alt="slider" />
               </div>
             </div>
+            <p class="memory-button" id="openMemory">Xem kỉ niệm</p>
           </div>
 
           <div class="icounter" data-love="04/04/2022">
@@ -139,8 +140,139 @@
           </div>
         </div>
 
-        <div class="album-bg">
-          <!-- <div class="alb alb1">
+        <!-- Memory -->
+        <div class="memory-overlay" id="modalMemory">
+          <div class="memory-wrap">
+            <!-- Close Button -->
+            <div class="memory-close" id="closeMemory">✕</div>
+            <div class="container">
+              <!-- Floating hearts -->
+              <ul class="heart-float">
+                <li>💕</li>
+                <li>💖</li>
+                <li>💗</li>
+                <li>💕</li>
+                <li>💖</li>
+              </ul>
+
+              <!-- Header -->
+              <div class="mhead">
+                <div class="mdate-display">
+                  <!-- <span id="currentDateMemory">04/04/2020</span> -->
+                  <span id="currentDateMemory">10/12/2025</span>
+                  <span class="ic">💕</span>
+                  <span>Hôm nay</span>
+                </div>
+                <div class="ttl">365 ngày yêu thương</div>
+              </div>
+
+              <!-- Counter -->
+              <div class="mcounter">
+                <div class="num" id="daysCounterMemory">0</div>
+                <div class="lb">ngày bên nhau</div>
+              </div>
+
+              <!-- Quote -->
+              <div class="mquote">Mỗi ngày là một kỷ niệm</div>
+
+              <!-- Stats Section - Elegant Horizontal -->
+              <div class="mstats">
+                <div class="mstats-row">
+                  <div class="item">
+                    <span class="ic">⏰</span>
+                    <span class="vale" id="hoursCounterMemory">0</span>
+                    <span class="lb">Giờ</span>
+                  </div>
+                  <div class="item">
+                    <span class="ic">📅</span>
+                    <span class="vale" id="weeksCounterMemory">0</span>
+                    <span class="lb">Tuần</span>
+                  </div>
+                  <div class="item">
+                    <span class="ic">🌙</span>
+                    <span class="vale" id="monthsCounterMemory">0</span>
+                    <span class="lb">Tháng</span>
+                  </div>
+                  <div class="item">
+                    <span class="ic">✨</span>
+                    <span class="vale" id="yearsCounterMemory">0</span>
+                    <span class="lb">Năm</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Timeline -->
+              <div class="mtimeline">
+                <div class="head">
+                  <div class="ttl">
+                    <span>💕</span>
+                    <span>Hành Trình Yêu Thương</span>
+                    <span>💕</span>
+                  </div>
+                  <div class="subttl">Những mốc đáng nhớ của chúng
+                    ta</div>
+                </div>
+
+                <div class="item left">
+                  <div class="dot"></div>
+                  <div class="cnt">
+                    <div class="date">
+                      <span>🌸</span>
+                      <span>Ngày đầu tiên</span>
+                    </div>
+                    <div class="txt">Ngày chúng ta bắt đầu</div>
+                  </div>
+                </div>
+
+                <div class="item right">
+                  <div class="dot"></div>
+                  <div class="cnt">
+                    <div class="date">
+                      <span>💝</span>
+                      <span>Kỷ niệm 100 ngày</span>
+                    </div>
+                    <div class="txt">Tình yêu ngày càng sâu đậm</div>
+                  </div>
+                </div>
+
+                <div class="item left">
+                  <div class="dot"></div>
+                  <div class="cnt">
+                    <div class="date">
+                      <span>🎂</span>
+                      <span>200 ngày</span>
+                    </div>
+                    <div class="txt">Những phút giây ngọt ngào</div>
+                  </div>
+                </div>
+
+                <div class="item right">
+                  <div class="dot"></div>
+                  <div class="cnt">
+                    <div class="date">
+                      <span>💕</span>
+                      <span>Hôm nay - 365 ngày</span>
+                    </div>
+                    <div class="txt">Và sẽ còn mãi mãi...</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Footer -->
+              <div class="mft">
+                <div class="mft-names">
+                  <div class="name-tag">Dragon Boy</div>
+                  <div class="name-heart">💖</div>
+                  <div class="name-tag">Thảo Girl</div>
+                </div>
+                <div class="mft-text">Forever & Always ∞</div>
+              </div>
+            </div>
+          </div>
+          <!-- End Memory -->
+
+          <div class="album-bg">
+            <!-- <div class="alb alb1">
                     <p class="alb1-tt">My Love</p>
                     <p class="alb1-img">
                         <img src="./images/album1-img.jpg" class="alb1-ig" alt="My Love">
@@ -171,24 +303,24 @@
                     </div>
                 </div> -->
 
-          <div class="alb alb3">
-            <p class="alb3-tt">My Love</p>
-            <p class="alb3-year">2025</p>
-            <div class="alb3-bg">
-              <img src="./images/album3-bg.jpg" alt="My Love" />
+            <div class="alb alb3">
+              <p class="alb3-tt">My Love</p>
+              <p class="alb3-year">2025</p>
+              <div class="alb3-bg">
+                <img src="./images/album3-bg.jpg" alt="My Love" />
+              </div>
+              <div class="alb3-img">
+                <img src="./images/album3-img1.jpg" alt="My Love" />
+                <img src="./images/album3-img2.jpg" alt="My Love" />
+                <img src="./images/album3-img3.jpg" alt="My Love" />
+              </div>
             </div>
-            <div class="alb3-img">
-              <img src="./images/album3-img1.jpg" alt="My Love" />
-              <img src="./images/album3-img2.jpg" alt="My Love" />
-              <img src="./images/album3-img3.jpg" alt="My Love" />
-            </div>
+
+            <div class="album-bg-overlay"></div>
+            <div class="album-bg-ctn"><span>Kéo để tiếp tục</span></div>
           </div>
 
-          <div class="album-bg-overlay"></div>
-          <div class="album-bg-ctn"><span>Kéo để tiếp tục</span></div>
-        </div>
-
-        <!-- <div class="album album1">
+          <!-- <div class="album album1">
                 <div class="abm-wrap">
                     <div class="svg-container">
               <svg id="trackSVG" width="326" height="2985" viewBox="0 0 326 2985" fill="none" preserveAspectRatio="xMidYMin meet">
@@ -282,7 +414,7 @@
                 </div>
             </div> -->
 
-        <!-- <div class="album album2">
+          <!-- <div class="album album2">
                 <div class="abm-wrap">
                     <div class="svg-container">
               <svg id="trackSVG" width="326" height="2985" viewBox="0 0 326 2985" fill="none" preserveAspectRatio="xMidYMin meet">
@@ -385,212 +517,216 @@
                 </div>
             </div> -->
 
-        <div class="album album3">
-          <div class="abm-wrap">
-            <div class="svg-container">
-              <svg id="trackSVG" width="326" height="2985"
-                viewBox="0 0 326 2985" fill="none"
-                preserveAspectRatio="xMidYMin meet">
-                <path id="progressPath" stroke="#eee" stroke-width="2"
-                  class="progress"
-                  d="M102.987 0.429438C102.987 0.429438 277.433 103.351 315.987 214.929C386.59 419.267 11.8486 459.752 9.48657 675.929C7.13381 891.257 365.797 936.301 303.487 1142.43C269.374 1255.28 225.486 1379.43 104.487 1369.43C43.7415 1364.41 5.35494 1283.47 34.4866 1229.93C52.9863 1195.93 100.486 1134.93 185.486 1197.93C191.412 1202.32 230.32 1240.76 254.986 1282.43C273.289 1313.35 253.195 1396.38 247.987 1431.93C229.159 1560.44 49.8416 1557.96 34.4866 1686.93C15.1827 1849.06 242.38 1864.54 283.987 2022.43C346.92 2261.25 82.4863 2858.93 72.4866 2618.43C70.9399 2581.23 -6.31505 2616.94 0.986576 2580.43C10.4866 2532.93 126.038 2505.67 168.487 2526.43C209.796 2546.63 222.303 2576.87 241.987 2618.43C313.977 2770.43 14.9866 2984.43 14.9866 2984.43" />
-              </svg>
-            </div>
-            <div class="abm-close">quay lại</div>
-            <div class="abm-wimg">
-              <div class="abm-box1">
-                <div class="abm-img abm1" data-aos="fade-up">
-                  <div class="abm1-eff1"></div>
-                  <img src="./images/album2-img1.jpg" alt />
-                  <div class="abm1-eff2"></div>
-                </div>
-                <div class="abm-img abm2" data-aos="fade-up-right"
-                  data-aos-delay="600">
-                  <div class="abm2-eff1"></div>
-                  <img src="./images/album2-img1.jpg" alt />
-                </div>
-                <div class="abm-img abm3" data-aos="fade-left"
-                  data-aos-delay="900">
-                  <div class="abm3-eff1"></div>
-                  <img src="./images/album2-img1.jpg" alt />
-                  <div class="abm3-eff2"></div>
-                </div>
-                <div class="abm-img abm4" data-aos="fade-up"
-                  data-aos-delay="1400">
-                  <div class="abm4-eff1"></div>
-                  <img src="./images/album2-img1.jpg" alt />
-                </div>
-                <div class="abm-img abm5" data-aos="fade-up"
-                  data-aos-delay="1000">
-                  <img src="./images/album2-img1.jpg" alt />
-                  <div class="abm5-eff2">11/08/2025</div>
-                </div>
+          <div class="album album3">
+            <div class="abm-wrap">
+              <div class="svg-container">
+                <svg id="trackSVG" width="326" height="2985"
+                  viewBox="0 0 326 2985" fill="none"
+                  preserveAspectRatio="xMidYMin meet">
+                  <path id="progressPath" stroke="#eee" stroke-width="2"
+                    class="progress"
+                    d="M102.987 0.429438C102.987 0.429438 277.433 103.351 315.987 214.929C386.59 419.267 11.8486 459.752 9.48657 675.929C7.13381 891.257 365.797 936.301 303.487 1142.43C269.374 1255.28 225.486 1379.43 104.487 1369.43C43.7415 1364.41 5.35494 1283.47 34.4866 1229.93C52.9863 1195.93 100.486 1134.93 185.486 1197.93C191.412 1202.32 230.32 1240.76 254.986 1282.43C273.289 1313.35 253.195 1396.38 247.987 1431.93C229.159 1560.44 49.8416 1557.96 34.4866 1686.93C15.1827 1849.06 242.38 1864.54 283.987 2022.43C346.92 2261.25 82.4863 2858.93 72.4866 2618.43C70.9399 2581.23 -6.31505 2616.94 0.986576 2580.43C10.4866 2532.93 126.038 2505.67 168.487 2526.43C209.796 2546.63 222.303 2576.87 241.987 2618.43C313.977 2770.43 14.9866 2984.43 14.9866 2984.43" />
+                </svg>
               </div>
-              <div class="abm-px">
-                <div class="abm-px-bg">
-                  <img src="./images/album2-img1.jpg" alt />
+              <div class="abm-close">quay lại</div>
+              <div class="abm-wimg">
+                <div class="abm-box1">
+                  <div class="abm-img abm1" data-aos="fade-up">
+                    <div class="abm1-eff1"></div>
+                    <img src="./images/album2-img1.jpg" alt />
+                    <div class="abm1-eff2"></div>
+                  </div>
+                  <div class="abm-img abm2" data-aos="fade-up-right"
+                    data-aos-delay="600">
+                    <div class="abm2-eff1"></div>
+                    <img src="./images/album2-img1.jpg" alt />
+                  </div>
+                  <div class="abm-img abm3" data-aos="fade-left"
+                    data-aos-delay="900">
+                    <div class="abm3-eff1"></div>
+                    <img src="./images/album2-img1.jpg" alt />
+                    <div class="abm3-eff2"></div>
+                  </div>
+                  <div class="abm-img abm4" data-aos="fade-up"
+                    data-aos-delay="1400">
+                    <div class="abm4-eff1"></div>
+                    <img src="./images/album2-img1.jpg" alt />
+                  </div>
+                  <div class="abm-img abm5" data-aos="fade-up"
+                    data-aos-delay="1000">
+                    <img src="./images/album2-img1.jpg" alt />
+                    <div class="abm5-eff2">11/08/2025</div>
+                  </div>
                 </div>
-              </div>
-              <div class="abm-box3">
-                <div class="abm-img abm8" data-aos="fade-right">
-                  <div class="abm8-eff1"></div>
-                  <img src="./images/album2-img1.jpg" alt />
+                <div class="abm-px">
+                  <div class="abm-px-bg">
+                    <img src="./images/album2-img1.jpg" alt />
+                  </div>
                 </div>
-                <div class="abm-img abm9" data-aos="fade-down-left"
-                  data-aos-delay="600">
-                  <div class="abm9-eff1"></div>
-                  <img src="./images/album2-img1.jpg" alt />
+                <div class="abm-box3">
+                  <div class="abm-img abm8" data-aos="fade-right">
+                    <div class="abm8-eff1"></div>
+                    <img src="./images/album2-img1.jpg" alt />
+                  </div>
+                  <div class="abm-img abm9" data-aos="fade-down-left"
+                    data-aos-delay="600">
+                    <div class="abm9-eff1"></div>
+                    <img src="./images/album2-img1.jpg" alt />
+                  </div>
+                  <div class="abm-img abm10" data-aos="zoom-in"
+                    data-aos-delay="1700">
+                    <div class="abm10-eff2"></div>
+                    <img src="./images/album2-img1.jpg" alt />
+                    <div class="abm10-eff3"></div>
+                  </div>
+                  <div class="abm-img abm11" data-aos="fade-down-right"
+                    data-aos-delay="600">
+                    <div class="abm11-eff1"></div>
+                    <img src="./images/album2-img1.jpg" alt />
+                  </div>
+                  <div class="abm-img abm12" data-aos="fade-up-left"
+                    data-aos-delay="900">
+                    <div class="abm12-eff1"></div>
+                    <img src="./images/album2-img1.jpg" alt />
+                    <div class="abm12-eff2"></div>
+                  </div>
                 </div>
-                <div class="abm-img abm10" data-aos="zoom-in"
-                  data-aos-delay="1700">
-                  <div class="abm10-eff2"></div>
-                  <img src="./images/album2-img1.jpg" alt />
-                  <div class="abm10-eff3"></div>
+                <div class="abm-box2">
+                  <div class="abm-img abm6" data-aos="zoom-out-down">
+                    <img src="./images/album2-img1.jpg" alt />
+                  </div>
+                  <p><span>Khoảng khắc</span></p>
+                  <div class="abm-img abm7" data-aos="zoom-out-up">
+                    <img src="./images/album2-img1.jpg" alt />
+                  </div>
                 </div>
-                <div class="abm-img abm11" data-aos="fade-down-right"
-                  data-aos-delay="600">
-                  <div class="abm11-eff1"></div>
-                  <img src="./images/album2-img1.jpg" alt />
-                </div>
-                <div class="abm-img abm12" data-aos="fade-up-left"
-                  data-aos-delay="900">
-                  <div class="abm12-eff1"></div>
-                  <img src="./images/album2-img1.jpg" alt />
-                  <div class="abm12-eff2"></div>
-                </div>
-              </div>
-              <div class="abm-box2">
-                <div class="abm-img abm6" data-aos="zoom-out-down">
-                  <img src="./images/album2-img1.jpg" alt />
-                </div>
-                <p><span>Khoảng khắc</span></p>
-                <div class="abm-img abm7" data-aos="zoom-out-up">
-                  <img src="./images/album2-img1.jpg" alt />
-                </div>
-              </div>
-              <div class="abm-box4">
-                <div class="abm-img abm13" data-aos="fade-left">
-                  <img src="./images/album2-img1.jpg" alt />
-                </div>
-                <div class="abm-img abm14" data-aos="fade-up"
-                  data-aos-delay="300">
-                  <img src="./images/album2-img2.jpg" alt />
-                </div>
-                <div class="abm-img abm15" data-aos="fade-right"
-                  data-aos-delay="600">
-                  <img src="./images/album2-img3.jpg" alt />
-                </div>
-                <div class="abm-img abm16" data-aos="fade-up"
-                  data-aos-delay="900">
-                  <img src="./images/album2-img2.jpg" alt />
+                <div class="abm-box4">
+                  <div class="abm-img abm13" data-aos="fade-left">
+                    <img src="./images/album2-img1.jpg" alt />
+                  </div>
+                  <div class="abm-img abm14" data-aos="fade-up"
+                    data-aos-delay="300">
+                    <img src="./images/album2-img2.jpg" alt />
+                  </div>
+                  <div class="abm-img abm15" data-aos="fade-right"
+                    data-aos-delay="600">
+                    <img src="./images/album2-img3.jpg" alt />
+                  </div>
+                  <div class="abm-img abm16" data-aos="fade-up"
+                    data-aos-delay="900">
+                    <img src="./images/album2-img2.jpg" alt />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="imessage">
-          <div class="imess-wrap">
-            <div class="imess-close">quay lại</div>
-            <div class="imess-fimg">
-              <img src="./images/album2-img1.jpg" alt />
-            </div>
-            <div class="imess-slider">
-              <p class="imess-ftxt">Những khoảnh khắc</p>
-              <div class="imess-slider-loop">
-                <div class="imess-slr-img">
-                  <img src="./images/album2-img1.jpg" alt />
-                </div>
-                <div class="imess-slr-img">
-                  <img src="./images/album2-img1.jpg" alt />
-                </div>
-                <div class="imess-slr-img">
-                  <img src="./images/album2-img1.jpg" alt />
-                </div>
-                <div class="imess-slr-img">
-                  <img src="./images/album2-img1.jpg" alt />
+          <div class="imessage">
+            <div class="imess-wrap">
+              <div class="imess-close">quay lại</div>
+              <div class="imess-fimg">
+                <img src="./images/album2-img1.jpg" alt />
+              </div>
+              <div class="imess-slider">
+                <p class="imess-ftxt">Những khoảnh khắc</p>
+                <div class="imess-slider-loop">
+                  <div class="imess-slr-img">
+                    <img src="./images/album2-img1.jpg" alt />
+                  </div>
+                  <div class="imess-slr-img">
+                    <img src="./images/album2-img1.jpg" alt />
+                  </div>
+                  <div class="imess-slr-img">
+                    <img src="./images/album2-img1.jpg" alt />
+                  </div>
+                  <div class="imess-slr-img">
+                    <img src="./images/album2-img1.jpg" alt />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="imess-box">
-              <div class="imess-bx1 clearfix">
-                <div class="imess-img">
-                  <img src="./images/album2-img1.jpg" alt />
-                  <span>14/07/25</span>
+              <div class="imess-box">
+                <div class="imess-bx1 clearfix">
+                  <div class="imess-img">
+                    <img src="./images/album2-img1.jpg" alt />
+                    <span>14/07/25</span>
+                  </div>
+                  <div class="imess-desc">
+                    <p class="tt">Kỳ nghỉ<span>2024</span></p>
+                    <div class="dsc">
+                      <p>Cảm ơn anh đã luôn bên cạnh em, đồng hành cùng em, yêu
+                        thương em và quan tâm em mỗi ngày. ơn anh vì đã luôn
+                        dành
+                        cho em những thứ tốt đẹp và mọi điều vui vẻ, luôn nhường
+                        nhịn và bao dung em mỗi lúc em không tốt, dành thời gian
+                        gặp em mỗi lần gặp nhau khi yêu xa, đưa ranhững lời
+                        khuyên
+                        và an ủi mỗi khi em cần.</p>
+                    </div>
+                  </div>
                 </div>
-                <div class="imess-desc">
-                  <p class="tt">Kỳ nghỉ<span>2024</span></p>
-                  <div class="dsc">
+                <div class="imess-bx2 clearfix">
+                  <div class="imess-ig">
+                    <div class="imess-img1">
+                      <img src="./images/album2-img1.jpg" alt />
+                      <span>14/07/25</span>
+                    </div>
+                    <div class="imess-img2">
+                      <img src="./images/album2-img1.jpg" alt />
+                    </div>
+                  </div>
+                  <div class="imess-desc">
                     <p>Cảm ơn anh đã luôn bên cạnh em, đồng hành cùng em, yêu
                       thương em và quan tâm em mỗi ngày. ơn anh vì đã luôn dành
                       cho em những thứ tốt đẹp và mọi điều vui vẻ, luôn nhường
                       nhịn và bao dung em mỗi lúc em không tốt, dành thời gian
-                      gặp em mỗi lần gặp nhau khi yêu xa, đưa ranhững lời khuyên
-                      và an ủi mỗi khi em cần.</p>
+                      gặp
+                      em mỗi lần gặp nhau khi yêu xa, đưa ranhững lời khuyên và
+                      an
+                      ủi mỗi khi em cần.</p>
                   </div>
                 </div>
               </div>
-              <div class="imess-bx2 clearfix">
-                <div class="imess-ig">
-                  <div class="imess-img1">
-                    <img src="./images/album2-img1.jpg" alt />
-                    <span>14/07/25</span>
-                  </div>
-                  <div class="imess-img2">
+              <div class="imess-end">
+                <div class="imess-parallax">
+                  <div class="imess-plx">
                     <img src="./images/album2-img1.jpg" alt />
                   </div>
                 </div>
-                <div class="imess-desc">
-                  <p>Cảm ơn anh đã luôn bên cạnh em, đồng hành cùng em, yêu
-                    thương em và quan tâm em mỗi ngày. ơn anh vì đã luôn dành
-                    cho em những thứ tốt đẹp và mọi điều vui vẻ, luôn nhường
-                    nhịn và bao dung em mỗi lúc em không tốt, dành thời gian gặp
-                    em mỗi lần gặp nhau khi yêu xa, đưa ranhững lời khuyên và an
-                    ủi mỗi khi em cần.</p>
+                <p class="imess-end-tt">Kỷ niệm</p>
+                <div class="imess-info">
+                  <p class="imess-name">hồ tiểu long</p>
+                  <div class="imess-heart">
+                    <img src="./images/line-heart-rate.gif" alt />
+                  </div>
+                  <p class="imess-name">hồ tiểu thảo</p>
+                  <p class="imess-date">17/10/2025</p>
                 </div>
-              </div>
-            </div>
-            <div class="imess-end">
-              <div class="imess-parallax">
-                <div class="imess-plx">
-                  <img src="./images/album2-img1.jpg" alt />
-                </div>
-              </div>
-              <p class="imess-end-tt">Kỷ niệm</p>
-              <div class="imess-info">
-                <p class="imess-name">hồ tiểu long</p>
-                <div class="imess-heart">
-                  <img src="./images/line-heart-rate.gif" alt />
-                </div>
-                <p class="imess-name">hồ tiểu thảo</p>
-                <p class="imess-date">17/10/2025</p>
               </div>
             </div>
           </div>
-        </div>
-      </main>
-      <!-- end <main>-->
-      <footer id="footer">
-        <address>Copyright &copy; LOVE CARD since 2025</address>
-        <!-- <div class="to-top"><a href="#wrapper"></a></div> -->
-      </footer>
-      <!-- end <footer> -->
-    </div>
-    <!-- end #wrapper -->
-    <script src="./js/lib/jquery.js"></script>
-    <script src="./js/lib/slick.min.js"></script>
-    <script src="./js/lib/gsap.min.js"></script>
-    <script src="./js/lib/ScrollTrigger.min.js"></script>
-    <script src="./js/lib/interact.min.js"></script>
-    <script src="./js/lib/infiniteslidev2.min.js"></script>
-    <script src="./js/lib/aos.js"></script>
+        </main>
+        <!-- end <main>-->
+        <footer id="footer">
+          <address>Copyright &copy; LOVE CARD since 2025</address>
+          <!-- <div class="to-top"><a href="#wrapper"></a></div> -->
+        </footer>
+        <!-- end <footer> -->
+      </div>
+      <!-- end #wrapper -->
+      <script src="./js/lib/jquery.js"></script>
+      <script src="./js/lib/slick.min.js"></script>
+      <script src="./js/lib/gsap.min.js"></script>
+      <script src="./js/lib/ScrollTrigger.min.js"></script>
+      <script src="./js/lib/interact.min.js"></script>
+      <script src="./js/lib/infiniteslidev2.min.js"></script>
+      <script src="./js/lib/aos.js"></script>
 
-    <script src="./js/common.js"></script>
-    <script src="./js/header.js"></script>
+      <script src="./js/common.js"></script>
+      <script src="./js/header.js"></script>
 
-    <script src="./js/page/top.js"></script>
-    <script src="./js/page/mp3.js"></script>
-    <script src="./js/page/record.js"></script>
-    <script src="./js/page/svg.js"></script>
-  </body>
-</html>
+      <script src="./js/page/top.js"></script>
+      <!-- <script src="./js/page/mp3.js"></script> -->
+      <!-- <script src="./js/page/record.js"></script> -->
+      <script src="./js/page/svg.js"></script>
+    </body>
+  </html>

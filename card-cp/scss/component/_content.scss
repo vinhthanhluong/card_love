@@ -1,13 +1,14 @@
 /*==========================================================================*/
 /*                                M A I N                                   */
 /*==========================================================================*/
-@use '../mixins/basic' as *;
+@use "../mixins/basic" as *;
 
 .tpl-main {
     height: 100vh;
     min-height: 600px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     overflow: hidden;
     transition: all 0.3s ease;
     position: relative;
@@ -23,6 +24,12 @@
         .ilove {
             .ilove-name {
                 color: #fff;
+            }
+        }
+
+        .slick-active {
+            img {
+                animation: sliderFace 3s linear;
             }
         }
     }
@@ -95,6 +102,64 @@
             }
         }
     }
+
+    &.theme4 {
+        background-color: #fff;
+        .love-slider {
+            position: relative;
+            top: 20px;
+            width: min(calc(225 / 375 * 100vw), 255px);
+            margin: auto;
+            pointer-events: auto;
+            z-index: 1;
+
+            .love-slr {
+                margin: auto;
+                --r: -5deg;
+                transform: rotate(var(--r));
+            }
+
+            .slick-list {
+                overflow: visible;
+            }
+
+            .lover-slider-img {
+                img {
+                    min-height: auto;
+                    height: min(calc(300 / 375 * 100vw), 340px);
+                    border: 6px solid #fff;
+                    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+                    --tw-skew-x: 0;
+                    --tw-skew-y: 0;
+                    --tw-scale-x: 0.6;
+                    --tw-scale-y: 0.6;
+                    --tw-translate-x: -8px;
+                    --tw-translate-y: 15px;
+                    --tw-rotate: calc(6deg - var(--r));
+                    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate))
+                        skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x))
+                        scaleY(var(--tw-scale-y));
+                    transition: all 1.2s cubic-bezier(0.47, 0.16, 0.24, 1);
+                }
+            }
+
+            .slick-active {
+                img {
+                    --tw-scale-x: 1;
+                    --tw-scale-y: 1;
+                    --tw-translate-x: 0px;
+                    --tw-translate-y: 0px;
+                    --tw-rotate: calc(-3deg - var(--r));
+                }
+            }
+        }
+
+        .ilove {
+            margin-top: 0;
+            .ilove-name {
+            }
+        }
+    }
 }
 
 .love-slider {
@@ -106,6 +171,10 @@
     .love-slr {
         width: 100%;
         height: 100%;
+        transition: all 0.3s ease;
+        &:not(.slick-slider) {
+            opacity: 0;
+        }
     }
 
     @keyframes sliderFace {
@@ -118,11 +187,11 @@
         }
     }
 
-    .slick-active {
-        img {
-            animation: sliderFace 3s linear;
-        }
-    }
+    // .slick-active {
+    //     img {
+    //         animation: sliderFace 3s linear;
+    //     }
+    // }
 
     .lover-slider-img {
         img {
@@ -131,11 +200,37 @@
             min-height: 600px;
         }
     }
+    .slick-arrow {
+        border-radius: 100%;
+        border: 1px solid #000;
+        width: 54px;
+        height: 54px;
+        z-index: 1;
+        transform: none;
+        top: unset;
+        bottom: -10px;
+        &::before {
+            color: #000;
+        }
+    }
+    .slick-prev {
+        left: -62px;
+    }
+    .slick-next {
+        right: -40px;
+    }
+
+    .memory-tt {
+        text-align: center;
+        font-size: 16px;
+        font-weight: 600;
+        color: #ff69b4;
+    }
 }
 
 .ilove-dots {
     .slick-dots {
-        bottom: 10px;
+        bottom: 2px;
         z-index: 1;
 
         li {
@@ -175,8 +270,8 @@
 .ilove {
     position: relative;
     width: 100%;
-    // height: 24vh;
-    padding-bottom: 50px;
+    padding-top: 20px;
+    padding-bottom: 40px;
     min-height: 144px;
     margin-top: auto;
     z-index: 1;
@@ -243,10 +338,10 @@
     }
 
     .ilove-img {
-        width: max(min(calc(130 / 768 * 100vw), 130px), 90px);
-        height: max(min(calc(130 / 768 * 100vw), 130px), 90px);
+        width: max(min(calc(130 / 768 * 100vw), 130px), 80px);
+        height: max(min(calc(130 / 768 * 100vw), 130px), 80px);
         border-radius: 100%;
-        margin: 0 auto 20px;
+        margin: 0 auto 10px;
         border: 3px solid #fff;
         box-shadow: 0 0 12px rgba($color: #000000, $alpha: 0.2);
         position: relative;
