@@ -2,18 +2,6 @@
 var offset_PC = 0; /* offset header in PC (px) */
 var offset_SP = 0; /* offset header in SP (px) */
 function anchorLink(el) {
-  /* trigger to open tab contain the Anchor, related to the function CHANGE TAB below. */
-  var _parent = jQuery(el).parents("[data-tab-content]");
-  if (_parent) {
-    var _tab_ID = _parent.data("tab-content");
-    var _group = _parent.data("tab-group");
-    jQuery('[data-tab="' + _tab_ID + '"').each(function () {
-      if (jQuery(el).data("tab-group") === _group) {
-        jQuery(el).trigger("click");
-      }
-    });
-  }
-
   /* position of element */
   var offset = jQuery(el).offset();
   if (jQuery(window).width() > 750) {
@@ -46,35 +34,18 @@ jQuery(window).bind("load", function () {
   });
   // =========== END - ANCHOR LINK ============
 
-  // =========== END - LAZY LOAD RESOURCE ============
-  $(window).on("load scroll", function () {
-    // To-Top && Btnfix
-    var st = jQuery("html,body").scrollTop();
-    if (st >= 10) {
-      jQuery(".to-top").addClass("show");
-    } else {
-      jQuery(".to-top").removeClass("show");
-    }
-  });
+  // // =========== END - LAZY LOAD RESOURCE ============
+  // $(window).on("load scroll", function () {
+  //   // To-Top && Btnfix
+  //   var st = jQuery("html,body").scrollTop();
+  //   if (st >= 10) {
+  //     jQuery(".to-top").addClass("show");
+  //   } else {
+  //     jQuery(".to-top").removeClass("show");
+  //   }
+  // });
 
   // =========== END - TO-TOP && Btnfix ============
-
-  // SLIDER
-  if (jQuery(".love-slider").length > 0) {
-    $(".love-slider .love-slr").slick({
-      infinite: true,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      dots: true,
-      autoplay: true,
-      autoplaySpeed: 3000,
-      speed: 2000,
-      fade: true,
-      arrows: false,
-      appendDots: $(".ilove-dots"),
-    });
-  }
-  /*============== END - SLIDER ================*/
 });
 
 // window.addEventListener("scroll", () => {
@@ -129,98 +100,7 @@ function unlockElements(selectors) {
 jQuery(document).ready(function () {
   "use strict";
 
-  // CHANGE TAB
-  jQuery("[data-tab]").click(function () {
-    var group = jQuery(this).data("tab-group");
-    var index = jQuery(this).data("tab");
-    jQuery('[data-tab][data-tab-group="' + group + '"].active').removeClass(
-      "active"
-    );
-    jQuery(this).addClass("active");
-
-    jQuery(
-      '[data-tab-content][data-tab-group="' + group + '"].active'
-    ).removeClass("active");
-    jQuery(
-      '[data-tab-content="' + index + '"][data-tab-group="' + group + '"]'
-    ).addClass("active");
-  });
-  // =========== END - CHANGE TAB ============
-
-  // Counter
-  if (jQuery(".icounter .icounter-type1").length > 0) {
-    const getData = jQuery(".icounter").attr("data-love");
-    const [dataDay, dataMonth, dataYear] = getData.split("/");
-    const past = new Date(`${dataYear}/${dataMonth}/${dataDay}`);
-    const now = new Date();
-
-    function padStart(value) {
-      return String(value).padStart(2, "0");
-    }
-
-    // Years
-    let years = now.getFullYear() - past.getFullYear();
-
-    //Months
-    let months = now.getMonth() - past.getMonth();
-    if (months < 0) {
-      years--;
-      months += 12;
-    }
-
-    // Days
-    let days = now.getDate() - past.getDate();
-    if (days < 0) {
-      months--;
-      const lastMonth = new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        0
-      ).getDate();
-      days += lastMonth;
-    }
-
-    // Weeks
-    const weeks = Math.floor(days / 7);
-    days = days % 7;
-
-    // Set Data
-    jQuery(".icounter .icounter-first").text(getData);
-    // Set Year Month Week Day
-    jQuery(".iyear span").text(padStart(years));
-    jQuery(".imonth span").text(padStart(months));
-    jQuery(".iweek span").text(padStart(weeks));
-    jQuery(".iday span").text(padStart(days));
-
-    // Set Hours Minute Second
-    setInterval(() => {
-      const now = new Date();
-      const hours = now.getHours();
-      const minutes = now.getMinutes();
-      const seconds = now.getSeconds();
-      jQuery(".ihours").text(padStart(hours));
-      jQuery(".iminute").text(padStart(minutes));
-      jQuery(".isecond").text(padStart(seconds));
-    }, 1000);
-  }
-
-  if (jQuery(".icounter .icounter-type2").length > 0) {
-    const daySumItem = jQuery(".iday-sum");
-    const getData = jQuery(".icounter").attr("data-love");
-    const [dataDay, dataMonth, dataYear] = getData.split("/");
-    const past = new Date(`${dataYear}/${dataMonth}/${dataDay}`);
-    const now = new Date();
-
-    const diffMs = now - past;
-
-    const oneDay = 1000 * 60 * 60 * 24;
-    const daysTotal = Math.floor(diffMs / oneDay);
-
-    daySumItem.text(daysTotal);
-    daySumItem.attr("data-dayTotal", daysTotal);
-  }
-
-  jQuery("#header .hd-ablum").on("click", function () {
+  jQuery("#header .hd-album").on("click", function () {
     const hAblum = jQuery(".album .abm-wrap").innerHeight();
     jQuery("#main").css({ "z-index": "100", height: `${hAblum}px` });
     // jQuery("body").css({ "overflow": "hidden" });
@@ -377,12 +257,12 @@ interact('.album-bg').draggable({
         setTimeout(() => {
           // Unlock elements TRƯỚC để restore scroll position
           unlockElements("#index, .tpl-main, .album");
-          
+
           // Sau đó mới ẩn album-bg
           jQuery(".album-bg").removeClass("active").addClass("hidden");
           // jQuery(".album").removeClass("active");
           // jQuery("[data-aos]").removeClass("aos-animate");
-          
+
           // Reset về trạng thái ban đầu (nhưng vẫn ẩn)
           target.style.transition = "none";
           target.style.transform = "translateY(0px)";

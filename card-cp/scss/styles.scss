@@ -3,16 +3,28 @@
 /*==========================================================================*/
 /*                           Common-Setting                                 */
 /*==========================================================================*/
-@use './mixins/modules';
-// Mixins
-@use './mixins/basic';
-@use './global/animation';
+@use "./global/base";
 
-@use './global/setting';
-@use './global/utilities';
+// Mixins
+@use "./mixins/basic";
+
+// Global
+@use "./global/modules";
+@use "./global/animation";
+
+@use "./global/setting";
 /*============================= H_E_A_D_E_R =============================*/
-@use './global/header';
+@use "./global/header";
 /*============================= C_O_N_T_E_N_T =============================*/
-@use './global/content';
+@use "./component/content";
+@use "./component/album";
+@use "./component/counter";
+@use "./component/message";
+@use "./component/mp3";
+@use "./component/svg";
+
 /*============================= F_O_O_T_E_R =============================*/
-@use './global/footer';
+@use "./global/footer";
+
+/*========================== R_E_S_P_O_N_S_I_V_E ==========================*/
+@use "./global/responsive";

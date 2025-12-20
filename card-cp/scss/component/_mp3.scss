@@ -1,0 +1,334 @@
+.music-wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 9999;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    backdrop-filter: blur(10px);
+}
+
+.music-wrapper.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.music-wrapper .box-music {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 380px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.custom-player {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 30px;
+    padding: 40px 30px 35px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.custom-player::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(180deg, rgba(102, 126, 234, 0.1) 0%, transparent 100%);
+    pointer-events: none;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7);
+    }
+
+    50% {
+        box-shadow: 0 0 0 15px rgba(102, 126, 234, 0);
+    }
+}
+
+.music-avatar {
+    border-radius: 100%;
+    animation: spin 20s infinite linear;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 30px;
+    position: relative;
+    filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.2));
+}
+
+.music-wrapper.show .music-avatar {
+    animation: spin 20s infinite linear, pulse 2s infinite;
+}
+
+.music-avatar::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.music-avatar::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+
+.music-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 8px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.music-info {
+    width: 100%;
+    text-align: center;
+}
+
+.music-title {
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-size: 18px;
+    color: #2d3436;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.4;
+}
+
+.music-artist {
+    font-size: 14px;
+    color: #636e72;
+    margin-bottom: 25px;
+    font-weight: 400;
+}
+
+.music-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.play-pause-btn {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    color: #fff;
+}
+
+.play-pause-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+}
+
+.play-pause-btn:active {
+    transform: scale(0.95);
+}
+
+.play-pause-btn svg {
+    width: 22px;
+    height: 22px;
+}
+
+.progress-bar-wrapper {
+    flex: 1;
+    position: relative;
+    height: 50px;
+}
+
+#waveform-canvas {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.progress {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0%;
+    height: 100%;
+    pointer-events: none;
+    display: none;
+    /* Có thể ẩn vì đã có highlight trên waveform */
+}
+
+/* Responsive */
+@media screen and (max-width: 480px) {
+    .progress-bar-wrapper {
+        height: 40px;
+    }
+}
+
+/* Responsive */
+@media screen and (max-width: 480px) {
+    .music-wrapper .box-music {
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    .custom-player {
+        padding: 35px 25px 30px;
+        border-radius: 25px;
+    }
+
+    .music-avatar {
+        width: 180px;
+        height: 180px;
+    }
+
+    .music-title {
+        font-size: 16px;
+    }
+
+    .music-artist {
+        font-size: 13px;
+        margin-bottom: 20px;
+    }
+
+    .play-pause-btn {
+        width: 46px;
+        height: 46px;
+        min-width: 46px;
+    }
+
+    .btn-sound {
+        width: 50px;
+        height: 50px;
+        top: 80px;
+        right: 15px;
+    }
+}
+
+@media screen and (max-width: 374px) {
+    .music-avatar {
+        width: 160px;
+        height: 160px;
+    }
+
+    .custom-player {
+        padding: 30px 20px 25px;
+    }
+
+    .music-title {
+        font-size: 15px;
+    }
+}
+
+
+.btn-back {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    color: #2d3436;
+}
+
+.btn-back:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.btn-back:active {
+    transform: scale(0.95);
+}
+
+.btn-back svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Responsive cho nút back */
+@media screen and (max-width: 480px) {
+    .btn-back {
+        top: 15px;
+        left: 15px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .btn-back svg {
+        width: 20px;
+        height: 20px;
+    }
+}

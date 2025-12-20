@@ -1753,7 +1753,7 @@ header .stuck {
         padding: 15px 20px;
         width: calc((100% - 100px) / 3);
         @media screen and (max-width: 500px) {
-            width: calc((100% - 2n0px) / 2);
+            width: calc((100% - 20px) / 2);
         }
         &:first-child {
             border-top: 1px solid #e0e0e0;

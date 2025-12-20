@@ -154,31 +154,10 @@ body {
     overflow: hidden;
 }
 
-/*==========================================================================*/
-/*             W O R D P R E S S   U S E R   L O G G E D   I N              */
-/*==========================================================================*/
-
-// .customize-support {
-//     #header {
-//         margin-top: 32px;
-//     }
-// }
-
-// @media screen and (max-width: 782px) {
-//     .customize-support {
-//         #header {
-//             margin-top: 46px !important;
-//         }
-//     }
-// }
-
-// @media screen and (max-width: 600px) {
-//     .customize-support {
-//         #header {
-//             margin-top: 0px !important;
-//         }
-//     }
-// }
+.wow {
+    animation-duration: 1s;
+    animation-delay: 0.2s;
+}
 
 /*==========================================================================*/
 /*                             E N D   A L L                                */

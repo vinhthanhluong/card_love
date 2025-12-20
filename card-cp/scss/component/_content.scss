@@ -3,21 +3,6 @@
 /*==========================================================================*/
 @use '../mixins/basic' as *;
 
-// Counter
-@use "./counter";
-
-// Album
-@use "./album";
-
-// Message
-@use "./message";
-
-// Mp3
-@use "./mp3";
-
-// couple_card
-@use "./couple_card";
-
 .tpl-main {
     height: 100vh;
     min-height: 600px;
@@ -421,20 +406,4 @@
             background-image: url("../images/ic-aquarius.png");
         }
     }
-}
-
-
-
-
-/* EDGE  */
-@supports (-ms-ime-align: auto) {}
-
-/* FIREFOX */
-@-moz-document url-prefix() {}
-
-/* Safari 10.1+ (which is the latest version of Safari at this time) */
-@media not all and (min-resolution: 0.001dpcm) {}
-
-@supports (-webkit-touch-callout: none) {
-    /* CSS specific to iOS devices */
 }
