@@ -55,10 +55,10 @@
                 alt="menu">
             </button>
             <div class="hicon hd-album">
-              <img src="./images/ic-album.png" alt="album" />
+              <img src="./images/ic-album.svg" alt="album" />
             </div>
             <div class="hicon hd-mail">
-              <img src="./images/ic-mail.png" alt="mail" />
+              <img src="./images/ic-mail.svg" alt="mail" />
             </div>
             <button id="toggle-sound" class="hicon hd-sound">
               <img id="sound-icon"
@@ -90,27 +90,27 @@
           </div>
 
           <div class="icounter" data-love="04/04/2022">
-            <!-- <div class="icounter-type1">
-                        <div class="icounter-head">
-                            <p class="iyear"><span>00</span>Năm</p>
-                            <p class="imonth"><span>00</span>Tháng</p>
-                            <p class="iweek"><span>00</span>Tuần</p>
-                            <p class="iday"><span>00</span>Ngày</p>
-                        </div>
-                        <div class="icounter-footer">
-                            <p class="icounter-first">00/00/0000</p>
-                            <p class="icounter-time">
-                                <span class="ihours">00</span> :
-                                <span class="iminute">00</span> :
-                                <span class="isecond">00</span>
-                            </p>
-                        </div>
-                    </div> -->
-            <div class="icounter-type2">
+            <div class="icounter-type1">
+              <div class="icounter-head">
+                <p class="iyear"><span>00</span>Năm</p>
+                <p class="imonth"><span>00</span>Tháng</p>
+                <p class="iweek"><span>00</span>Tuần</p>
+                <p class="iday"><span>00</span>Ngày</p>
+              </div>
+              <div class="icounter-footer">
+                <p class="icounter-first">00/00/0000</p>
+                <p class="icounter-time">
+                  <span class="ihours">00</span> :
+                  <span class="iminute">00</span> :
+                  <span class="isecond">00</span>
+                </p>
+              </div>
+            </div>
+            <!-- <div class="icounter-type2">
               <p class="icounter-tt">đang yêu</p>
               <p class="iday-sum">0</p>
               <p class="icounter-day">Ngày</p>
-            </div>
+            </div> -->
           </div>
 
           <div class="ilove">
@@ -158,12 +158,12 @@
               <!-- Header -->
               <div class="mhead">
                 <div class="mdate-display">
-                  <!-- <span id="currentDateMemory">04/04/2020</span> -->
-                  <span id="currentDateMemory">10/12/2025</span>
+                  <span id="currentDateMemory">04/04/2022</span>
+                  <!-- <span id="currentDateMemory">10/12/2025</span> -->
                   <span class="ic">💕</span>
                   <span>Hôm nay</span>
                 </div>
-                <div class="ttl">365 ngày yêu thương</div>
+                <div class="mquote">Mỗi ngày là một kỷ niệm</div>
               </div>
 
               <!-- Counter -->
@@ -173,16 +173,11 @@
               </div>
 
               <!-- Quote -->
-              <div class="mquote">Mỗi ngày là một kỷ niệm</div>
+              <!-- <div class="mquote">Mỗi ngày là một kỷ niệm</div> -->
 
               <!-- Stats Section - Elegant Horizontal -->
               <div class="mstats">
                 <div class="mstats-row">
-                  <div class="item">
-                    <span class="ic">⏰</span>
-                    <span class="vale" id="hoursCounterMemory">0</span>
-                    <span class="lb">Giờ</span>
-                  </div>
                   <div class="item">
                     <span class="ic">📅</span>
                     <span class="vale" id="weeksCounterMemory">0</span>
@@ -213,47 +208,49 @@
                     ta</div>
                 </div>
 
-                <div class="item left">
-                  <div class="dot"></div>
-                  <div class="cnt">
-                    <div class="date">
-                      <span>🌸</span>
-                      <span>Ngày đầu tiên</span>
+                <div class="item-wrap">
+                  <div class="item left">
+                    <div class="dot"></div>
+                    <div class="cnt">
+                      <div class="date">
+                        <span>🌸</span>
+                        <span>Ngày đầu tiên</span>
+                      </div>
+                      <div class="txt">Ngày chúng ta bắt đầu</div>
                     </div>
-                    <div class="txt">Ngày chúng ta bắt đầu</div>
                   </div>
-                </div>
 
-                <div class="item right">
-                  <div class="dot"></div>
-                  <div class="cnt">
-                    <div class="date">
-                      <span>💝</span>
-                      <span>Kỷ niệm 100 ngày</span>
+                  <div class="item right">
+                    <div class="dot"></div>
+                    <div class="cnt">
+                      <div class="date">
+                        <span>💝</span>
+                        <span>Kỷ niệm <span id="daysTimelineMemory1">100</span> ngày</span>
+                      </div>
+                      <div class="txt">Tình yêu ngày càng sâu đậm</div>
                     </div>
-                    <div class="txt">Tình yêu ngày càng sâu đậm</div>
                   </div>
-                </div>
 
-                <div class="item left">
-                  <div class="dot"></div>
-                  <div class="cnt">
-                    <div class="date">
-                      <span>🎂</span>
-                      <span>200 ngày</span>
+                  <div class="item left">
+                    <div class="dot"></div>
+                    <div class="cnt">
+                      <div class="date">
+                        <span>🎂</span>
+                        <span><span id="daysTimelineMemory2">200</span> ngày</span>
+                      </div>
+                      <div class="txt">Những phút giây ngọt ngào</div>
                     </div>
-                    <div class="txt">Những phút giây ngọt ngào</div>
                   </div>
-                </div>
 
-                <div class="item right">
-                  <div class="dot"></div>
-                  <div class="cnt">
-                    <div class="date">
-                      <span>💕</span>
-                      <span>Hôm nay - 365 ngày</span>
+                  <div class="item right">
+                    <div class="dot"></div>
+                    <div class="cnt">
+                      <div class="date">
+                        <span>💕</span>
+                        <span>Hôm nay - <span id="daysTimelineMemory3">0</span> ngày</span>
+                      </div>
+                      <div class="txt">Và sẽ còn mãi mãi...</div>
                     </div>
-                    <div class="txt">Và sẽ còn mãi mãi...</div>
                   </div>
                 </div>
               </div>

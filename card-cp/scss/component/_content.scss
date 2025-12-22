@@ -4,501 +4,507 @@
 @use "../mixins/basic" as *;
 
 .tpl-main {
-    height: 100vh;
-    min-height: 600px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    position: relative;
-    z-index: 0;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 0;
 
-    &.tpl1 {
-        .love-slider {
-            .splide__pagination {
-                bottom: 20px;
-            }
-        }
-
-        .ilove {
-            .ilove-name {
-                color: #fff;
-            }
-        }
-
-        .slick-active {
-            img {
-                animation: sliderFace 3s linear;
-            }
-        }
+  &.tpl1 {
+    .love-slider {
+      .splide__pagination {
+        bottom: 20px;
+      }
     }
 
-    &.tpl2 {
-        .love-slider {
-            .lover-slider-img {
-                img {
-                    height: 83vh;
-                }
-            }
-        }
-
-        .ilove {
-            &::before {
-                --kc: calc(2000 / 768 * 100vw);
-                content: "";
-                position: absolute;
-                // top: max(calc(-90 / 768 * 100vw), -90px);
-                left: calc(50% - calc(min(var(--kc), 2000px) / 2));
-                width: min(var(--kc), 2000px);
-                height: min(var(--kc), 2000px);
-                background-color: #fff;
-                border-radius: 100%;
-                z-index: -1;
-                top: 20px;
-            }
-        }
-
-        .ilove-dots {
-            .slick-dots {
-                bottom: calc(100% + 15px);
-            }
-        }
+    .ilove {
+      .ilove-name {
+        color: #fff;
+      }
     }
 
-    &.tpl3 {
-        .love-slider {
-            .lover-slider-img {
-                img {
-                    height: 86vh;
-                }
-            }
-        }
+    .slick-active {
+      img {
+        animation: sliderFace 3s linear;
+      }
+    }
+  }
 
-        .ilove {
-            &::before {
-                content: "";
-                position: absolute;
-                inset: 0 max(calc(-50 / 320 * 100vw), -120px);
-                // top: calc(-13 / 375 * 100vw);
-                top: max(calc(-70 / 768 * 100vw), -70px);
-                transform: translateX(min(calc(40 / 320 * 100vw), 96px));
-                background: url("../images/wave-bg.svg") no-repeat top center/contain;
-                z-index: -1;
-            }
-
-            &::after {
-                content: "";
-                position: absolute;
-                inset: min(calc(60 / 320 * 100vw), 120px) 0 0;
-                background-color: #fff;
-                z-index: -1;
-            }
+  &.tpl2 {
+    .love-slider {
+      .lover-slider-img {
+        img {
+          height: 83vh;
         }
-
-        .ilove-dots {
-            .slick-dots {
-                bottom: calc(100% + 15px);
-            }
-        }
+      }
     }
 
-    &.theme4 {
+    .ilove {
+      &::before {
+        --kc: calc(2000 / 768 * 100vw);
+        content: "";
+        position: absolute;
+        // top: max(calc(-90 / 768 * 100vw), -90px);
+        left: calc(50% - calc(min(var(--kc), 2000px) / 2));
+        width: min(var(--kc), 2000px);
+        height: min(var(--kc), 2000px);
         background-color: #fff;
-        .love-slider {
-            position: relative;
-            top: 20px;
-            width: min(calc(225 / 375 * 100vw), 255px);
-            margin: auto;
-            pointer-events: auto;
-            z-index: 1;
-
-            .love-slr {
-                margin: auto;
-                --r: -5deg;
-                transform: rotate(var(--r));
-            }
-
-            .slick-list {
-                overflow: visible;
-            }
-
-            .lover-slider-img {
-                img {
-                    min-height: auto;
-                    height: min(calc(300 / 375 * 100vw), 340px);
-                    border: 6px solid #fff;
-                    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
-                    --tw-skew-x: 0;
-                    --tw-skew-y: 0;
-                    --tw-scale-x: 0.6;
-                    --tw-scale-y: 0.6;
-                    --tw-translate-x: -8px;
-                    --tw-translate-y: 15px;
-                    --tw-rotate: calc(6deg - var(--r));
-                    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate))
-                        skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x))
-                        scaleY(var(--tw-scale-y));
-                    transition: all 1.2s cubic-bezier(0.47, 0.16, 0.24, 1);
-                }
-            }
-
-            .slick-active {
-                img {
-                    --tw-scale-x: 1;
-                    --tw-scale-y: 1;
-                    --tw-translate-x: 0px;
-                    --tw-translate-y: 0px;
-                    --tw-rotate: calc(-3deg - var(--r));
-                }
-            }
-        }
-
-        .ilove {
-            margin-top: 0;
-            .ilove-name {
-            }
-        }
+        border-radius: 100%;
+        z-index: -1;
+        top: 20px;
+      }
     }
+
+    .ilove-dots {
+      .slick-dots {
+        bottom: calc(100% + 15px);
+      }
+    }
+  }
+
+  &.tpl3 {
+    .love-slider {
+      .lover-slider-img {
+        img {
+          height: 86vh;
+        }
+      }
+    }
+
+    .ilove {
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 0 max(calc(-50 / 320 * 100vw), -120px);
+        // top: calc(-13 / 375 * 100vw);
+        top: max(calc(-70 / 768 * 100vw), -70px);
+        transform: translateX(min(calc(40 / 320 * 100vw), 96px));
+        background: url("../images/wave-bg.svg") no-repeat top center/contain;
+        z-index: -1;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        inset: min(calc(60 / 320 * 100vw), 120px) 0 0;
+        background-color: #fff;
+        z-index: -1;
+      }
+    }
+
+    .ilove-dots {
+      .slick-dots {
+        bottom: calc(100% + 15px);
+      }
+    }
+  }
+
+  &.theme4 {
+    background-color: #fff;
+    .love-slider {
+      position: relative;
+      top: 20px;
+      width: min(calc(225 / 375 * 100vw), 255px);
+      margin: auto;
+      pointer-events: auto;
+      z-index: 1;
+
+      .love-slr {
+        margin: auto;
+        --r: -5deg;
+      }
+
+      .slick-list {
+        overflow: visible;
+        transform: rotate(var(--r));
+      }
+
+      .lover-slider-img {
+        img {
+          min-height: auto;
+          height: min(calc(300 / 375 * 100vw), 340px);
+          border: 6px solid #fff;
+          box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+          --tw-skew-x: 0;
+          --tw-skew-y: 0;
+          --tw-scale-x: 0.6;
+          --tw-scale-y: 0.6;
+          --tw-translate-x: -8px;
+          --tw-translate-y: 15px;
+          --tw-rotate: calc(6deg - var(--r));
+          transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate))
+            skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+          transition: all 1.2s cubic-bezier(0.47, 0.16, 0.24, 1);
+        }
+      }
+
+      .slick-active {
+        img {
+          --tw-scale-x: 1;
+          --tw-scale-y: 1;
+          --tw-translate-x: 0px;
+          --tw-translate-y: 0px;
+          --tw-rotate: calc(-3deg - var(--r));
+        }
+      }
+
+      .slick-arrow{
+      }
+    }
+
+    .ilove {
+      margin-top: 0;
+      padding-top: 40px;
+      padding-bottom: 20px;
+      .ilove-name {
+      }
+
+      .ilove-dots{
+        display: none;
+      }
+    }
+  }
 }
 
 .love-slider {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
 
-    .love-slr {
-        width: 100%;
-        height: 100%;
-        transition: all 0.3s ease;
-        &:not(.slick-slider) {
-            opacity: 0;
-        }
+  .love-slr {
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s ease;
+    &:not(.slick-slider) {
+      opacity: 0;
     }
+  }
 
-    @keyframes sliderFace {
-        0% {
-            transform: scale(1.2);
-        }
-
-        100% {
-            transform: scale(1);
-        }
+  @keyframes sliderFace {
+    0% {
+      transform: scale(1.2);
     }
 
-    // .slick-active {
-    //     img {
-    //         animation: sliderFace 3s linear;
-    //     }
-    // }
+    100% {
+      transform: scale(1);
+    }
+  }
 
-    .lover-slider-img {
-        img {
-            width: 100%;
-            height: 100vh;
-            min-height: 600px;
-        }
-    }
-    .slick-arrow {
-        border-radius: 100%;
-        border: 1px solid #000;
-        width: 54px;
-        height: 54px;
-        z-index: 1;
-        transform: none;
-        top: unset;
-        bottom: -10px;
-        &::before {
-            color: #000;
-        }
-    }
-    .slick-prev {
-        left: -62px;
-    }
-    .slick-next {
-        right: -40px;
-    }
+  // .slick-active {
+  //     img {
+  //         animation: sliderFace 3s linear;
+  //     }
+  // }
 
-    .memory-tt {
-        text-align: center;
-        font-size: 16px;
-        font-weight: 600;
-        color: #ff69b4;
+  .lover-slider-img {
+    img {
+      width: 100%;
+      height: 100vh;
+      min-height: 600px;
     }
+  }
+  .slick-arrow {
+    border-radius: 100%;
+    border: 1px solid #000;
+    width: 54px;
+    height: 54px;
+    z-index: 1;
+    transform: none;
+    top: unset;
+    bottom: -10px;
+    &::before {
+      color: #000;
+    }
+  }
+  .slick-prev {
+    left: -40px;
+  }
+  .slick-next {
+    right: -40px;
+  }
+
+  .memory-tt {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ff69b4;
+  }
 }
 
 .ilove-dots {
-    .slick-dots {
-        bottom: 2px;
-        z-index: 1;
+  .slick-dots {
+    bottom: 2px;
+    z-index: 1;
 
-        li {
-            background: transparent;
-            opacity: 0.5;
-            transform: none !important;
-            width: 20px;
-            height: 20px;
-            margin: 0 0px;
+    li {
+      background: transparent;
+      opacity: 0.5;
+      transform: none !important;
+      width: 20px;
+      height: 20px;
+      margin: 0 0px;
 
-            &.slick-active {
-                opacity: 1;
+      &.slick-active {
+        opacity: 1;
 
-                &::before {
-                    filter: none;
-                }
-            }
-
-            &::before {
-                content: "";
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: url("../images/ic-heart.svg") center/contain no-repeat;
-                filter: brightness(0) invert(1);
-            }
-
-            button {
-                display: none;
-            }
+        &::before {
+          filter: none;
         }
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("../images/ic-heart.svg") center/contain no-repeat;
+        filter: brightness(0) invert(1);
+      }
+
+      button {
+        display: none;
+      }
     }
+  }
 }
 
 .ilove {
+  position: relative;
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 40px;
+  min-height: 144px;
+  margin-top: auto;
+  z-index: 1;
+
+  .ilove-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px;
+    max-width: 500px;
+    margin: 0 auto;
     position: relative;
-    width: 100%;
-    padding-top: 20px;
-    padding-bottom: 40px;
-    min-height: 144px;
-    margin-top: auto;
-    z-index: 1;
+    z-index: 0;
 
-    .ilove-wrapper {
-        display: flex;
-        justify-content: space-between;
-        padding: 0 15px;
-        max-width: 500px;
-        // margin: -60px auto 0;
-        // margin-top: min(max(calc(-110 / 768 * 100vw), -110px), -60px);
-        margin: 0 auto;
-        position: relative;
-        z-index: 0;
-
-        &::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            margin: 0 auto;
-            width: max(min(calc(120 / 768 * 100vw), 120px), 50px);
-            height: max(min(calc(130 / 768 * 100vw), 130px), 90px);
-            background: url("../images/line-heart-rate.gif") center/contain no-repeat;
-            z-index: 1;
-        }
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      width: max(min(calc(120 / 768 * 100vw), 120px), 50px);
+      height: max(min(calc(130 / 768 * 100vw), 130px), 90px);
+      background: url("../images/line-heart-rate.gif") center/contain no-repeat;
+      z-index: 1;
     }
+  }
 
-    .ilove-male {
-        .ilove-img {
-            &::after {
-                left: var(--spaceX);
-                transform: rotate(90deg);
-            }
-        }
-
-        .ilove-age {
-            background-color: #15a9e2;
-
-            &::before {
-                background-image: url("../images/ic-male.png");
-            }
-        }
-    }
-
-    .ilove-female {
-        .ilove-img {
-            &::after {
-                right: var(--spaceX);
-                transform: scale(-1) rotate(90deg);
-            }
-        }
-
-        .ilove-age {
-            background-color: #8f6ff7;
-
-            &::before {
-                background-image: url("../images/ic-female.png");
-                width: 12px;
-                height: 12px;
-            }
-        }
-    }
-
+  .ilove-male {
     .ilove-img {
-        width: max(min(calc(130 / 768 * 100vw), 130px), 80px);
-        height: max(min(calc(130 / 768 * 100vw), 130px), 80px);
-        border-radius: 100%;
-        margin: 0 auto 10px;
-        border: 3px solid #fff;
-        box-shadow: 0 0 12px rgba($color: #000000, $alpha: 0.2);
-        position: relative;
-        z-index: 0;
-
-        &::after {
-            --spaceX: max(min(calc(90 / 768 * 100vw), 90px), 70px);
-            content: "";
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            margin: auto 0;
-            width: max(min(calc(130 / 768 * 100vw), 130px), 80px);
-            height: max(min(calc(130 / 768 * 100vw), 130px), 80px);
-            background: url("../images/heart-eff1.gif") center/contain no-repeat;
-            z-index: -1;
-        }
-
-        img {
-            width: 100%;
-            height: 100%;
-            border-radius: 100%;
-        }
-    }
-
-    .ilove-name {
-        // font-size: 20px;
-        // font-weight: 700;
-        text-align: center;
-        line-height: 1;
-        margin-bottom: 15px;
-        text-transform: capitalize;
-        font-size: 26px;
-        font-weight: 700;
-        font-family: var(--font-dancing);
-    }
-
-    .ilove-info {
-        display: flex;
-        align-items: center;
+      &::after {
+        left: var(--spaceX);
+        transform: rotate(90deg);
+      }
     }
 
     .ilove-age {
-        color: #fff;
-        line-height: 1;
-        padding: 5px 6px 5px 20px;
-        border-radius: 100px;
-        font-size: 12px;
-        position: relative;
-        z-index: 0;
-        margin-bottom: 0;
+      background: linear-gradient(135deg, #15a9e2, rgb(21 98 226 / 40%));
 
-        &::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 6px;
-            bottom: 0;
-            margin: auto 0;
-            width: 10px;
-            height: 10px;
-            background: center/contain no-repeat;
-        }
+      &::before {
+        background-image: url("../images/ic-male.png");
+      }
+    }
+  }
+
+  .ilove-female {
+    .ilove-img {
+      &::after {
+        right: var(--spaceX);
+        transform: scale(-1) rotate(90deg);
+      }
     }
 
-    .ilove-zodiac {
-        margin-left: 6px;
-        font-size: 12px;
-        line-height: 1;
-        color: #fff;
-        background-color: var(--main-cl);
-        border-radius: 100px;
-        padding: 6px 8px 6px 26px;
-        position: relative;
-        z-index: 0;
-        text-transform: capitalize;
+    .ilove-age {
+      background: linear-gradient(135deg, #8f6ff7, rgba(180, 111, 247, 0.5));
 
-        &::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 8px;
-            margin: auto 0;
-            width: 16px;
-            height: 16px;
-            z-index: -1;
-            background: center/contain no-repeat;
-        }
+      &::before {
+        background-image: url("../images/ic-female.png");
+        width: 12px;
+        height: 12px;
+      }
+    }
+  }
+
+  .ilove-img {
+    width: max(min(calc(130 / 768 * 100vw), 130px), 80px);
+    height: max(min(calc(130 / 768 * 100vw), 130px), 80px);
+    border-radius: 100%;
+    margin: 0 auto 10px;
+    border: 3px solid #fff;
+    box-shadow: 0 0 12px rgba($color: #000000, $alpha: 0.2);
+    position: relative;
+    z-index: 0;
+
+    &::after {
+      --spaceX: max(min(calc(90 / 768 * 100vw), 90px), 70px);
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      margin: auto 0;
+      width: max(min(calc(130 / 768 * 100vw), 130px), 80px);
+      height: max(min(calc(130 / 768 * 100vw), 130px), 80px);
+      background: url("../images/heart-eff1.gif") center/contain no-repeat;
+      z-index: -1;
     }
 
-    .iaries {
-        &::before {
-            background-image: url("../images/ic-aries.png");
-        }
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 100%;
     }
+  }
 
-    .ivirgo {
-        &::before {
-            background-image: url("../images/ic-virgo.png");
-        }
-    }
+  .ilove-name {
+    // font-size: 20px;
+    // font-weight: 700;
+    text-align: center;
+    line-height: 1;
+    margin-bottom: 15px;
+    text-transform: capitalize;
+    font-size: 26px;
+    font-weight: 700;
+    font-family: var(--font-dancing);
+  }
 
-    .itaurus {
-        &::before {
-            background-image: url("../images/ic-taurus.png");
-        }
-    }
+  .ilove-info {
+    display: flex;
+    align-items: center;
+  }
 
-    .iscorpio {
-        &::before {
-            background-image: url("../images/ic-scorpio.png");
-        }
-    }
+  .ilove-age {
+    color: #fff;
+    line-height: 1;
+    padding: 5px 6px 5px 20px;
+    border-radius: 100px;
+    font-size: 12px;
+    position: relative;
+    z-index: 0;
+    margin-bottom: 0;
 
-    .isagittarius {
-        &::before {
-            background-image: url("../images/ic-sagittarius.png");
-            width: 14px;
-        }
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 6px;
+      bottom: 0;
+      margin: auto 0;
+      width: 10px;
+      height: 10px;
+      background: center/contain no-repeat;
     }
+  }
 
-    .ipisces {
-        &::before {
-            background-image: url("../images/ic-pisces.png");
-            width: 14px;
-        }
-    }
+  .ilove-zodiac {
+    margin-left: 6px;
+    font-size: 12px;
+    line-height: 1;
+    color: #fff;
+    background: linear-gradient(315deg, rgb(255 105 105 / 55%), rgba(255, 20, 66, 0.73));
+    border-radius: 100px;
+    padding: 6px 8px 6px 26px;
+    position: relative;
+    z-index: 0;
+    text-transform: capitalize;
 
-    .ilibra {
-        &::before {
-            background-image: url("../images/ic-libra.png");
-        }
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 8px;
+      margin: auto 0;
+      width: 16px;
+      height: 16px;
+      z-index: -1;
+      background: center/contain no-repeat;
     }
+  }
 
-    .ileo {
-        &::before {
-            background-image: url("../images/ic-leo.png");
-        }
+  .iaries {
+    &::before {
+      background-image: url("../images/ic-aries.png");
     }
+  }
 
-    .igemini {
-        &::before {
-            background-image: url("../images/ic-gemini.png");
-            width: 14px;
-        }
+  .ivirgo {
+    &::before {
+      background-image: url("../images/ic-virgo.png");
     }
+  }
 
-    .icapricorn {
-        &::before {
-            background-image: url("../images/ic-capricorn.png");
-        }
+  .itaurus {
+    &::before {
+      background-image: url("../images/ic-taurus.png");
     }
+  }
 
-    .iaquarius {
-        &::before {
-            background-image: url("../images/ic-aquarius.png");
-        }
+  .iscorpio {
+    &::before {
+      background-image: url("../images/ic-scorpio.png");
     }
+  }
+
+  .isagittarius {
+    &::before {
+      background-image: url("../images/ic-sagittarius.png");
+      width: 14px;
+    }
+  }
+
+  .ipisces {
+    &::before {
+      background-image: url("../images/ic-pisces.png");
+      width: 14px;
+    }
+  }
+
+  .ilibra {
+    &::before {
+      background-image: url("../images/ic-libra.png");
+    }
+  }
+
+  .ileo {
+    &::before {
+      background-image: url("../images/ic-leo.png");
+    }
+  }
+
+  .igemini {
+    &::before {
+      background-image: url("../images/ic-gemini.png");
+      width: 14px;
+    }
+  }
+
+  .icapricorn {
+    &::before {
+      background-image: url("../images/ic-capricorn.png");
+    }
+  }
+
+  .iaquarius {
+    &::before {
+      background-image: url("../images/ic-aquarius.png");
+    }
+  }
 }

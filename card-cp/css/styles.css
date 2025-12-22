@@ -653,6 +653,10 @@ body::-webkit-scrollbar-track {
   z-index: 99;
   /* Sub Buttons */
 }
+#header.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
 #header h1 {
   position: absolute;
   top: 0;
@@ -687,9 +691,12 @@ body::-webkit-scrollbar-track {
   justify-content: center;
   background-color: #fff;
   cursor: pointer;
-  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset;
+  background: linear-gradient(135deg, rgba(255, 105, 108, 0.55), rgba(255, 20, 66, 0.73));
   border: none;
   transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+#header .hicon img {
+  filter: brightness(0) invert(1);
 }
 #header .hd-toggle {
   z-index: 10;
@@ -807,10 +814,10 @@ body::-webkit-scrollbar-track {
 .tpl-main.theme4 .love-slider .love-slr {
   margin: auto;
   --r: -5deg;
-  transform: rotate(var(--r));
 }
 .tpl-main.theme4 .love-slider .slick-list {
   overflow: visible;
+  transform: rotate(var(--r));
 }
 .tpl-main.theme4 .love-slider .lover-slider-img img {
   min-height: auto;
@@ -836,7 +843,13 @@ body::-webkit-scrollbar-track {
 }
 .tpl-main.theme4 .ilove {
   margin-top: 0;
+  padding-top: 40px;
+  padding-bottom: 20px;
 }
+.tpl-main.theme4 .ilove .ilove-dots {
+  display: none;
+}
+
 .love-slider {
   position: absolute;
   inset: 0;
@@ -878,7 +891,7 @@ body::-webkit-scrollbar-track {
   color: #000;
 }
 .love-slider .slick-prev {
-  left: -62px;
+  left: -40px;
 }
 .love-slider .slick-next {
   right: -40px;
@@ -957,7 +970,7 @@ body::-webkit-scrollbar-track {
   transform: rotate(90deg);
 }
 .ilove .ilove-male .ilove-age {
-  background-color: #15a9e2;
+  background: linear-gradient(135deg, #15a9e2, rgba(21, 98, 226, 0.4));
 }
 .ilove .ilove-male .ilove-age::before {
   background-image: url("../images/ic-male.png");
@@ -967,7 +980,7 @@ body::-webkit-scrollbar-track {
   transform: scale(-1) rotate(90deg);
 }
 .ilove .ilove-female .ilove-age {
-  background-color: #8f6ff7;
+  background: linear-gradient(135deg, #8f6ff7, rgba(180, 111, 247, 0.5));
 }
 .ilove .ilove-female .ilove-age::before {
   background-image: url("../images/ic-female.png");
@@ -1040,7 +1053,7 @@ body::-webkit-scrollbar-track {
   font-size: 12px;
   line-height: 1;
   color: #fff;
-  background-color: var(--main-cl);
+  background: linear-gradient(315deg, rgba(255, 105, 105, 0.55), rgba(255, 20, 66, 0.73));
   border-radius: 100px;
   padding: 6px 8px 6px 26px;
   position: relative;
@@ -1152,7 +1165,7 @@ body::-webkit-scrollbar-track {
     height: 0;
   }
   to {
-    height: calc(100% - 60px);
+    height: 100%;
   }
 }
 @keyframes slideIn {
@@ -1219,7 +1232,7 @@ body::-webkit-scrollbar-track {
   font-weight: 600;
   margin: 0 auto;
   color: white;
-  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  background: linear-gradient(135deg, rgba(255, 105, 180, 0.55), rgba(255, 20, 147, 0.73));
   border: none;
   border-radius: 50px;
   cursor: pointer;
@@ -1284,7 +1297,7 @@ body::-webkit-scrollbar-track {
 .memory-overlay.active .mstats .item:nth-child(4) {
   animation: slideInStat 0.6s ease-out 1.7s forwards;
 }
-.memory-overlay.active .mtimeline::before {
+.memory-overlay.active .mtimeline .item-wrap::before {
   animation: growLine 2s ease-out 1.4s forwards;
 }
 .memory-overlay.active .mtimeline .head {
@@ -1326,7 +1339,7 @@ body::-webkit-scrollbar-track {
   height: 100%;
   background: white;
   border-radius: 30px;
-  padding: 35px 25px;
+  padding: 35px 20px;
   box-shadow: 0 20px 60px rgba(255, 105, 180, 0.15);
   position: relative;
   overflow: hidden;
@@ -1366,7 +1379,7 @@ body::-webkit-scrollbar-track {
 }
 .memory-overlay .mhead {
   text-align: center;
-  margin-bottom: 13px;
+  margin-bottom: 9px;
   position: relative;
   z-index: 1;
 }
@@ -1418,7 +1431,6 @@ body::-webkit-scrollbar-track {
   font-size: 15px;
   color: #888;
   font-style: italic;
-  margin: 0 0 20px 0;
   padding: 0 10px;
   position: relative;
   opacity: 0;
@@ -1433,8 +1445,8 @@ body::-webkit-scrollbar-track {
   margin: 0 0 15px 0;
   opacity: 0;
   background: linear-gradient(135deg, rgba(255, 182, 193, 0.15), rgba(255, 240, 245, 0.3));
-  border-radius: 25px;
-  padding: 20px 15px;
+  border-radius: 14px;
+  padding: 15px 15px;
   backdrop-filter: blur(10px);
   border: 2px solid rgba(255, 105, 180, 0.1);
   box-shadow: 0 8px 32px rgba(255, 105, 180, 0.08);
@@ -1449,7 +1461,6 @@ body::-webkit-scrollbar-track {
   flex: 1;
   text-align: center;
   position: relative;
-  padding: 8px 0;
   opacity: 0;
 }
 .memory-overlay .mstats .item:not(:last-child):after {
@@ -1491,19 +1502,7 @@ body::-webkit-scrollbar-track {
 }
 .memory-overlay .mtimeline {
   position: relative;
-  padding: 30px 0 20px 0;
-  margin-top: 10px;
-}
-.memory-overlay .mtimeline::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 60px;
-  bottom: 0;
-  width: 3px;
-  background: linear-gradient(to bottom, #ffb6c1, #ff69b4, #ff1493);
-  transform: translateX(-50%);
-  height: 0;
+  padding: 20px 0 20px 0;
 }
 .memory-overlay .mtimeline .head {
   text-align: center;
@@ -1524,21 +1523,39 @@ body::-webkit-scrollbar-track {
   font-size: 13px;
   color: #999;
 }
+.memory-overlay .mtimeline .item-wrap {
+  position: relative;
+  padding-top: 20px;
+}
+.memory-overlay .mtimeline .item-wrap::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, #ffb6c1, #ff69b4, #ff1493);
+  transform: translateX(-50%);
+  height: 0;
+}
 .memory-overlay .mtimeline .item {
   position: relative;
   margin-bottom: 35px;
   opacity: 0;
 }
-.memory-overlay .mtimeline .item:nth-child(2) {
+.memory-overlay .mtimeline .item:last-child {
+  margin-bottom: 0;
+}
+.memory-overlay .mtimeline .item:nth-child(1) {
   animation: slideIn 0.6s ease-out 1.6s forwards;
 }
-.memory-overlay .mtimeline .item:nth-child(3) {
+.memory-overlay .mtimeline .item:nth-child(2) {
   animation: slideIn 0.6s ease-out 1.8s forwards;
 }
-.memory-overlay .mtimeline .item:nth-child(4) {
+.memory-overlay .mtimeline .item:nth-child(3) {
   animation: slideIn 0.6s ease-out 2s forwards;
 }
-.memory-overlay .mtimeline .item:nth-child(5) {
+.memory-overlay .mtimeline .item:nth-child(4) {
   animation: slideIn 0.6s ease-out 2.2s forwards;
 }
 .memory-overlay .mtimeline .item.left .cnt {
@@ -1595,7 +1612,7 @@ body::-webkit-scrollbar-track {
 }
 .memory-overlay .mft {
   text-align: center;
-  margin-top: 30px;
+  margin-top: 20px;
   padding-top: 20px;
   border-top: 2px dashed rgba(255, 105, 180, 0.2);
   opacity: 0;

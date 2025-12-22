@@ -14,6 +14,11 @@
     transition: all 0.3s ease;
     z-index: 99;
 
+    &.hidden{
+        opacity: 0;
+        pointer-events: none;
+    }
+
     h1 {
         position: absolute;
         top: 0;
@@ -53,9 +58,12 @@
         justify-content: center;
         background-color: #fff;
         cursor: pointer;
-        box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset;
+        background: linear-gradient(135deg, rgb(255 105 108 / 55%), rgb(255 20 66 / 73%));
         border: none;
         transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        img{
+            filter: brightness(0) invert(1);
+        }
     }
 
     .hd-toggle {

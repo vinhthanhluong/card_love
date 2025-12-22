@@ -128,37 +128,38 @@ let hasAnimated = false;
 // Open modal
 openBtnMemory.addEventListener("click", () => {
   modalMemory.classList.add("active");
+  document.querySelector("#header").classList.add("hidden");
   document.body.style.overflow = "hidden";
 
   // Start animations only once when first opened
   if (!hasAnimated) {
     setTimeout(() => {
-      updateDate();
       animateAllCounters();
       hasAnimated = true;
     }, 400); // Wait for modal animation to complete
   }
 });
 
-// Close modal
-closeBtnMemory.addEventListener("click", () => {
+function closeMemory() {
   modalMemory.classList.remove("active");
   document.body.style.overflow = "auto";
-});
+  document.querySelector("#header").classList.remove("hidden");
+}
+
+// Close modal
+closeBtnMemory.addEventListener("click", closeMemory);
 
 // Close when clicking outside
 modalMemory.addEventListener("click", (e) => {
   if (e.target === modalMemory) {
-    modalMemory.classList.remove("active");
-    document.body.style.overflow = "auto";
+    closeMemory();
   }
 });
 
 // Close with ESC key
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && modalMemory.classList.contains("active")) {
-    modalMemory.classList.remove("active");
-    document.body.style.overflow = "auto";
+    closeMemory();
   }
 });
 
@@ -182,39 +183,46 @@ function animateValue(element, start, end, duration, suffix = "") {
 
 // Animate all counters
 function animateAllCounters() {
-  const days = 365;
-  const hours = days * 24; // 8,760 hours
-  const weeks = Math.floor(days / 7); // 52 weeks
-  const months = 12; // 12 months
-  const years = 1; // 1 year
+  const dateEl = document.getElementById("currentDateMemory");
+  const [day, month, year] = dateEl.innerText.split("/").map(Number);
+  const startDate = new Date(year, month - 1, day);
+  const today = new Date();
+  const diffTime = today - startDate;
+  const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+  const weeks = Math.floor(days / 7);
+  const months =
+    (today.getFullYear() - startDate.getFullYear()) * 12 +
+    (today.getMonth() - startDate.getMonth());
+  const years = today.getFullYear() - startDate.getFullYear();
 
   // Main days counter
   animateValue(document.getElementById("daysCounterMemory"), 0, days, 2000);
 
   // Stats counters with different durations for variety
   setTimeout(() => {
-    animateValue(document.getElementById("hoursCounterMemory"), 0, hours, 2500);
-  }, 200);
-
-  setTimeout(() => {
     animateValue(document.getElementById("weeksCounterMemory"), 0, weeks, 2200);
   }, 400);
 
   setTimeout(() => {
-    animateValue(document.getElementById("monthsCounterMemory"), 0, months, 1800);
+    animateValue(
+      document.getElementById("monthsCounterMemory"),
+      0,
+      months,
+      1800
+    );
   }, 600);
 
   setTimeout(() => {
     animateValue(document.getElementById("yearsCounterMemory"), 0, years, 1500);
   }, 800);
-}
 
-// Update current date
-function updateDate() {
-  const dateElement = document.getElementById("currentDateMemory");
-  const today = new Date();
-  const day = String(today.getDate()).padStart(2, "0");
-  const month = String(today.getMonth() + 1).padStart(2, "0");
-  const year = today.getFullYear();
-  dateElement.textContent = `${day}/${month}/${year}`;
+
+  // Timeline
+  document.getElementById("daysTimelineMemory1").textContent = Math.floor(days / 4);
+  document.getElementById("daysTimelineMemory2").textContent = Math.floor(days / 4 * 2);
+  document.getElementById("daysTimelineMemory3").textContent = days;
+  // animateValue(document.getElementById("daysTimelineMemory1"), 0, days, 0);
+  // animateValue(document.getElementById("daysTimelineMemory2"), 0, days, 0);
+  // animateValue(document.getElementById("daysTimelineMemory3"), 0, days, 0);
+
 }
