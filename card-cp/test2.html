@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dragon ∞ Thảo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;500;600;700&family=Lora:wght@400;500;600&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --ivory: #FFFFF0;
+            --champagne: #F7E7CE;
+            --taupe: #B8A99A;
+            --sage: #9CAF88;
+            --gold: #C9A961;
+            --rose-gold: #D4A574;
+            --charcoal: #3E3E3E;
+            --soft-gray: #F5F5F0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--ivory);
+            color: var(--charcoal);
+            overflow: hidden;
+        }
+
+        .scroll-container {
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+        }
+
+        .screen {
+            height: 100vh;
+            width: 100vw;
+            scroll-snap-align: start;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 30px;
+            overflow: hidden;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(to right, var(--gold), var(--rose-gold));
+            z-index: 1000;
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Floating particles */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--gold);
+            border-radius: 50%;
+            opacity: 0;
+            animation: float 8s infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-10vh) translateX(50px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Screen 1: Hero */
+        .hero-screen {
+            background: linear-gradient(135deg, var(--ivory) 0%, var(--champagne) 50%, var(--soft-gray) 100%);
+        }
+
+        .hero-ornament {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border: 1px solid var(--taupe);
+            opacity: 0.1;
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            animation: fadeInScale 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hero-monogram {
+            font-family: 'Cormorant', serif;
+            font-size: 7em;
+            font-weight: 300;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--rose-gold) 50%, var(--sage) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            letter-spacing: 0.05em;
+            text-shadow: 0 5px 15px rgba(201, 169, 97, 0.2);
+        }
+
+        .hero-names {
+            font-family: 'Lora', serif;
+            font-size: 1.9em;
+            color: var(--charcoal);
+            margin-bottom: 15px;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+        }
+
+        .hero-divider {
+            width: 100px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+            margin: 25px auto;
+            position: relative;
+        }
+
+        .hero-divider::before {
+            content: '◆';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--gold);
+            background: var(--ivory);
+            padding: 0 10px;
+            font-size: 0.8em;
+        }
+
+        .hero-date {
+            font-size: 0.9em;
+            color: var(--taupe);
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-hint span {
+            font-size: 0.75em;
+            letter-spacing: 0.2em;
+            color: var(--taupe);
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 30px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+        }
+
+        /* Screen 2: Album Gallery */
+        .album-screen {
+            background: linear-gradient(180deg, var(--soft-gray) 0%, var(--ivory) 100%);
+            padding-top: 60px;
+        }
+
+        .album-title {
+            font-family: 'Lora', serif;
+            font-size: 2.2em;
+            color: var(--charcoal);
+            text-align: center;
+            margin-bottom: 15px;
+            font-weight: 500;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .album-subtitle {
+            font-size: 0.85em;
+            color: var(--taupe);
+            text-align: center;
+            letter-spacing: 0.15em;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        .album-carousel {
+            position: relative;
+            width: 100%;
+            max-width: 340px;
+            height: 450px;
+            perspective: 1000px;
+        }
+
+        .album-card {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .album-card-inner {
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 
+                0 10px 40px rgba(0, 0, 0, 0.1),
+                0 0 0 1px rgba(201, 169, 97, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .album-image {
+            width: 100%;
+            height: 70%;
+            background: linear-gradient(135deg, var(--champagne), var(--soft-gray));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .album-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, white, transparent);
+        }
+
+        .album-emoji {
+            font-size: 5em;
+            margin-bottom: 15px;
+            animation: floatEmoji 3s ease-in-out infinite;
+        }
+
+        @keyframes floatEmoji {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .album-info {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .album-caption {
+            font-family: 'Lora', serif;
+            font-size: 1.3em;
+            color: var(--charcoal);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .album-description {
+            font-size: 0.85em;
+            color: var(--taupe);
+            line-height: 1.5;
+        }
+
+        .album-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 340px;
+            margin-top: 30px;
+        }
+
+        .album-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: white;
+            border: 1px solid var(--taupe);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3em;
+            color: var(--charcoal);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .album-btn:active {
+            transform: scale(0.9);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .album-indicators {
+            display: flex;
+            gap: 8px;
+        }
+
+        .album-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--taupe);
+            opacity: 0.3;
+            transition: all 0.3s ease;
+        }
+
+        .album-dot.active {
+            width: 24px;
+            border-radius: 4px;
+            background: var(--gold);
+            opacity: 1;
+        }
+
+        /* Screen 3: Profiles */
+        .profiles-screen {
+            background: linear-gradient(180deg, var(--ivory) 0%, var(--champagne) 100%);
+        }
+
+        .profiles-container {
+            width: 100%;
+            max-width: 350px;
+            position: relative;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 30px;
+            padding: 35px 25px;
+            margin-bottom: 30px;
+            position: relative;
+            box-shadow: 
+                0 15px 50px rgba(0, 0, 0, 0.08),
+                0 0 0 1px rgba(201, 169, 97, 0.1);
+            animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--gold), var(--rose-gold), var(--sage));
+        }
+
+        .profile-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(201, 169, 97, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .avatar-wrapper {
+            position: relative;
+            width: 90px;
+            height: 90px;
+        }
+
+        .avatar-ring {
+            position: absolute;
+            inset: -5px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), var(--rose-gold));
+            animation: rotateRing 8s linear infinite;
+        }
+
+        @keyframes rotateRing {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .avatar {
+            position: relative;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--champagne), var(--soft-gray));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            border: 4px solid white;
+            z-index: 1;
+        }
+
+        .profile-basic {
+            flex: 1;
+        }
+
+        .profile-name {
+            font-family: 'Lora', serif;
+            font-size: 1.6em;
+            color: var(--charcoal);
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .profile-info {
+            font-size: 0.85em;
+            color: var(--taupe);
+            letter-spacing: 0.1em;
+        }
+
+        .profile-details {
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--taupe), transparent);
+            margin: 20px 0;
+            opacity: 0.3;
+        }
+
+        .profile-quote {
+            font-style: italic;
+            font-size: 0.95em;
+            color: var(--charcoal);
+            line-height: 1.7;
+            text-align: center;
+            position: relative;
+            padding: 0 15px;
+        }
+
+        .profile-quote::before,
+        .profile-quote::after {
+            font-family: 'Cormorant', serif;
+            font-size: 2em;
+            color: var(--gold);
+            opacity: 0.3;
+        }
+
+        .profile-quote::before {
+            content: '"';
+            position: absolute;
+            left: -5px;
+            top: -10px;
+        }
+
+        .profile-quote::after {
+            content: '"';
+            position: absolute;
+            right: -5px;
+            bottom: -20px;
+        }
+
+        .heart-connector {
+            text-align: center;
+            font-size: 2em;
+            color: var(--gold);
+            margin: -10px 0;
+            animation: heartBeat 1.5s infinite;
+            position: relative;
+            z-index: 3;
+        }
+
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.15); }
+            50% { transform: scale(1); }
+        }
+
+        /* Screen 4: Journey */
+        .journey-screen {
+            background: linear-gradient(180deg, var(--soft-gray) 0%, var(--ivory) 100%);
+            padding-top: 60px;
+            padding-bottom: 60px;
+        }
+
+        .journey-title {
+            font-family: 'Lora', serif;
+            font-size: 2.2em;
+            color: var(--charcoal);
+            text-align: center;
+            margin-bottom: 50px;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .journey-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+        }
+
+        .journey-path {
+            position: relative;
+            width: 100%;
+            max-width: 340px;
+            padding: 0 20px;
+        }
+
+        .journey-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, 
+                var(--gold) 0%, 
+                var(--rose-gold) 50%, 
+                var(--sage) 100%
+            );
+            transform: translateX(-50%);
+        }
+
+        .journey-item {
+            position: relative;
+            margin-bottom: 45px;
+            animation: fadeInUp 0.6s ease-out backwards;
+        }
+
+        .journey-item:nth-child(1) { animation-delay: 0.1s; }
+        .journey-item:nth-child(2) { animation-delay: 0.2s; }
+        .journey-item:nth-child(3) { animation-delay: 0.3s; }
+        .journey-item:nth-child(4) { animation-delay: 0.4s; }
+
+        .journey-item:nth-child(odd) {
+            text-align: right;
+            padding-right: 50px;
+        }
+
+        .journey-item:nth-child(even) {
+            text-align: left;
+            padding-left: 50px;
+        }
+
+        .journey-dot {
+            position: absolute;
+            top: 10px;
+            width: 16px;
+            height: 16px;
+            background: var(--gold);
+            border-radius: 50%;
+            box-shadow: 
+                0 0 0 4px white,
+                0 0 0 5px var(--gold),
+                0 0 20px rgba(201, 169, 97, 0.5);
+            z-index: 2;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); box-shadow: 
+                0 0 0 4px white,
+                0 0 0 5px var(--gold),
+                0 0 30px rgba(201, 169, 97, 0.7); 
+            }
+        }
+
+        .journey-item:nth-child(odd) .journey-dot {
+            right: 42px;
+        }
+
+        .journey-item:nth-child(even) .journey-dot {
+            left: 42px;
+        }
+
+        .journey-content {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .journey-item:nth-child(odd) .journey-content::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 15px;
+            width: 16px;
+            height: 16px;
+            background: white;
+            transform: rotate(45deg);
+        }
+
+        .journey-item:nth-child(even) .journey-content::after {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 15px;
+            width: 16px;
+            height: 16px;
+            background: white;
+            transform: rotate(45deg);
+        }
+
+        .journey-date {
+            font-family: 'Lora', serif;
+            font-size: 0.95em;
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .journey-text {
+            font-size: 0.85em;
+            line-height: 1.6;
+            color: var(--charcoal);
+        }
+
+        .journey-icon {
+            font-size: 1.3em;
+            margin-bottom: 5px;
+        }
+
+        /* Screen 5: Stats */
+        .stats-screen {
+            background: linear-gradient(180deg, var(--ivory) 0%, var(--champagne) 100%);
+        }
+
+        .stats-title {
+            font-family: 'Lora', serif;
+            font-size: 2.2em;
+            color: var(--charcoal);
+            text-align: center;
+            margin-bottom: 50px;
+            font-weight: 500;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            width: 100%;
+            max-width: 340px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 35px 20px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            animation: scaleIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+        }
+
+        .stat-card:nth-child(1) { animation-delay: 0.1s; }
+        .stat-card:nth-child(2) { animation-delay: 0.2s; }
+        .stat-card:nth-child(3) { animation-delay: 0.3s; }
+        .stat-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(to right, var(--gold), var(--rose-gold));
+        }
+
+        .stat-card:active {
+            transform: scale(0.95);
+        }
+
+        .stat-icon {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            animation: floatEmoji 3s ease-in-out infinite;
+        }
+
+        .stat-number {
+            font-family: 'Lora', serif;
+            font-size: 2.8em;
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 0.8em;
+            color: var(--taupe);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        /* Screen 6: Closing */
+        .closing-screen {
+            background: linear-gradient(135deg, var(--soft-gray) 0%, var(--champagne) 50%, var(--ivory) 100%);
+        }
+
+        .closing-container {
+            width: 100%;
+            max-width: 350px;
+            text-align: center;
+        }
+
+        .closing-photo {
+            width: 100%;
+            aspect-ratio: 4/5;
+            background: white;
+            padding: 15px;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+            margin-bottom: 35px;
+            animation: revealPhoto 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        @keyframes revealPhoto {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) rotateY(-20deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotateY(0);
+            }
+        }
+
+        .closing-photo-inner {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--champagne), var(--soft-gray));
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .closing-photo-inner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, transparent 70%);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translate(-50%, -50%); }
+            100% { transform: translate(50%, 50%); }
+        }
+
+        .closing-emoji {
+            font-size: 6em;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .closing-quote {
+            font-family: 'Lora', serif;
+            font-size: 1.2em;
+            color: var(--charcoal);
+            line-height: 1.7;
+            margin-bottom: 25px;
+            font-style: italic;
+            animation: fadeInUp 1s ease-out 0.5s backwards;
+        }
+
+        .closing-names {
+            font-family: 'Cormorant', serif;
+            font-size: 2.5em;
+            background: linear-gradient(135deg, var(--gold), var(--rose-gold), var(--sage));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            font-weight: 600;
+            animation: fadeInUp 1s ease-out 0.7s backwards;
+        }
+
+        .closing-symbol {
+            font-size: 1.5em;
+            color: var(--gold);
+            animation: fadeIn 1s ease-out 0.9s backwards;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Main Scroll Container -->
+    <div class="scroll-container" id="scrollContainer">
+        
+        <!-- Screen 1: Hero -->
+        <section class="screen hero-screen">
+            <div class="particles" id="particles"></div>
+            <div class="hero-ornament"></div>
+            
+            <div class="hero-content">
+                <div class="hero-monogram">D & T</div>
+                <div class="hero-names">Dragon & Thảo</div>
+                <div class="hero-divider"></div>
+                <div class="hero-date">Since March 15, 2023</div>
+            </div>
+            
+            <div class="scroll-hint">
+                <span>VUỐT LÊN</span>
+                <div class="scroll-line"></div>
+            </div>
+        </section>
+
+        <!-- Screen 2: Album Gallery -->
+        <section class="screen album-screen">
+            <div class="particles" id="particles2"></div>
+            
+            <h2 class="album-title">Khoảnh Khắc</h2>
+            <p class="album-subtitle">Những Kỷ Niệm Đẹp</p>
+            
+            <div class="album-carousel" id="albumCarousel">
+                <!-- Cards will be generated by JS -->
+            </div>
+            
+            <div class="album-nav">
+                <button class="album-btn" onclick="prevAlbum()">←</button>
+                <div class="album-indicators" id="albumIndicators"></div>
+                <button class="album-btn" onclick="nextAlbum()">→</button>
+            </div>
+        </section>
+
+        <!-- Screen 3: Profiles -->
+        <section class="screen profiles-screen">
+            <div class="particles" id="particles3"></div>
+            
+            <div class="profiles-container">
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="avatar-wrapper">
+                            <div class="avatar-ring"></div>
+                            <div class="avatar">👨</div>
+                        </div>
+                        <div class="profile-basic">
+                            <div class="profile-name">Dragon</div>
+                            <div class="profile-info">24 • Bạch Dương</div>
+                        </div>
+                    </div>
+                    <div class="profile-details">
+                        <div class="profile-divider"></div>
+                        <div class="profile-quote">
+                            Em là ánh sáng trong cuộc đời anh,<br>
+                            là lý do anh mỉm cười mỗi ngày
+                        </div>
+                    </div>
+                </div>
+
+                <div class="heart-connector">♥</div>
+
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="avatar-wrapper">
+                            <div class="avatar-ring"></div>
+                            <div class="avatar">👩</div>
+                        </div>
+                        <div class="profile-basic">
+                            <div class="profile-name">Thảo</div>
+                            <div class="profile-info">24 • Bạch Dương</div>
+                        </div>
+                    </div>
+                    <div class="profile-details">
+                        <div class="profile-divider"></div>
+                        <div class="profile-quote">
+                            Anh là tình yêu của đời em,<br>
+                            là mái nhà ấm áp em luôn muốn về
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screen 4: Journey -->
+        <section class="screen journey-screen">
+            <div class="particles" id="particles4"></div>
+            
+            <h2 class="journey-title">Hành Trình</h2>
+            
+            <div class="journey-path">
+                <div class="journey-line"></div>
+                
+                <div class="journey-item">
+                    <div class="journey-dot"></div>
+                    <div class="journey-content">
+                        <div class="journey-icon">🌸</div>
+                        <div class="journey-date">15 Tháng 3, 2023</div>
+                        <div class="journey-text">
+                            Lần đầu gặp nhau trong một buổi chiều nắng đẹp
+                        </div>
+                    </div>
+                </div>
+
+                <div class="journey-item">
+                    <div class="journey-dot"></div>
+                    <div class="journey-content">
+                        <div class="journey-icon">🌊</div>
+                        <div class="journey-date">20 Tháng 6, 2023</div>
+                        <div class="journey-text">
+                            Chuyến đi biển đầu tiên cùng nhau
+                        </div>
+                    </div>
+                </div>
+
+                <div class="journey-item">
+                    <div class="journey-dot"></div>
+                    <div class="journey-content">
+                        <div class="journey-icon">🍂</div>
+                        <div class="journey-date">10 Tháng 9, 2023</div>
+                        <div class="journey-text">
+                            Mùa thu lá vàng, tình yêu ngày càng sâu đậm
+                        </div>
+                    </div>
+                </div>
+
+                <div class="journey-item">
+                    <div class="journey-dot"></div>
+                    <div class="journey-content">
+                        <div class="journey-icon">❄️</div>
+                        <div class="journey-date">25 Tháng 12, 2023</div>
+                        <div class="journey-text">
+                            Giáng sinh ấm áp bên nhau
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screen 5: Stats -->
+        <section class="screen stats-screen">
+            <div class="particles" id="particles5"></div>
+            
+            <h2 class="stats-title">Thống Kê</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">💕</div>
+                    <div class="stat-number" id="daysCounter">650</div>
+                    <div class="stat-label">Ngày Bên Nhau</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📸</div>
+                    <div class="stat-number">1,247</div>
+                    <div class="stat-label">Kỷ Niệm</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">✈️</div>
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">Chuyến Đi</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💝</div>
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Yêu Thương</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screen 6: Closing -->
+        <section class="screen closing-screen">
+            <div class="particles" id="particles6"></div>
+            
+            <div class="closing-container">
+                <div class="closing-photo">
+                    <div class="closing-photo-inner">
+                        <div class="closing-emoji">💑</div>
+                    </div>
+                </div>
+                
+                <div class="closing-quote">
+                    "Trong muôn vàn con đường,<br>
+                    anh chọn con đường có em"
+                </div>
+                
+                <div class="closing-names">Dragon ∞ Thảo</div>
+                <div class="closing-symbol">◆ ♥ ◆</div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Album data
+        const albumData = [
+            { emoji: '🍂', title: 'Mùa Thu', desc: 'Lá vàng rơi, tình yêu nở hoa' },
+            { emoji: '🌸', title: 'Mùa Xuân', desc: 'Khởi đầu ngọt ngào' },
+            { emoji: '☀️', title: 'Mùa Hè', desc: 'Rực rỡ và ấm áp' },
+            { emoji: '❄️', title: 'Mùa Đông', desc: 'Ấm lòng bên nhau' },
+            { emoji: '💑', title: 'Mọi Lúc', desc: 'Luôn có nhau' }
+        ];
+
+        let currentAlbum = 0;
+
+        // Initialize album
+        function initAlbum() {
+            const carousel = document.getElementById('albumCarousel');
+            const indicators = document.getElementById('albumIndicators');
+            
+            albumData.forEach((item, index) => {
+                // Create card
+                const card = document.createElement('div');
+                card.className = 'album-card';
+                card.innerHTML = `
+                    <div class="album-card-inner">
+                        <div class="album-image">
+                            <div class="album-emoji">${item.emoji}</div>
+                        </div>
+                        <div class="album-info">
+                            <div class="album-caption">${item.title}</div>
+                            <div class="album-description">${item.desc}</div>
+                        </div>
+                    </div>
+                `;
+                carousel.appendChild(card);
+                
+                // Create indicator
+                const dot = document.createElement('div');
+                dot.className = 'album-dot';
+                if (index === 0) dot.classList.add('active');
+                indicators.appendChild(dot);
+            });
+            
+            updateAlbum();
+        }
+
+        function updateAlbum() {
+            const cards = document.querySelectorAll('.album-card');
+            const dots = document.querySelectorAll('.album-dot');
+            
+            cards.forEach((card, index) => {
+                const offset = index - currentAlbum;
+                if (offset === 0) {
+                    card.style.transform = 'translateX(0) scale(1) rotateY(0deg)';
+                    card.style.opacity = '1';
+                    card.style.zIndex = '10';
+                } else if (offset > 0) {
+                    card.style.transform = `translateX(${offset * 100}%) scale(0.9) rotateY(-15deg)`;
+                    card.style.opacity = '0.5';
+                    card.style.zIndex = `${10 - offset}`;
+                } else {
+                    card.style.transform = `translateX(${offset * 100}%) scale(0.9) rotateY(15deg)`;
+                    card.style.opacity = '0.5';
+                    card.style.zIndex = `${10 + offset}`;
+                }
+            });
+            
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentAlbum);
+            });
+        }
+
+        function nextAlbum() {
+            currentAlbum = (currentAlbum + 1) % albumData.length;
+            updateAlbum();
+        }
+
+        function prevAlbum() {
+            currentAlbum = (currentAlbum - 1 + albumData.length) % albumData.length;
+            updateAlbum();
+        }
+
+        // Swipe handling for album
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.getElementById('albumCarousel').addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.getElementById('albumCarousel').addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50) nextAlbum();
+            if (touchEndX - touchStartX > 50) prevAlbum();
+        });
+
+        // Progress bar
+        const scrollContainer = document.getElementById('scrollContainer');
+        const progressBar = document.getElementById('progressBar');
+
+        scrollContainer.addEventListener('scroll', () => {
+            const scrollHeight = scrollContainer.scrollHeight - scrollContainer.clientHeight;
+            const scrollTop = scrollContainer.scrollTop;
+            const progress = (scrollTop / scrollHeight) * 100;
+            progressBar.style.width = progress + '%';
+        });
+
+        // Days counter
+        function updateDaysCounter() {
+            const startDate = new Date('2023-03-15');
+            const today = new Date();
+            const days = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+            
+            const counter = document.getElementById('daysCounter');
+            let current = 0;
+            const increment = days / 50;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= days) {
+                    counter.textContent = days;
+                    clearInterval(timer);
+                } else {
+                    counter.textContent = Math.floor(current);
+                }
+            }, 30);
+        }
+
+        // Create particles
+        function createParticles(containerId, count = 30) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        // Initialize
+        initAlbum();
+        updateDaysCounter();
+        createParticles('particles', 20);
+        createParticles('particles2', 15);
+        createParticles('particles3', 15);
+        createParticles('particles4', 15);
+        createParticles('particles5', 15);
+        createParticles('particles6', 20);
+
+        // Prevent zoom on double tap
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', (e) => {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) {
+                e.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+    </script>
+</body>
+</html>

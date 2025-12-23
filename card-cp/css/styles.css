@@ -801,7 +801,7 @@ body::-webkit-scrollbar-track {
   bottom: calc(100% + 15px);
 }
 .tpl-main.theme4 {
-  background-color: #fff;
+  background: linear-gradient(135deg, rgba(255, 105, 108, 0.08), rgba(255, 20, 66, 0.08));
 }
 .tpl-main.theme4 .love-slider {
   position: relative;

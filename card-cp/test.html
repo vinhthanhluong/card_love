@@ -1,928 +1,862 @@
 <!DOCTYPE html>
 <html lang="vi">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Romantic Timeline - 365 Days</title>
-        <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #ffeef8 0%, #ffe5f1 50%, #ffd6e8 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        /* Button to open popup */
-        .open-button {
-            padding: 18px 40px;
-            font-size: 18px;
-            font-weight: 600;
-            color: white;
-            background: linear-gradient(135deg, #ff69b4, #ff1493);
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 8px 30px rgba(255, 20, 147, 0.3);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .open-button:before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .open-button:hover:before {
-            width: 300px;
-            height: 300px;
-        }
-
-        .open-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 40px rgba(255, 20, 147, 0.4);
-        }
-
-        .open-button:active {
-            transform: translateY(-1px);
-        }
-
-        .button-text {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        /* Modal Overlay */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(5px);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .modal-overlay.active {
-            display: flex;
-            opacity: 1;
-        }
-
-        /* Close button */
-        .close-button {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 35px;
-            height: 35px;
-            background: rgba(255, 105, 180, 0.1);
-            border: 2px solid rgba(255, 105, 180, 0.3);
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            color: #ff69b4;
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-
-        .close-button:hover {
-            background: rgba(255, 105, 180, 0.2);
-            transform: rotate(90deg);
-        }
-
-        .container {
-            width: 100%;
-            height: 90vh;
-            overflow: auto;
-            max-width: 360px;
-            background: white;
-            border-radius: 30px;
-            padding: 35px 25px;
-            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.15);
-            position: relative;
-            overflow: hidden;
-            transform: scale(0.7);
-            opacity: 0;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-
-        .modal-overlay.active .container {
-            transform: scale(1);
-            opacity: 1;
-        }
-
-        /* Decorative hearts floating */
-        .heart-float {
-            position: absolute;
-            font-size: 20px;
-            opacity: 0;
-            animation: floatUp 4s infinite ease-in-out;
-        }
-
-        .heart-float:nth-child(1) {
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .heart-float:nth-child(2) {
-            left: 30%;
-            animation-delay: 1s;
-        }
-
-        .heart-float:nth-child(3) {
-            left: 50%;
-            animation-delay: 2s;
-        }
-
-        .heart-float:nth-child(4) {
-            left: 70%;
-            animation-delay: 1.5s;
-        }
-
-        .heart-float:nth-child(5) {
-              left: 10%;
-                animation-delay: 0s;
-        }
-
-        @keyframes floatUp {
-            0% {
-                bottom: -50px;
-                opacity: 0;
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                opacity: 0.6;
-            }
-            100% {
-                bottom: 100%;
-                opacity: 0;
-                transform: translateY(-20px) rotate(360deg);
-            }
-        }
-
-        /* Header with date */
-        .header {
-            text-align: center;
-            margin-bottom: 25px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .date-display {
-            font-size: 16px;
-            color: #ff69b4;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 8px;
-            opacity: 0;
-        }
-
-        .modal-overlay.active .date-display {
-            animation: fadeInDown 0.8s ease-out 0.4s forwards;
-        }
-
-        .heart-divider {
-            font-size: 18px;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.2);
-            }
-        }
-
-        .title {
-            font-size: 15px;
-            color: #666;
-            font-weight: 400;
-            opacity: 0;
-        }
-
-        .modal-overlay.active .title {
-            animation: fadeInDown 0.8s ease-out 0.6s forwards;
-        }
-
-        /* Main counter */
-        .counter-section {
-            text-align: center;
-            margin: 30px 0;
-            opacity: 0;
-        }
-
-        .modal-overlay.active .counter-section {
-            animation: fadeInUp 1s ease-out 0.7s forwards;
-        }
-
-        .days-counter {
-            font-size: 72px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #ff69b4, #ff1493, #ff69b4);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1;
-            margin-bottom: 10px;
-        }
-
-        .modal-overlay.active .days-counter {
-            animation: gradientShift 3s ease infinite, countUp 2s ease-out 0.7s backwards;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-        }
-
-        @keyframes countUp {
-            from {
-                opacity: 0;
-                transform: scale(0.5);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .days-label {
-            font-size: 18px;
-            color: #ff69b4;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        /* Stats Section - Elegant Horizontal Design */
-        .stats-wrapper {
-            margin: 25px 0 15px 0;
-            opacity: 0;
-        }
-
-        .modal-overlay.active .stats-wrapper {
-            animation: fadeInUp 1s ease-out 0.9s forwards;
-        }
-
-        .stats-container {
-            background: linear-gradient(135deg, rgba(255, 182, 193, 0.15), rgba(255, 240, 245, 0.3));
-            border-radius: 25px;
-            padding: 20px 15px;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 105, 180, 0.1);
-            box-shadow: 0 8px 32px rgba(255, 105, 180, 0.08);
-        }
-
-        .stats-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .stat-item {
-            flex: 1;
-            text-align: center;
-            position: relative;
-            padding: 8px 0;
-            opacity: 0;
-        }
-
-        .modal-overlay.active .stat-item:nth-child(1) {
-            animation: slideInStat 0.6s ease-out 1.1s forwards;
-        }
-
-        .modal-overlay.active .stat-item:nth-child(2) {
-            animation: slideInStat 0.6s ease-out 1.3s forwards;
-        }
-
-        .modal-overlay.active .stat-item:nth-child(3) {
-            animation: slideInStat 0.6s ease-out 1.5s forwards;
-        }
-
-        .modal-overlay.active .stat-item:nth-child(4) {
-            animation: slideInStat 0.6s ease-out 1.7s forwards;
-        }
-
-        @keyframes slideInStat {
-            from {
-                opacity: 0;
-                transform: translateY(15px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .stat-item:not(:last-child):after {
-            content: '';
-            position: absolute;
-            right: -4px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 1px;
-            height: 40px;
-            background: linear-gradient(to bottom, transparent, rgba(255, 105, 180, 0.3), transparent);
-        }
-
-        .stat-value {
-            font-size: 26px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #ff69b4, #ff1493, #ff69b4);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientShift 3s ease infinite;
-            display: block;
-            margin-bottom: 3px;
-            line-height: 1;
-        }
-
-        .stat-label-new {
-            font-size: 11px;
-            color: #999;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            display: block;
-        }
-
-        .stat-icon-new {
-            font-size: 16px;
-            display: block;
-            margin-bottom: 4px;
-            opacity: 0.7;
-        }
-
-        /* Quote */
-        .quote {
-            text-align: center;
-            font-size: 15px;
-            color: #888;
-            font-style: italic;
-            margin: 20px 0 25px 0;
-            padding: 0 10px;
-            position: relative;
-            opacity: 0;
-        }
-
-        .modal-overlay.active .quote {
-            animation: fadeIn 1s ease-out 0.8s forwards;
-        }
-
-        .quote:before,
-        .quote:after {
-            content: '"';
-            font-size: 24px;
-            color: #ffb6c1;
-            font-weight: bold;
-        }
-
-        /* Timeline - Redesigned */
-        .timeline {
-            position: relative;
-            padding: 30px 0 20px 0;
-            margin-top: 10px;
-        }
-
-        .timeline-header {
-            text-align: center;
-            margin-bottom: 25px;
-            opacity: 0;
-        }
-
-        .modal-overlay.active .timeline-header {
-            animation: fadeIn 1s ease-out 1.2s forwards;
-        }
-
-        .timeline-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: #ff69b4;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .timeline-subtitle {
-            font-size: 13px;
-            color: #999;
-        }
-
-        .timeline:before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 60px;
-            bottom: 0;
-            width: 3px;
-            background: linear-gradient(to bottom, #ffb6c1, #ff69b4, #ff1493);
-            transform: translateX(-50%);
-            height: 0;
-        }
-
-        .modal-overlay.active .timeline:before {
-            animation: growLine 2s ease-out 1.4s forwards;
-        }
-
-        @keyframes growLine {
-            from {
-                height: 0;
-            }
-            to {
-                height: calc(100% - 60px);
-            }
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 35px;
-            opacity: 0;
-        }
-
-        .modal-overlay.active .timeline-item:nth-child(2) {
-            animation: slideIn 0.6s ease-out 1.6s forwards;
-        }
-
-        .modal-overlay.active .timeline-item:nth-child(3) {
-            animation: slideIn 0.6s ease-out 1.8s forwards;
-        }
-
-        .modal-overlay.active .timeline-item:nth-child(4) {
-            animation: slideIn 0.6s ease-out 2s forwards;
-        }
-
-        .modal-overlay.active .timeline-item:nth-child(5) {
-            animation: slideIn 0.6s ease-out 2.2s forwards;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .timeline-item.left .timeline-content {
-            margin-right: 55%;
-            text-align: right;
-        }
-
-        .timeline-item.right .timeline-content {
-            margin-left: 55%;
-            text-align: left;
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: 50%;
-            top: 5px;
-            width: 16px;
-            height: 16px;
-            background: white;
-            border: 3px solid #ff69b4;
-            border-radius: 50%;
-            transform: translateX(-50%);
-            z-index: 2;
-            animation: dotPulse 2s infinite;
-        }
-
-        @keyframes dotPulse {
-            0%, 100% {
-                box-shadow: 0 0 0 0 rgba(255, 105, 180, 0.7);
-            }
-            50% {
-                box-shadow: 0 0 0 8px rgba(255, 105, 180, 0);
-            }
-        }
-
-        .timeline-content {
-            background: linear-gradient(135deg, #fff5f8, #ffffff);
-            padding: 15px 18px;
-            border-radius: 18px;
-            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .timeline-content:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.2);
-        }
-
-        .timeline-date {
-            font-size: 13px;
-            color: #ff69b4;
-            font-weight: 600;
-            margin-bottom: 5px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .timeline-item.right .timeline-date {
-            justify-content: flex-start;
-        }
-
-        .timeline-item.left .timeline-date {
-            justify-content: flex-end;
-        }
-
-        .timeline-text {
-            font-size: 14px;
-            color: #555;
-            line-height: 1.5;
-        }
-
-        /* Bottom decoration - Redesigned */
-        .bottom-decoration {
-            text-align: center;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 2px dashed rgba(255, 105, 180, 0.2);
-            opacity: 0;
-        }
-
-        .modal-overlay.active .bottom-decoration {
-            animation: fadeIn 1s ease-out 2.4s forwards;
-        }
-
-        .couple-names {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 12px;
-        }
-
-        .name-tag {
-            font-size: 15px;
-            font-weight: 600;
-            color: #ff69b4;
-            padding: 8px 16px;
-            background: linear-gradient(135deg, rgba(255, 182, 193, 0.2), rgba(255, 240, 245, 0.3));
-            border-radius: 20px;
-            border: 1.5px solid rgba(255, 105, 180, 0.2);
-        }
-
-        .heart-connector {
-            font-size: 20px;
-            animation: heartBeat 1.5s infinite;
-        }
-
-        @keyframes heartBeat {
-            0%, 100% {
-                transform: scale(1);
-            }
-            25% {
-                transform: scale(1.2);
-            }
-            50% {
-                transform: scale(1);
-            }
-        }
-
-        .forever-text {
-            font-size: 13px;
-            color: #999;
-            font-style: italic;
-            margin-top: 10px;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-    </style>
-    </head>
-    <body>
-        <!-- Open Button -->
-        <button class="open-button" id="openModal">
-            <span class="button-text">
-                <span>💕</span>
-                <span>Xem Kỷ Niệm 365 Ngày</span>
-                <span>💕</span>
-            </span>
-        </button>
-
-        <!-- Memory -->
-        <div class="modal-overlay" id="modalOverlay">
-            <div class="container">
-                <!-- Close Button -->
-                <div class="close-button" id="closeModal">✕</div>
-
-                <!-- Floating hearts -->
-                <div class="heart-float">💕</div>
-                <div class="heart-float">💖</div>
-                <div class="heart-float">💗</div>
-                <div class="heart-float">💕</div>
-                <div class="heart-float">💖</div>
-
-                <!-- Sparkles -->
-                <div class="sparkle"></div>
-                <div class="sparkle"></div>
-                <div class="sparkle"></div>
-                <div class="sparkle"></div>
-
-                <!-- Header -->
-                <div class="header">
-                    <div class="date-display">
-                        <span id="currentDate">20/12/2024</span>
-                        <span class="heart-divider">💕</span>
-                        <span>Hôm nay</span>
-                    </div>
-                    <div class="title">365 ngày yêu thương</div>
-                </div>
-
-                <!-- Counter -->
-                <div class="counter-section">
-                    <div class="days-counter" id="daysCounter">0</div>
-                    <div class="days-label">ngày bên nhau</div>
-                </div>
-
-                <!-- Quote -->
-                <div class="quote">
-                    Mỗi ngày là một kỷ niệm
-                </div>
-
-                <!-- Stats Section - Elegant Horizontal -->
-                <div class="stats-wrapper">
-                    <div class="stats-container">
-                        <div class="stats-row">
-                            <div class="stat-item">
-                                <span class="stat-icon-new">⏰</span>
-                                <span class="stat-value"
-                                    id="hoursCounter">0</span>
-                                <span class="stat-label-new">Giờ</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-icon-new">📅</span>
-                                <span class="stat-value"
-                                    id="weeksCounter">0</span>
-                                <span class="stat-label-new">Tuần</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-icon-new">🌙</span>
-                                <span class="stat-value"
-                                    id="monthsCounter">0</span>
-                                <span class="stat-label-new">Tháng</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-icon-new">✨</span>
-                                <span class="stat-value"
-                                    id="yearsCounter">0</span>
-                                <span class="stat-label-new">Năm</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Timeline -->
-                <div class="timeline">
-                    <div class="timeline-header">
-                        <div class="timeline-title">
-                            <span>💕</span>
-                            <span>Hành Trình Yêu Thương</span>
-                            <span>💕</span>
-                        </div>
-                        <div class="timeline-subtitle">Những mốc đáng nhớ của
-                            chúng ta</div>
-                    </div>
-
-                    <div class="timeline-item left">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-date">
-                                <span>🌸</span>
-                                <span>Ngày đầu tiên</span>
-                            </div>
-                            <div class="timeline-text">Ngày chúng ta bắt
-                                đầu</div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item right">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-date">
-                                <span>💝</span>
-                                <span>Kỷ niệm 100 ngày</span>
-                            </div>
-                            <div class="timeline-text">Tình yêu ngày càng sâu
-                                đậm</div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item left">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-date">
-                                <span>🎂</span>
-                                <span>200 ngày</span>
-                            </div>
-                            <div class="timeline-text">Những phút giây ngọt
-                                ngào</div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item right">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-date">
-                                <span>💕</span>
-                                <span>Hôm nay - 365 ngày</span>
-                            </div>
-                            <div class="timeline-text">Và sẽ còn mãi
-                                mãi...</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bottom decoration - Redesigned -->
-                <div class="bottom-decoration">
-                    <div class="couple-names">
-                        <div class="name-tag">Dragon Boy</div>
-                        <div class="heart-connector">💖</div>
-                        <div class="name-tag">Thảo Girl</div>
-                    </div>
-                    <div class="forever-text">Forever & Always ∞</div>
-                </div>
-            </div>
-            <!-- End Memory -->
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dragon ∞ Thảo</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;500;600;700&family=Lora:wght@400;500;600&family=Outfit:wght@200;300;400;500&display=swap"
+      rel="stylesheet">
+    <style>
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          -webkit-tap-highlight-color: transparent;
+      }
+
+      :root {
+          --ivory: #FFFFF0;
+          --champagne: #F7E7CE;
+          --taupe: #B8A99A;
+          --sage: #9CAF88;
+          --gold: #C9A961;
+          --charcoal: #3E3E3E;
+          --soft-gray: #F5F5F0;
+      }
+
+      body {
+          font-family: 'Outfit', sans-serif;
+          background: linear-gradient(180deg, var(--ivory) 0%, var(--soft-gray) 100%);
+          color: var(--charcoal);
+          overflow-x: hidden;
+          overflow-y: auto;
+          -webkit-overflow-scrolling: touch;
+      }
+
+      /* Container for snap scrolling */
+      .scroll-container {
+          height: 100vh;
+          overflow-y: scroll;
+          scroll-snap-type: y mandatory;
+          -webkit-overflow-scrolling: touch;
+      }
+
+      .screen {
+          height: 100vh;
+          width: 100vw;
+          scroll-snap-align: start;
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          padding: 40px 30px;
+      }
+
+      /* Decorative elements */
+      .corner-decor {
+          position: absolute;
+          width: 60px;
+          height: 60px;
+          border: 1px solid var(--taupe);
+          opacity: 0.3;
+      }
+
+      .corner-decor.top-left {
+          top: 20px;
+          left: 20px;
+          border-right: none;
+          border-bottom: none;
+      }
+
+      .corner-decor.top-right {
+          top: 20px;
+          right: 20px;
+          border-left: none;
+          border-bottom: none;
+      }
+
+      .corner-decor.bottom-left {
+          bottom: 20px;
+          left: 20px;
+          border-right: none;
+          border-top: none;
+      }
+
+      .corner-decor.bottom-right {
+          bottom: 20px;
+          right: 20px;
+          border-left: none;
+          border-top: none;
+      }
+
+      /* Screen 1: Hero */
+      .hero-screen {
+          background: linear-gradient(135deg, var(--ivory) 0%, var(--champagne) 100%);
+          justify-content: center;
+      }
+
+      .hero-content {
+          text-align: center;
+          animation: fadeInUp 1.2s ease-out;
+      }
+
+      .hero-monogram {
+          font-family: 'Cormorant', serif;
+          font-size: 7em;
+          font-weight: 300;
+          background: linear-gradient(135deg, var(--gold) 0%, var(--taupe) 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          margin-bottom: 20px;
+          letter-spacing: 0.05em;
+      }
+
+      .hero-names {
+          font-family: 'Lora', serif;
+          font-size: 1.8em;
+          color: var(--charcoal);
+          margin-bottom: 15px;
+          font-weight: 500;
+          letter-spacing: 0.1em;
+      }
+
+      .hero-divider {
+          width: 80px;
+          height: 1px;
+          background: linear-gradient(to right, transparent, var(--gold), transparent);
+          margin: 20px auto;
+      }
+
+      .hero-date {
+          font-size: 0.9em;
+          color: var(--taupe);
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          font-weight: 300;
+      }
+
+      .scroll-hint {
+          position: absolute;
+          bottom: 30px;
+          font-size: 0.75em;
+          color: var(--taupe);
+          letter-spacing: 0.15em;
+          animation: bounce 2s infinite;
+      }
+
+      @keyframes bounce {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
+      }
+
+      /* Screen 2: Main Photo */
+      .photo-screen {
+          background: var(--ivory);
+      }
+
+      .photo-frame {
+          width: 100%;
+          max-width: 350px;
+          aspect-ratio: 3/4;
+          background: white;
+          padding: 15px;
+          box-shadow: 
+              0 4px 20px rgba(0, 0, 0, 0.08),
+              0 8px 40px rgba(0, 0, 0, 0.05);
+          position: relative;
+          animation: fadeIn 1s ease-out;
+      }
+
+      .photo-inner {
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(135deg, var(--champagne) 0%, var(--soft-gray) 100%);
+          position: relative;
+          overflow: hidden;
+      }
+
+      .photo-content {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          padding: 30px;
+      }
+
+      .photo-emoji {
+          font-size: 5em;
+          margin-bottom: 20px;
+      }
+
+      .photo-title {
+          font-family: 'Lora', serif;
+          font-size: 1.5em;
+          color: var(--charcoal);
+          margin-bottom: 10px;
+      }
+
+      .photo-subtitle {
+          font-size: 0.9em;
+          color: var(--taupe);
+          letter-spacing: 0.1em;
+      }
+
+      .nav-dots {
+          display: flex;
+          gap: 10px;
+          margin-top: 25px;
+      }
+
+      .dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: var(--taupe);
+          opacity: 0.3;
+          transition: all 0.3s ease;
+      }
+
+      .dot.active {
+          opacity: 1;
+          background: var(--gold);
+          transform: scale(1.3);
+      }
+
+      /* Screen 3: Profiles */
+      .profiles-screen {
+          background: linear-gradient(180deg, var(--soft-gray) 0%, var(--ivory) 100%);
+          padding-top: 60px;
+          padding-bottom: 60px;
+      }
+
+      .profile-container {
+          width: 100%;
+          max-width: 320px;
+      }
+
+      .profile {
+          background: white;
+          padding: 30px 25px;
+          margin-bottom: 25px;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+          position: relative;
+          animation: slideIn 0.8s ease-out;
+      }
+
+      .profile::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 3px;
+          background: linear-gradient(to right, var(--gold), var(--sage));
+      }
+
+      .avatar-wrapper {
+          width: 100px;
+          height: 100px;
+          margin: 0 auto 20px;
+          border-radius: 50%;
+          padding: 4px;
+          background: linear-gradient(135deg, var(--gold), var(--sage));
+      }
+
+      .avatar {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          background: linear-gradient(135deg, var(--champagne), var(--soft-gray));
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 3em;
+      }
+
+      .profile-name {
+          font-family: 'Lora', serif;
+          font-size: 1.5em;
+          color: var(--charcoal);
+          text-align: center;
+          margin-bottom: 8px;
+      }
+
+      .profile-info {
+          text-align: center;
+          font-size: 0.85em;
+          color: var(--taupe);
+          letter-spacing: 0.1em;
+          margin-bottom: 15px;
+      }
+
+      .profile-quote {
+          text-align: center;
+          font-style: italic;
+          font-size: 0.9em;
+          color: var(--charcoal);
+          line-height: 1.6;
+          padding-top: 15px;
+          border-top: 1px solid rgba(184, 169, 154, 0.2);
+      }
+
+      .heart-separator {
+          text-align: center;
+          font-size: 1.5em;
+          color: var(--gold);
+          margin: 10px 0;
+      }
+
+      /* Screen 4: Stats */
+      .stats-screen {
+          background: var(--ivory);
+      }
+
+      .stats-title {
+          font-family: 'Lora', serif;
+          font-size: 2em;
+          color: var(--charcoal);
+          text-align: center;
+          margin-bottom: 40px;
+          font-weight: 500;
+      }
+
+      .stats-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 20px;
+          width: 100%;
+          max-width: 340px;
+      }
+
+      .stat-card {
+          background: white;
+          padding: 30px 20px;
+          text-align: center;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+          transition: transform 0.3s ease;
+      }
+
+      .stat-card:active {
+          transform: scale(0.95);
+      }
+
+      .stat-icon {
+          font-size: 2.5em;
+          margin-bottom: 15px;
+      }
+
+      .stat-number {
+          font-family: 'Lora', serif;
+          font-size: 2.5em;
+          color: var(--gold);
+          font-weight: 600;
+          margin-bottom: 8px;
+      }
+
+      .stat-label {
+          font-size: 0.8em;
+          color: var(--taupe);
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+      }
+
+      /* Screen 5: Timeline */
+      .timeline-screen {
+          background: linear-gradient(180deg, var(--soft-gray) 0%, var(--champagne) 100%);
+          justify-content: flex-start;
+          padding-top: 50px;
+          padding-bottom: 50px;
+      }
+
+      .timeline-title {
+          font-family: 'Lora', serif;
+          font-size: 2em;
+          color: var(--charcoal);
+          text-align: center;
+          margin-bottom: 40px;
+          font-weight: 500;
+      }
+
+      .timeline-wrapper {
+          width: 100%;
+          max-width: 320px;
+          overflow-y: auto;
+          max-height: calc(100vh - 180px);
+          padding-right: 10px;
+      }
+
+      .timeline-item {
+          position: relative;
+          padding-left: 35px;
+          padding-bottom: 35px;
+      }
+
+      .timeline-item::before {
+          content: '';
+          position: absolute;
+          left: 8px;
+          top: 8px;
+          bottom: -10px;
+          width: 1px;
+          background: linear-gradient(to bottom, var(--gold), transparent);
+      }
+
+      .timeline-item:last-child::before {
+          display: none;
+      }
+
+      .timeline-dot {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 16px;
+          height: 16px;
+          background: var(--gold);
+          border-radius: 50%;
+          box-shadow: 0 0 0 4px white, 0 0 0 5px var(--gold);
+      }
+
+      .timeline-content {
+          background: white;
+          padding: 20px;
+          box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+      }
+
+      .timeline-date {
+          font-family: 'Lora', serif;
+          font-size: 0.95em;
+          color: var(--gold);
+          margin-bottom: 10px;
+          font-weight: 600;
+      }
+
+      .timeline-text {
+          font-size: 0.9em;
+          line-height: 1.6;
+          color: var(--charcoal);
+      }
+
+      /* Screen 6: Closing */
+      .closing-screen {
+          background: linear-gradient(135deg, var(--champagne) 0%, var(--ivory) 100%);
+      }
+
+      .closing-content {
+          text-align: center;
+          animation: fadeIn 1.5s ease-out;
+      }
+
+      .closing-quote {
+          font-family: 'Lora', serif;
+          font-size: 1.5em;
+          color: var(--charcoal);
+          line-height: 1.6;
+          margin-bottom: 30px;
+          font-style: italic;
+          font-weight: 400;
+      }
+
+      .closing-names {
+          font-family: 'Cormorant', serif;
+          font-size: 2.5em;
+          background: linear-gradient(135deg, var(--gold) 0%, var(--sage) 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          margin-bottom: 15px;
+          font-weight: 500;
+      }
+
+      .closing-symbol {
+          font-size: 2em;
+          color: var(--gold);
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+      }
+
+      @keyframes fadeInUp {
+          from {
+              opacity: 0;
+              transform: translateY(30px);
+          }
+          to {
+              opacity: 1;
+              transform: translateY(0);
+          }
+      }
+
+      @keyframes slideIn {
+          from {
+              opacity: 0;
+              transform: translateX(-20px);
+          }
+          to {
+              opacity: 1;
+              transform: translateX(0);
+          }
+      }
+
+      /* Progress indicator */
+      .progress-bar {
+          position: fixed;
+          top: 0;
+          left: 0;
+          height: 3px;
+          background: linear-gradient(to right, var(--gold), var(--sage));
+          z-index: 100;
+          transition: width 0.3s ease;
+      }
+
+      /* Photo gallery navigation */
+      .photo-nav {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          max-width: 350px;
+          margin-top: 20px;
+      }
+
+      .nav-btn {
+          width: 45px;
+          height: 45px;
+          border: 1px solid var(--taupe);
+          background: white;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.2em;
+          color: var(--charcoal);
+          cursor: pointer;
+          transition: all 0.3s ease;
+          -webkit-tap-highlight-color: transparent;
+      }
+
+      .nav-btn:active {
+          transform: scale(0.9);
+          background: var(--soft-gray);
+      }
+  </style>
+  </head>
+  <body>
+    <!-- Progress indicator -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Main scroll container -->
+    <div class="scroll-container" id="scrollContainer">
+
+      <!-- Screen 1: Hero -->
+      <section class="screen hero-screen">
+        <div class="corner-decor top-left"></div>
+        <div class="corner-decor top-right"></div>
+
+        <div class="hero-content">
+          <div class="hero-monogram">D & T</div>
+          <div class="hero-names">Dragon & Thảo</div>
+          <div class="hero-divider"></div>
+          <div class="hero-date">Since March 15, 2023</div>
         </div>
 
-        <script>
-        const openModalBtn = document.getElementById('openModal');
-        const closeModalBtn = document.getElementById('closeModal');
-        const modalOverlay = document.getElementById('modalOverlay');
-        let hasAnimated = false;
+        <div class="scroll-hint">↓ VUỐT LÊN</div>
 
-        // Open modal
-        openModalBtn.addEventListener('click', () => {
-            modalOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            
-            // Start animations only once when first opened
-            if (!hasAnimated) {
-                setTimeout(() => {
-                    updateDate();
-                    animateAllCounters();
-                    hasAnimated = true;
-                }, 400); // Wait for modal animation to complete
-            }
-        });
+        <div class="corner-decor bottom-left"></div>
+        <div class="corner-decor bottom-right"></div>
+      </section>
 
-        // Close modal
-        closeModalBtn.addEventListener('click', () => {
-            modalOverlay.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        });
+      <!-- Screen 2: Main Photo -->
+      <section class="screen photo-screen">
+        <div class="corner-decor top-left"></div>
+        <div class="corner-decor top-right"></div>
 
-        // Close when clicking outside
-        modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) {
-                modalOverlay.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        });
+        <div class="photo-frame">
+          <div class="photo-inner" id="photoContent">
+            <div class="photo-content">
+              <div class="photo-emoji">🍂</div>
+              <div class="photo-title">Mùa Thu</div>
+              <div class="photo-subtitle">CỦA CHÚNG MÌNH</div>
+            </div>
+          </div>
+        </div>
 
-        // Close with ESC key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
-                modalOverlay.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        });
+        <div class="photo-nav">
+          <button class="nav-btn" onclick="prevPhoto()">←</button>
+          <div class="nav-dots">
+            <div class="dot active" data-index="0"></div>
+            <div class="dot" data-index="1"></div>
+            <div class="dot" data-index="2"></div>
+            <div class="dot" data-index="3"></div>
+            <div class="dot" data-index="4"></div>
+          </div>
+          <button class="nav-btn" onclick="nextPhoto()">→</button>
+        </div>
+        <div class="corner-decor bottom-left"></div>
+        <div class="corner-decor bottom-right"></div>
+      </section>
 
-        // Animate counter with easing
-        function animateValue(element, start, end, duration, suffix = '') {
-            const range = end - start;
-            const steps = 60;
-            const increment = range / steps;
-            let current = start;
+      <!-- Screen 3: Profiles -->
+      <section class="screen profiles-screen">
+        <div class="profile-container">
+          <div class="profile">
+            <div class="avatar-wrapper">
+              <div class="avatar">👨</div>
+            </div>
+            <div class="profile-name">Dragon Boy</div>
+            <div class="profile-info">24 • BẠCH DƯƠNG</div>
+            <div class="profile-quote">
+              "Em là điều kỳ diệu nhất<br>trong đời anh"
+            </div>
+          </div>
 
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= end) {
-                    element.textContent = Math.floor(end) + suffix;
-                    clearInterval(timer);
-                } else {
-                    element.textContent = Math.floor(current) + suffix;
-                }
-            }, duration / steps);
-        }
+          <div class="heart-separator">♥</div>
 
-        // Animate all counters
-        function animateAllCounters() {
-            const days = 365;
-            const hours = days * 24; // 8,760 hours
-            const weeks = Math.floor(days / 7); // 52 weeks
-            const months = 12; // 12 months
-            const years = 1; // 1 year
+          <div class="profile">
+            <div class="avatar-wrapper">
+              <div class="avatar">👩</div>
+            </div>
+            <div class="profile-name">Thảo Girl</div>
+            <div class="profile-info">24 • BẠCH DƯƠNG</div>
+            <div class="profile-quote">
+              "Anh là tất cả những gì<br>em cần trong cuộc đời
+              này"
+            </div>
+          </div>
+        </div>
+      </section>
 
-            // Main days counter
-            animateValue(document.getElementById('daysCounter'), 0, days, 2000);
-            
-            // Stats counters with different durations for variety
-            setTimeout(() => {
-                animateValue(document.getElementById('hoursCounter'), 0, hours, 2500);
-            }, 200);
-            
-            setTimeout(() => {
-                animateValue(document.getElementById('weeksCounter'), 0, weeks, 2200);
-            }, 400);
-            
-            setTimeout(() => {
-                animateValue(document.getElementById('monthsCounter'), 0, months, 1800);
-            }, 600);
-            
-            setTimeout(() => {
-                animateValue(document.getElementById('yearsCounter'), 0, years, 1500);
-            }, 800);
-        }
+      <!-- Screen 4: Stats -->
+      <section class="screen stats-screen">
+        <div class="corner-decor top-left"></div>
+        <div class="corner-decor top-right"></div>
 
-        // Update current date
-        function updateDate() {
-            const dateElement = document.getElementById('currentDate');
-            const today = new Date();
-            const day = String(today.getDate()).padStart(2, '0');
-            const month = String(today.getMonth() + 1).padStart(2, '0');
-            const year = today.getFullYear();
-            dateElement.textContent = `${day}/${month}/${year}`;
-        }
-        
-    </script>
-    </body>
+        <h2 class="stats-title">Hành Trình</h2>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">💕</div>
+            <div class="stat-number" id="daysCounter">650</div>
+            <div class="stat-label">Ngày</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📸</div>
+            <div class="stat-number">1,247</div>
+            <div class="stat-label">Kỷ Niệm</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">✈️</div>
+            <div class="stat-number">8</div>
+            <div class="stat-label">Chuyến Đi</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">💝</div>
+            <div class="stat-number">∞</div>
+            <div class="stat-label">Yêu Thương</div>
+          </div>
+        </div>
+
+        <div class="corner-decor bottom-left"></div>
+        <div class="corner-decor bottom-right"></div>
+      </section>
+
+      <!-- Screen 5: Timeline -->
+      <section class="screen timeline-screen">
+        <h2 class="timeline-title">Dấu Mốc</h2>
+
+        <div class="timeline-wrapper">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">15 Tháng 3, 2023</div>
+              <div class="timeline-text">
+                Lần đầu chúng mình gặp nhau. Một buổi chiều nắng
+                ấm, ánh mắt đầu tiên đã làm tim chúng mình rung
+                động.
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">20 Tháng 6, 2023</div>
+              <div class="timeline-text">
+                Chuyến đi biển đầu tiên. Cùng nhau ngắm hoàng
+                hôn và hứa sẽ luôn ở bên nhau.
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">10 Tháng 9, 2023</div>
+              <div class="timeline-text">
+                Mùa thu lá vàng rơi. Tình yêu của chúng mình
+                ngày càng thêm sâu đậm với mỗi khoảnh khắc bên
+                nhau.
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">25 Tháng 12, 2023</div>
+              <div class="timeline-text">
+                Giáng sinh đầu tiên cùng nhau. Giữa tiết trời
+                lạnh giá, trái tim chúng mình càng thêm ấm áp.
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">Hôm Nay & Mãi Mãi</div>
+              <div class="timeline-text">
+                Hành trình còn tiếp tục... Với vô vàn kỷ niệm
+                đẹp đang chờ đợi chúng mình ở phía trước.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Screen 6: Closing -->
+      <section class="screen closing-screen">
+        <div class="corner-decor top-left"></div>
+        <div class="corner-decor top-right"></div>
+
+        <div class="closing-content">
+          <div class="closing-quote">
+            "Trong muôn vàn con đường,<br>
+            anh chọn con đường có em"
+          </div>
+          <div class="closing-names">Dragon ∞ Thảo</div>
+          <div class="closing-symbol">◆</div>
+        </div>
+
+        <div class="corner-decor bottom-left"></div>
+        <div class="corner-decor bottom-right"></div>
+      </section>
+    </div>
+
+    <script>
+      // Photo gallery data
+      const photos = [
+          { emoji: '🍂', title: 'Mùa Thu', subtitle: 'CỦA CHÚNG MÌNH' },
+          { emoji: '🌸', title: 'Mùa Xuân', subtitle: 'TÌNH YÊU NỞ HOA' },
+          { emoji: '☀️', title: 'Mùa Hè', subtitle: 'ẤM ÁP BÊN NHAU' },
+          { emoji: '❄️', title: 'Mùa Đông', subtitle: 'ẤM LÒNG MÙA ĐÔNG' },
+          { emoji: '💑', title: 'Mọi Lúc', subtitle: 'LUÔN Ở BÊN NHAU' }
+      ];
+
+      let currentPhotoIndex = 0;
+
+      function updatePhoto() {
+          const photo = photos[currentPhotoIndex];
+          document.getElementById('photoContent').innerHTML = `
+              <div class="photo-content">
+                  <div class="photo-emoji">${photo.emoji}</div>
+                  <div class="photo-title">${photo.title}</div>
+                  <div class="photo-subtitle">${photo.subtitle}</div>
+              </div>
+          `;
+
+          // Update dots
+          document.querySelectorAll('.dot').forEach((dot, index) => {
+              dot.classList.toggle('active', index === currentPhotoIndex);
+          });
+      }
+
+      function nextPhoto() {
+          currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
+          updatePhoto();
+      }
+
+      function prevPhoto() {
+          currentPhotoIndex = (currentPhotoIndex - 1 + photos.length) % photos.length;
+          updatePhoto();
+      }
+
+      // Days counter
+      function updateDaysCounter() {
+          const startDate = new Date('2023-03-15');
+          const today = new Date();
+          const days = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+          
+          const counter = document.getElementById('daysCounter');
+          let current = 0;
+          const increment = days / 50;
+          
+          const timer = setInterval(() => {
+              current += increment;
+              if (current >= days) {
+                  counter.textContent = days;
+                  clearInterval(timer);
+              } else {
+                  counter.textContent = Math.floor(current);
+              }
+          }, 30);
+      }
+
+      // Progress bar
+      const scrollContainer = document.getElementById('scrollContainer');
+      const progressBar = document.getElementById('progressBar');
+
+      scrollContainer.addEventListener('scroll', () => {
+          const scrollHeight = scrollContainer.scrollHeight - scrollContainer.clientHeight;
+          const scrollTop = scrollContainer.scrollTop;
+          const progress = (scrollTop / scrollHeight) * 100;
+          progressBar.style.width = progress + '%';
+      });
+
+      // Initialize
+      updateDaysCounter();
+      updatePhoto();
+
+      // Prevent zoom on double tap
+      let lastTouchEnd = 0;
+      document.addEventListener('touchend', (e) => {
+          const now = Date.now();
+          if (now - lastTouchEnd <= 300) {
+              e.preventDefault();
+          }
+          lastTouchEnd = now;
+      }, false);
+
+      // Add swipe gesture for photo navigation
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      document.querySelector('.photo-screen').addEventListener('touchstart', (e) => {
+          touchStartX = e.changedTouches[0].screenX;
+      }, false);
+
+      document.querySelector('.photo-screen').addEventListener('touchend', (e) => {
+          touchEndX = e.changedTouches[0].screenX;
+          handleSwipe();
+      }, false);
+
+      function handleSwipe() {
+          if (touchEndX < touchStartX - 50) {
+              nextPhoto();
+          }
+          if (touchEndX > touchStartX + 50) {
+              prevPhoto();
+          }
+      }
+  </script>
+  </body>
 </html>
