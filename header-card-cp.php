@@ -6,8 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="format-detection" content="telephone=no" />
   <title><?php the_title() ?></title>
-  <meta name="keywords" content="thẻ tình yêu, thẻ cặp đổi, thẻ thông minh tình yêu, thẻ nfc tình yêu" />
-  <meta name="description" content="thẻ tình yêu, thẻ cặp đổi, thẻ thông minh tình yêu, thẻ nfc tình yêu" />
+  <meta name="keywords"
+    content="thẻ tình yêu, thẻ cặp đổi, thẻ thông minh tình yêu, thẻ nfc tình yêu" />
+  <meta name="description"
+    content="thẻ tình yêu, thẻ cặp đổi, thẻ thông minh tình yêu, thẻ nfc tình yêu" />
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta http-equiv="Content-Script-Type" content="text/javascript" />
   <!-- <meta name="theme-color" content="#fe4080" /> -->
@@ -20,19 +22,27 @@
   }
   ?>
   <!-- STYLESHEET -->
-  <link rel="stylesheet" media="all" href="<?php echo get_theme_file_uri() ?>/card-cp/css/styles.css" />
+  <link rel="stylesheet" media="all"
+    href="<?php echo get_theme_file_uri() ?>/card-cp/css/styles.css" />
+  <link rel="stylesheet" media="all"
+    href="<?php echo get_theme_file_uri() ?>/card-cp/css/responsive.css" />
   <!-- Google Analytics start -->
   <!-- Google Analytics end -->
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap"
+    rel="stylesheet">
 
   <!-- Album -->
-  <link href="https://fonts.googleapis.com/css2?family=Luxurious+Script&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Luxurious+Script&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap"
+    rel="stylesheet">
 
   <!-- <link rel="stylesheet" href="<?php echo get_theme_file_uri() ?>/card-cpcss/aos.css"> -->
 </head>
@@ -53,7 +63,8 @@
 
         <div class="hd-wrapper <?php echo $wrapper_class; ?>">
           <button class="hicon hd-toggle" id="toggleBtn">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='12' y1='5' x2='12' y2='19'%3E%3C/line%3E%3Cline x1='5' y1='12' x2='19' y2='12'%3E%3C/line%3E%3C/svg%3E" alt="menu">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='12' y1='5' x2='12' y2='19'%3E%3C/line%3E%3Cline x1='5' y1='12' x2='19' y2='12'%3E%3C/line%3E%3C/svg%3E"
+              alt="menu">
           </button>
           <div class="hicon hd-album">
             <img src="<?php echo get_theme_file_uri() ?>/card-cp/images/ic-album.svg"

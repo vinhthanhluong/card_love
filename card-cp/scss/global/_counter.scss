@@ -1,0 +1,116 @@
+.icounter {
+    position: absolute;
+    top: 0;
+    left: 15px;
+    right: 15px;
+    height: 72vh;
+    min-height: 432px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    pointer-events: none;
+}
+
+.icounter-type1 {
+    width: min(100%, 460px);
+    padding: 20px;
+    background-color: rgba($color: #000000, $alpha: 0.3);
+    border-radius: 14px;
+    .icounter-head {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 30px;
+        p {
+            margin: 0;
+            text-align: center;
+            font-family: var(--font-allura);
+            font-size: min(calc(20 / 320 * 100vw), 26px);
+        }
+        span {
+            font-size: 84.6153%;
+            width: min(calc(46 / 320 * 100vw), 56px);
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 3px;
+            background: url("../images/ic-heart-counter.svg") center/150% no-repeat;
+        }
+    }
+
+    .icounter-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        p {
+            margin: 0;
+            font-family: var(--font-allura);
+            font-size: 22px;
+            line-height: 1;
+        }
+    }
+}
+
+.icounter-type2 {
+    position: relative;
+    width: min(100%, 260px);
+    aspect-ratio: 1;
+    padding: 30px 20px 25px;
+    border: 1px solid var(--main-cl);
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    text-align: center;
+    &::before {
+        content: "";
+        position: absolute;
+        inset: -6px;
+        background: url("../images/loading-counter.svg") center/contain no-repeat;
+        pointer-events: none;
+    }
+
+    p {
+        margin: 0;
+        font-size: 20px;
+    }
+
+    .iday-sum {
+        font-size: 50px;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        margin: 0;
+        line-height: 1;
+    }
+    @keyframes textBg {
+        to {
+            background-position:
+                calc(50% + 1.6em) 0,
+                calc(50% + 3.2em) 0.8em;
+        }
+    }
+
+    .iday-sum {
+        width: fit-content;
+        text-transform: uppercase;
+        color: rgba($color: #fff, $alpha: 0.5);
+        position: relative;
+        &::before {
+            content: attr(data-dayTotal);
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            color: transparent;
+            background:
+                radial-gradient(1.17em at 50% 1.6em, var(--main-cl) 99%, #0000 101%) calc(50% - 1em) 0/0.8em 100% text,
+                radial-gradient(1.17em at 50% -0.8em, #0000 99%, var(--main-cl) 101%) 50% 0.8em/0.8em 100% repeat-x text;
+            animation: textBg 2s linear infinite;
+        }
+    }
+}

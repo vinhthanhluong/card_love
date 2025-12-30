@@ -1,0 +1,30 @@
+/*==========================================================================*/
+/*                     H O V E R    &    P C    O N L Y                     */
+/*==========================================================================*/
+
+
+@media screen and (min-width: 769px) {
+    a:hover {
+        text-decoration: none;
+        color: var(--main-cl);
+    }
+
+    .to-top {
+        &:hover {
+            background: var(--main-cl);
+        }
+    }
+
+    .no-scroll {
+        overflow: hidden;
+        -ms-touch-action: none;
+        touch-action: none;
+        -webkit-overflow-scrolling: auto;
+    }
+}
+
+/* END screen-min:769px */
+
+@media screen and (min-width: 769px) and (max-width: 1500px) {
+}
+/* END screen-min:769px && screen-max:1500px */
