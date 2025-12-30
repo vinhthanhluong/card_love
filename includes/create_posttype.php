@@ -47,7 +47,7 @@ function prefix_register_all() {
 				'revisions'
 			),
 			'taxonomies' => array(
-				'couple_background',
+				'couple_cate',
 				'couple_counterdays',
 				'couple_albums',
 				'couple_message',
@@ -73,7 +73,7 @@ function prefix_register_all() {
 	$tax_search_items = "Search Background";
 
 	register_taxonomy(
-		'couple_background',
+		'couple_cate',
 		array(
 			'couple_card'
 		),
