@@ -751,19 +751,19 @@ body::-webkit-scrollbar-track {
   position: relative;
   z-index: 0;
 }
-.tpl-main.tpl1 .love-slider .splide__pagination {
+.tpl-main.theme1 .love-slider .splide__pagination {
   bottom: 20px;
 }
-.tpl-main.tpl1 .ilove .ilove-name {
+.tpl-main.theme1 .ilove .ilove-name {
   color: #fff;
 }
-.tpl-main.tpl1 .slick-active img {
+.tpl-main.theme1 .slick-active img {
   animation: sliderFace 3s linear;
 }
-.tpl-main.tpl2 .love-slider .lover-slider-img img {
+.tpl-main.theme2 .love-slider .lover-slider-img img {
   height: 83vh;
 }
-.tpl-main.tpl2 .ilove::before {
+.tpl-main.theme2 .ilove::before {
   --kc: calc(2000 / 768 * 100vw);
   content: "";
   position: absolute;
@@ -775,13 +775,13 @@ body::-webkit-scrollbar-track {
   z-index: -1;
   top: 20px;
 }
-.tpl-main.tpl2 .ilove-dots .slick-dots {
+.tpl-main.theme2 .ilove-dots .slick-dots {
   bottom: calc(100% + 15px);
 }
-.tpl-main.tpl3 .love-slider .lover-slider-img img {
+.tpl-main.theme3 .love-slider .lover-slider-img img {
   height: 86vh;
 }
-.tpl-main.tpl3 .ilove::before {
+.tpl-main.theme3 .ilove::before {
   content: "";
   position: absolute;
   inset: 0 max(-15.625vw, -120px);
@@ -790,14 +790,14 @@ body::-webkit-scrollbar-track {
   background: url("../images/wave-bg.svg") no-repeat top center/contain;
   z-index: -1;
 }
-.tpl-main.tpl3 .ilove::after {
+.tpl-main.theme3 .ilove::after {
   content: "";
   position: absolute;
   inset: min(18.75vw, 120px) 0 0;
   background-color: #fff;
   z-index: -1;
 }
-.tpl-main.tpl3 .ilove-dots .slick-dots {
+.tpl-main.theme3 .ilove-dots .slick-dots {
   bottom: calc(100% + 15px);
 }
 .tpl-main.theme4 {
@@ -4387,10 +4387,10 @@ address {
 /*                        M O B I L E    D E V I C E                        */
 /*==========================================================================*/
 @media screen and (min-height: 1000px) {
-  .tpl-main.tpl2 .love-slider .lover-slider-img img {
+  .tpl-main.theme2 .love-slider .lover-slider-img img {
     height: 90vh;
   }
-  .tpl-main.tpl3 .love-slider .lover-slider-img img {
+  .tpl-main.theme3 .love-slider .lover-slider-img img {
     height: 90vh;
   }
 }

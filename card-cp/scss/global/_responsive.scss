@@ -3,7 +3,7 @@
 /*==========================================================================*/
 @media screen and (min-height: 1000px) {
     .tpl-main {
-        &.tpl2 {
+        &.theme2 {
             .love-slider {
                 .lover-slider-img {
                     img {
@@ -12,7 +12,7 @@
                 }
             }
         }
-        &.tpl3 {
+        &.theme3 {
             .love-slider {
                 .lover-slider-img {
                     img {
@@ -26,7 +26,7 @@
 
 @media screen and (max-width: 480px) {
     .tpl-main {
-        &.tpl3 {
+        &.theme3 {
             .ilove {
                 &::after {
                     // top: 70px;

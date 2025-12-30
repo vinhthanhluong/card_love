@@ -1,3 +1,7 @@
+<?php
+$terms_message = wp_get_post_terms($post->ID, 'couple_message', '');
+if (!empty($terms_message) && !is_wp_error($terms_message)) :
+?>
 <div class="imessage">
     <div class="imess-wrap">
         <div class="imess-close">quay lại</div>
@@ -8,14 +12,14 @@
             <p class="imess-ftxt">Những khoảnh khắc</p>
             <div class="imess-slider-loop">
                 <?php
-                    $images = get_field('mess_loop');
-                    $sizes = 'full';
-                    if ($images): ?>
-                        <?php foreach ($images as $image): ?>
-                            <div class="imess-slr-img">
-                                <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
-                            </div>
-                        <?php endforeach; ?>
+                $images = get_field('mess_loop');
+                $sizes = 'full';
+                if ($images): ?>
+                    <?php foreach ($images as $image): ?>
+                        <div class="imess-slr-img">
+                            <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
+                        </div>
+                    <?php endforeach; ?>
                 <?php endif; ?>
             </div>
         </div>
@@ -67,3 +71,4 @@
         </div>
     </div>
 </div>
+<?php endif; ?>
