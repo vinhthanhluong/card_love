@@ -206,7 +206,7 @@ window.addEventListener("scroll", parallax);
 window.addEventListener("load", parallax);
 
 
-// drag 
+// drag background album
 const sheet = document.querySelector(".album-bg");
 sheet.style.transition = "none"; // Bỏ transition khi dragging
 
