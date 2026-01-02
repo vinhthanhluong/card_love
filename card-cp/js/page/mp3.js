@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
   var soundIcon = document.getElementById("sound-icon");
   var title = document.getElementById("music-title");
   var artist = document.getElementById("music-artist");
-  var artwork = document.getElementById("music-artwork");
   var progress = document.getElementById("progress");
   var canvas = document.getElementById("waveform-canvas");
   var ctx = canvas ? canvas.getContext("2d") : null;
@@ -22,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var allowIconChange = false; // Flag để kiểm soát việc đổi icon
 
   // Hàm vẽ waveform
-  function drawWaveform(waveData, progressPercent) {
+function drawWaveform(waveData, progressPercent) {
     if (!canvas || !ctx) return;
 
     var dpr = window.devicePixelRatio || 1;
@@ -33,12 +32,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var width = rect.width;
     var height = rect.height;
-    var gap = 2;
+    var gap = 1;
     var barWidth = (width / waveData.length) - gap;
 
     ctx.clearRect(0, 0, width, height);
 
-    waveData.forEach(function(value, index) {
+    waveData.forEach(function (value, index) {
       var normalizedHeight = Math.max(0.05, value) * height * 0.9;
       var x = index * (barWidth + gap);
       var y = (height - normalizedHeight) / 2;
@@ -47,13 +46,14 @@ document.addEventListener("DOMContentLoaded", function () {
       var isPlayed = barProgress <= (progressPercent || 0);
 
       if (isPlayed) {
+        // Gradient hồng-tím cho phần đã phát
         var gradient = ctx.createLinearGradient(x, y, x, y + normalizedHeight);
-        gradient.addColorStop(0, '#667eea');
-        gradient.addColorStop(0.5, '#764ba2');
-        gradient.addColorStop(1, '#667eea');
+        gradient.addColorStop(0, '#ff6b9d');
+        gradient.addColorStop(1, '#c56cf0');
         ctx.fillStyle = gradient;
       } else {
-        ctx.fillStyle = 'rgba(102, 126, 234, 0.25)';
+        // Màu mờ cho phần chưa phát
+        ctx.fillStyle = 'rgba(212, 165, 216, 0.25)';
       }
 
       var radius = Math.min(barWidth / 2, 2);
@@ -80,30 +80,30 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     var waveformUrl = sound.waveform_url;
-    
+
     if (!waveformUrl) {
       createFallbackWaveform();
       return;
     }
 
     fetch(waveformUrl)
-      .then(function(response) {
+      .then(function (response) {
         if (!response.ok) throw new Error('Network response was not ok');
         return response.json();
       })
-      .then(function(data) {
+      .then(function (data) {
         var samples = data.samples || data.height || [];
-        
+
         if (!samples || samples.length === 0) {
           throw new Error('No samples in waveform data');
         }
 
         var targetBars = 90;
         var step = Math.max(1, Math.floor(samples.length / targetBars));
-        
+
         waveformData = [];
         var maxValue = Math.max.apply(Math, samples);
-        
+
         for (var i = 0; i < samples.length; i += step) {
           if (waveformData.length >= targetBars) break;
           var normalizedValue = samples[i] / maxValue;
@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         drawWaveform(waveformData, 0);
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.error("Error loading waveform:", error);
         createFallbackWaveform();
       });
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Tạo waveform giả
   function createFallbackWaveform() {
     waveformData = [];
-    
+
     for (var i = 0; i < 90; i++) {
       var wave1 = Math.sin(i * 0.15) * 0.3;
       var wave2 = Math.sin(i * 0.4) * 0.2;
@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
       value = Math.max(0.1, Math.min(1, value));
       waveformData.push(value);
     }
-    
+
     drawWaveform(waveformData, 0);
   }
 
@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", function () {
   widget.bind(SC.Widget.Events.READY, function () {
     console.log("Widget READY event");
     isReady = true;
-    
+
     // QUAN TRỌNG: Dừng widget ngay lập tức
     widget.pause();
     widget.seekTo(0);
@@ -163,16 +163,11 @@ document.addEventListener("DOMContentLoaded", function () {
       if (sound) {
         title.textContent = sound.title;
         artist.textContent = sound.user ? sound.user.username : 'Unknown Artist';
-        
-        if (sound.artwork_url) {
-          var artworkUrl = sound.artwork_url.replace('-large', '-t500x500');
-          artwork.src = artworkUrl;
-        }
 
         loadWaveform(sound);
       }
     });
-    
+
     widget.getDuration(function (d) {
       duration = d;
     });
@@ -188,8 +183,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Kiểm tra và force pause
-    setTimeout(function() {
-      widget.isPaused(function(paused) {
+    setTimeout(function () {
+      widget.isPaused(function (paused) {
         console.log("Is paused:", paused);
         if (!paused) {
           console.log("Force pausing widget");
@@ -214,7 +209,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Play/Pause button
   playPauseBtn.addEventListener("click", function () {
     console.log("Play/Pause clicked, isReady:", isReady, "isPlaying:", isPlaying);
-    
+
     if (!isReady) {
       console.log("Widget not ready yet");
       return;
@@ -236,7 +231,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // PLAY event - CHỈ THAY ĐỔI ICON KHI allowIconChange = true
   widget.bind(SC.Widget.Events.PLAY, function () {
     console.log("PLAY event triggered, allowIconChange:", allowIconChange);
-    
+
     // Chỉ cho phép đổi icon nếu đã sẵn sàng
     if (!allowIconChange) {
       console.log("Ignoring PLAY event (not allowed to change icon yet)");
@@ -244,40 +239,32 @@ document.addEventListener("DOMContentLoaded", function () {
       widget.pause();
       return;
     }
-    
+
     isPlaying = true;
-    
+
     if (playIcon && pauseIcon) {
       console.log("Changing to PAUSE icon");
       playIcon.style.display = "none";
       pauseIcon.style.display = "block";
-    }
-    
-    if (artwork && artwork.parentElement) {
-      artwork.parentElement.style.animationPlayState = "running";
     }
   });
 
   // PAUSE event
   widget.bind(SC.Widget.Events.PAUSE, function () {
     console.log("PAUSE event triggered, allowIconChange:", allowIconChange);
-    
+
     // Chỉ cho phép đổi icon nếu đã sẵn sàng
     if (!allowIconChange) {
       console.log("Ignoring PAUSE event (not allowed to change icon yet)");
       return;
     }
-    
+
     isPlaying = false;
-    
+
     if (playIcon && pauseIcon) {
       console.log("Changing to PLAY icon");
       playIcon.style.display = "block";
       pauseIcon.style.display = "none";
-    }
-    
-    if (artwork && artwork.parentElement) {
-      artwork.parentElement.style.animationPlayState = "paused";
     }
   });
 
@@ -286,12 +273,12 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("FINISH event triggered");
     isPlaying = false;
     hasStartedPlaying = false;
-    
+
     if (playIcon && pauseIcon) {
       playIcon.style.display = "block";
       pauseIcon.style.display = "none";
     }
-    
+
     updateWaveformProgress(0);
     widget.seekTo(0);
   });
@@ -308,7 +295,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (canvas) {
     canvas.addEventListener("click", function (e) {
       if (!isReady || duration === 0) return;
-      
+
       var rect = canvas.getBoundingClientRect();
       var percent = (e.clientX - rect.left) / rect.width;
       widget.seekTo(percent * duration);
@@ -342,11 +329,11 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Resize handler
-  window.addEventListener("resize", function() {
+  window.addEventListener("resize", function () {
     if (waveformData) {
       var currentProgress = 0;
       if (isPlaying) {
-        widget.getPosition(function(position) {
+        widget.getPosition(function (position) {
           if (duration > 0) {
             currentProgress = (position / duration) * 100;
             updateWaveformProgress(currentProgress);
