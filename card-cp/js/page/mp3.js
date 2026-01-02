@@ -152,7 +152,6 @@ function drawWaveform(waveData, progressPercent) {
 
   // Widget ready
   widget.bind(SC.Widget.Events.READY, function () {
-    console.log("Widget READY event");
     isReady = true;
 
     // QUAN TRỌNG: Dừng widget ngay lập tức
@@ -185,9 +184,7 @@ function drawWaveform(waveData, progressPercent) {
     // Kiểm tra và force pause
     setTimeout(function () {
       widget.isPaused(function (paused) {
-        console.log("Is paused:", paused);
         if (!paused) {
-          console.log("Force pausing widget");
           widget.pause();
         }
         // Sau khi đã đảm bảo pause, mới cho phép đổi icon
@@ -208,18 +205,14 @@ function drawWaveform(waveData, progressPercent) {
 
   // Play/Pause button
   playPauseBtn.addEventListener("click", function () {
-    console.log("Play/Pause clicked, isReady:", isReady, "isPlaying:", isPlaying);
 
     if (!isReady) {
-      console.log("Widget not ready yet");
       return;
     }
 
     if (isPlaying) {
-      console.log("Pausing...");
       widget.pause();
     } else {
-      console.log("Playing...");
       if (!hasStartedPlaying) {
         widget.seekTo(0);
         hasStartedPlaying = true;
@@ -230,11 +223,9 @@ function drawWaveform(waveData, progressPercent) {
 
   // PLAY event - CHỈ THAY ĐỔI ICON KHI allowIconChange = true
   widget.bind(SC.Widget.Events.PLAY, function () {
-    console.log("PLAY event triggered, allowIconChange:", allowIconChange);
 
     // Chỉ cho phép đổi icon nếu đã sẵn sàng
     if (!allowIconChange) {
-      console.log("Ignoring PLAY event (not allowed to change icon yet)");
       // Force pause ngay lập tức
       widget.pause();
       return;
@@ -243,7 +234,6 @@ function drawWaveform(waveData, progressPercent) {
     isPlaying = true;
 
     if (playIcon && pauseIcon) {
-      console.log("Changing to PAUSE icon");
       playIcon.style.display = "none";
       pauseIcon.style.display = "block";
     }
@@ -251,18 +241,15 @@ function drawWaveform(waveData, progressPercent) {
 
   // PAUSE event
   widget.bind(SC.Widget.Events.PAUSE, function () {
-    console.log("PAUSE event triggered, allowIconChange:", allowIconChange);
 
     // Chỉ cho phép đổi icon nếu đã sẵn sàng
     if (!allowIconChange) {
-      console.log("Ignoring PAUSE event (not allowed to change icon yet)");
       return;
     }
 
     isPlaying = false;
 
     if (playIcon && pauseIcon) {
-      console.log("Changing to PLAY icon");
       playIcon.style.display = "block";
       pauseIcon.style.display = "none";
     }
@@ -270,7 +257,6 @@ function drawWaveform(waveData, progressPercent) {
 
   // FINISH event
   widget.bind(SC.Widget.Events.FINISH, function () {
-    console.log("FINISH event triggered");
     isPlaying = false;
     hasStartedPlaying = false;
 

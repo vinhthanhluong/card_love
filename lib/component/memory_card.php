@@ -1,3 +1,7 @@
+<?php
+$terms_memory = wp_get_post_terms($post->ID, 'couple_memory', '');
+if (!empty($terms_memory) && !is_wp_error($terms_memory)) :
+?>
 <div class="memory-overlay" id="modalMemory">
   <div class="memory-wrap">
     <!-- Close Button -->
@@ -125,3 +129,4 @@
   </div>
   <!-- End Memory -->
 </div>
+<?php endif; ?>

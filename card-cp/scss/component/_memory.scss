@@ -1,3 +1,5 @@
+@use "../mixins/basic" as *;
+
 @keyframes floatUp {
     0% {
         bottom: -50px;

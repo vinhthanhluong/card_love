@@ -1,3 +1,5 @@
+@use "../mixins/basic" as *;
+
 @property --maskColorPosition1 {
     syntax: "<percentage>";
     inherits: false;
@@ -45,6 +47,7 @@
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
+    @include scrollbar-v();
 
     &.active {
         opacity: 1;
