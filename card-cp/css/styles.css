@@ -3718,6 +3718,16 @@ body::-webkit-scrollbar-track {
   visibility: hidden;
   transition: all 0.3s ease;
 }
+.imessage::-webkit-scrollbar {
+  width: 0px;
+}
+.imessage::-webkit-scrollbar-thumb {
+  background: var(--main-cl);
+  border-radius: 990px;
+}
+.imessage::-webkit-scrollbar-track {
+  background: transparent;
+}
 .imessage.active {
   opacity: 1;
   visibility: visible;

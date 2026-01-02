@@ -96,7 +96,6 @@
 
       <!-- Memory -->
       <?php include 'lib/component/memory_card.php'; ?>
-
       <!-- Album Background -->
       <?php include 'lib/component/album_bg_card.php'; ?>
       <!-- Album -->
