@@ -392,7 +392,7 @@ if ($otp_number): ?>
       height: 18px;
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.6);
-      outline: 2px solid rgba(255, 107, 157, 0.3);
+      border: 2px solid rgba(255, 107, 157, 0.3);
       transition: all 0.3s ease;
     }
 

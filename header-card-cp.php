@@ -109,142 +109,144 @@
 
       if ($record_link): ?>
         <div id="record-wrapper" class="record-wrapper">
-          <button class="btn-back" id="btn-back2">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
-            </svg>
-          </button>
+          <div class="record-scroll">
+            <button class="btn-back" id="btn-back2">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
+              </svg>
+            </button>
 
-          <div class="popup-record">
-            <div class="decorative-hearts">
-              <svg class="heart-deco heart-1" viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-              </svg>
-              <svg class="heart-deco heart-2" viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-              </svg>
-              <svg class="heart-deco heart-3" viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-              </svg>
-              <svg class="heart-deco heart-4" viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-              </svg>
-            </div>
-            <?php if ($audio1): ?>
-              <div class="record-card">
-                <div class="record-header">
-                  <div class="record-avatar">
-                    <img src="<?php echo get_field("male")['avatar']['url'] ?>" alt="avatar">
-                  </div>
-                  <div class="record-title"><?php echo $titaudio1; ?></div>
-                  <div class="record-subtitle"><?php echo $subaudio1; ?></div>
-                </div>
-                <div class="custom-audio-player">
-                  <audio id="audio1" src="<?php echo $audio1; ?>"></audio>
-                  <div class="audio-controls">
-                    <button class="play-pause-btn" onclick="togglePlay('audio1', this)">
-                      <svg class="play-icon" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
-                      <svg class="pause-icon" style="display: none;" viewBox="0 0 24 24">
-                        <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
-                      </svg>
-                    </button>
-                    <div class="audio-progress-container">
-                      <div class="progress-bar" onclick="seekAudio(event, 'audio1')">
-                        <div class="progress-fill" id="progress1"></div>
-                      </div>
-                      <div class="audio-times">
-                        <span id="current-time1">0:00</span>
-                        <span id="duration1">0:00</span>
-                      </div>
+            <div class="popup-record">
+              <div class="decorative-hearts">
+                <svg class="heart-deco heart-1" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                </svg>
+                <svg class="heart-deco heart-2" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                </svg>
+                <svg class="heart-deco heart-3" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                </svg>
+                <svg class="heart-deco heart-4" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                </svg>
+              </div>
+              <?php if ($audio1): ?>
+                <div class="record-card">
+                  <div class="record-header">
+                    <div class="record-avatar">
+                      <img src="<?php echo get_field("male")['avatar']['url'] ?>" alt="avatar">
                     </div>
-                    <div class="volume-control">
-                      <button class="volume-btn" onclick="toggleMute('audio1')">
-                        <svg class="volume-icon" viewBox="0 0 24 24">
-                          <path
-                            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z" />
+                    <div class="record-title"><?php echo $titaudio1; ?></div>
+                    <div class="record-subtitle"><?php echo $subaudio1; ?></div>
+                  </div>
+                  <div class="custom-audio-player">
+                    <audio id="audio1" src="<?php echo $audio1; ?>"></audio>
+                    <div class="audio-controls">
+                      <button class="play-pause-btn" onclick="togglePlay('audio1', this)">
+                        <svg class="play-icon" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z" />
                         </svg>
-                        <svg class="mute-icon" style="display: none;" viewBox="0 0 24 24">
-                          <path
-                            d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" />
+                        <svg class="pause-icon" style="display: none;" viewBox="0 0 24 24">
+                          <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
                         </svg>
                       </button>
-                      <div class="volume-slider" onclick="changeVolume(event, 'audio1')">
-                        <div class="volume-fill" id="volume1"></div>
+                      <div class="audio-progress-container">
+                        <div class="progress-bar" onclick="seekAudio(event, 'audio1')">
+                          <div class="progress-fill" id="progress1"></div>
+                        </div>
+                        <div class="audio-times">
+                          <span id="current-time1">0:00</span>
+                          <span id="duration1">0:00</span>
+                        </div>
+                      </div>
+                      <div class="volume-control">
+                        <button class="volume-btn" onclick="toggleMute('audio1')">
+                          <svg class="volume-icon" viewBox="0 0 24 24">
+                            <path
+                              d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z" />
+                          </svg>
+                          <svg class="mute-icon" style="display: none;" viewBox="0 0 24 24">
+                            <path
+                              d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" />
+                          </svg>
+                        </button>
+                        <div class="volume-slider" onclick="changeVolume(event, 'audio1')">
+                          <div class="volume-fill" id="volume1"></div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            <?php endif; ?>
-            <!-- Love Transfer Divider -->
-            <div class="love-transfer">
-              <div class="face face-left">
-                <div class="smile"></div>
-              </div>
-              <div class="transfer-line">
-                <div class="flying-heart"></div>
-                <div class="sparkle sparkle-1"></div>
-                <div class="sparkle sparkle-2"></div>
-                <div class="sparkle sparkle-3"></div>
-              </div>
-              <div class="face face-right">
-                <div class="smile"></div>
-              </div>
-            </div>
-            <?php if ($audio2): ?>
-              <div class="record-card">
-                <div class="record-header">
-                  <div class="record-avatar">
-                    <img src="<?php echo get_field("female")['avatar']['url'] ?>" alt="avatar">
-                  </div>
-                  <div class="record-title"><?php echo $titaudio2; ?></div>
-                  <div class="record-subtitle"><?php echo $subaudio2; ?></div>
+              <?php endif; ?>
+              <!-- Love Transfer Divider -->
+              <div class="love-transfer">
+                <div class="face face-left">
+                  <div class="smile"></div>
                 </div>
-                <div class="custom-audio-player">
-                  <audio id="audio2" src="<?php echo $audio2; ?>"></audio>
-                  <div class="audio-controls">
-                    <button class="play-pause-btn" onclick="togglePlay('audio2', this)">
-                      <svg class="play-icon" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
-                      <svg class="pause-icon" style="display: none;" viewBox="0 0 24 24">
-                        <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
-                      </svg>
-                    </button>
-                    <div class="audio-progress-container">
-                      <div class="progress-bar" onclick="seekAudio(event, 'audio2')">
-                        <div class="progress-fill" id="progress2"></div>
-                      </div>
-                      <div class="audio-times">
-                        <span id="current-time2">0:00</span>
-                        <span id="duration2">0:00</span>
-                      </div>
+                <div class="transfer-line">
+                  <div class="flying-heart"></div>
+                  <div class="sparkle sparkle-1"></div>
+                  <div class="sparkle sparkle-2"></div>
+                  <div class="sparkle sparkle-3"></div>
+                </div>
+                <div class="face face-right">
+                  <div class="smile"></div>
+                </div>
+              </div>
+              <?php if ($audio2): ?>
+                <div class="record-card">
+                  <div class="record-header">
+                    <div class="record-avatar">
+                      <img src="<?php echo get_field("female")['avatar']['url'] ?>" alt="avatar">
                     </div>
-                    <div class="volume-control">
-                      <button class="volume-btn" onclick="toggleMute('audio2')">
-                        <svg class="volume-icon" viewBox="0 0 24 24">
-                          <path
-                            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z" />
+                    <div class="record-title"><?php echo $titaudio2; ?></div>
+                    <div class="record-subtitle"><?php echo $subaudio2; ?></div>
+                  </div>
+                  <div class="custom-audio-player">
+                    <audio id="audio2" src="<?php echo $audio2; ?>"></audio>
+                    <div class="audio-controls">
+                      <button class="play-pause-btn" onclick="togglePlay('audio2', this)">
+                        <svg class="play-icon" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z" />
                         </svg>
-                        <svg class="mute-icon" style="display: none;" viewBox="0 0 24 24">
-                          <path
-                            d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" />
+                        <svg class="pause-icon" style="display: none;" viewBox="0 0 24 24">
+                          <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
                         </svg>
                       </button>
-                      <div class="volume-slider" onclick="changeVolume(event, 'audio2')">
-                        <div class="volume-fill" id="volume2"></div>
+                      <div class="audio-progress-container">
+                        <div class="progress-bar" onclick="seekAudio(event, 'audio2')">
+                          <div class="progress-fill" id="progress2"></div>
+                        </div>
+                        <div class="audio-times">
+                          <span id="current-time2">0:00</span>
+                          <span id="duration2">0:00</span>
+                        </div>
+                      </div>
+                      <div class="volume-control">
+                        <button class="volume-btn" onclick="toggleMute('audio2')">
+                          <svg class="volume-icon" viewBox="0 0 24 24">
+                            <path
+                              d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z" />
+                          </svg>
+                          <svg class="mute-icon" style="display: none;" viewBox="0 0 24 24">
+                            <path
+                              d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" />
+                          </svg>
+                        </button>
+                        <div class="volume-slider" onclick="changeVolume(event, 'audio2')">
+                          <div class="volume-fill" id="volume2"></div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            <?php endif; ?>
+              <?php endif; ?>
+            </div>
           </div>
         </div>
       <?php endif; ?>
