@@ -1,8 +1,12 @@
+@use "../mixins/basic" as *;
+
 .record-wrapper {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    right: 0;
+    width: var(--content-width);
+    margin: 0 auto;
     opacity: 0;
     visibility: hidden;
     z-index: 9999;
@@ -13,6 +17,7 @@
 
 .record-scroll {
     overflow-y: scroll;
+    @include scrollbar-v();
 }
 
 .record-wrapper::before {

@@ -1,8 +1,10 @@
 .music-wrapper {
     position: fixed;
     top: 0;
+    left: 0;
     right: 0;
-    width: 100%;
+    width: var(--content-width);
+    margin: 0 auto;
     height: 100vh;
     opacity: 0;
     visibility: hidden;

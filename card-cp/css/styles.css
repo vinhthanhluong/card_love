@@ -754,50 +754,10 @@ body::-webkit-scrollbar-track {
 .tpl-main.theme1 .slick-active img {
   animation: sliderFace 3s linear;
 }
-.tpl-main.theme2 .love-slider .lover-slider-img img {
-  height: 83vh;
-}
-.tpl-main.theme2 .ilove::before {
-  --kc: calc(2000 / 768 * 100vw);
-  content: "";
-  position: absolute;
-  left: calc(50% - min(var(--kc), 2000px) / 2);
-  width: min(var(--kc), 2000px);
-  height: min(var(--kc), 2000px);
-  background-color: #fff;
-  border-radius: 100%;
-  z-index: -1;
-  top: 20px;
-}
-.tpl-main.theme2 .ilove-dots .slick-dots {
-  bottom: calc(100% + 15px);
-}
-.tpl-main.theme3 .love-slider .lover-slider-img img {
-  height: 86vh;
-}
-.tpl-main.theme3 .ilove::before {
-  content: "";
-  position: absolute;
-  inset: 0 max(-15.625vw, -120px);
-  top: max(-9.1145833333vw, -70px);
-  transform: translateX(min(12.5vw, 96px));
-  background: url("../images/wave-bg.svg") no-repeat top center/contain;
-  z-index: -1;
-}
-.tpl-main.theme3 .ilove::after {
-  content: "";
-  position: absolute;
-  inset: min(18.75vw, 120px) 0 0;
-  background-color: #fff;
-  z-index: -1;
-}
-.tpl-main.theme3 .ilove-dots .slick-dots {
-  bottom: calc(100% + 15px);
-}
-.tpl-main.theme4 {
+.tpl-main.theme2 {
   background: linear-gradient(135deg, rgba(255, 105, 108, 0.08), rgba(255, 20, 66, 0.08));
 }
-.tpl-main.theme4 .love-slider {
+.tpl-main.theme2 .love-slider {
   position: relative;
   top: 20px;
   width: min(60vw, 255px);
@@ -805,15 +765,15 @@ body::-webkit-scrollbar-track {
   pointer-events: auto;
   z-index: 1;
 }
-.tpl-main.theme4 .love-slider .love-slr {
+.tpl-main.theme2 .love-slider .love-slr {
   margin: auto;
   --r: -5deg;
 }
-.tpl-main.theme4 .love-slider .slick-list {
+.tpl-main.theme2 .love-slider .slick-list {
   overflow: visible;
   transform: rotate(var(--r));
 }
-.tpl-main.theme4 .love-slider .lover-slider-img img {
+.tpl-main.theme2 .love-slider .lover-slider-img img {
   min-height: auto;
   height: min(80vw, 340px);
   border: 6px solid #fff;
@@ -828,19 +788,19 @@ body::-webkit-scrollbar-track {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   transition: all 1.2s cubic-bezier(0.47, 0.16, 0.24, 1);
 }
-.tpl-main.theme4 .love-slider .slick-active img {
+.tpl-main.theme2 .love-slider .slick-active img {
   --tw-scale-x: 1;
   --tw-scale-y: 1;
   --tw-translate-x: 0px;
   --tw-translate-y: 0px;
   --tw-rotate: calc(-3deg - var(--r));
 }
-.tpl-main.theme4 .ilove {
+.tpl-main.theme2 .ilove {
   margin-top: 0;
   padding-top: 40px;
   padding-bottom: 20px;
 }
-.tpl-main.theme4 .ilove .ilove-dots {
+.tpl-main.theme2 .ilove .ilove-dots {
   display: none;
 }
 
@@ -4049,8 +4009,10 @@ body::-webkit-scrollbar-track {
 .music-wrapper {
   position: fixed;
   top: 0;
+  left: 0;
   right: 0;
-  width: 100%;
+  width: var(--content-width);
+  margin: 0 auto;
   height: 100vh;
   opacity: 0;
   visibility: hidden;
@@ -4606,7 +4568,9 @@ body::-webkit-scrollbar-track {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  right: 0;
+  width: var(--content-width);
+  margin: 0 auto;
   opacity: 0;
   visibility: hidden;
   z-index: 9999;
@@ -4617,6 +4581,16 @@ body::-webkit-scrollbar-track {
 
 .record-scroll {
   overflow-y: scroll;
+}
+.record-scroll::-webkit-scrollbar {
+  width: 0px;
+}
+.record-scroll::-webkit-scrollbar-thumb {
+  background: var(--main-cl);
+  border-radius: 990px;
+}
+.record-scroll::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .record-wrapper::before {

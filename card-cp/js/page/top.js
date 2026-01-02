@@ -19,15 +19,15 @@ jQuery(window).bind("load", function () {
         fade: false,
         arrows: false,
       },
+      // theme2: {
+      //   fade: false,
+      //   arrows: false,
+      // },
+      // theme3: {
+      //   fade: false,
+      //   arrows: false,
+      // },
       theme2: {
-        fade: false,
-        arrows: false,
-      },
-      theme3: {
-        fade: false,
-        arrows: false,
-      },
-      theme4: {
         fade: false,
         arrows: true,
         // speed: 1200, // override base
