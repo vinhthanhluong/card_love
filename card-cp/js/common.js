@@ -103,7 +103,6 @@ jQuery(document).ready(function () {
   jQuery("#header .hd-album").on("click", function () {
     const hAblum = jQuery(".album .abm-wrap").innerHeight();
     jQuery("#main").css({ "z-index": "100", height: `${hAblum}px` });
-    // jQuery("body").css({ "overflow": "hidden" });
     lockElements('#index, .tpl-main, .album');
     jQuery(".album").addClass("active");
 
@@ -122,9 +121,7 @@ jQuery(document).ready(function () {
     }
   });
 
-
   jQuery("#header .hd-mail").on("click", function () {
-    const hAblum = jQuery(".album .abm-wrap").innerHeight();
     jQuery("#main").css({ "z-index": "100" });
     jQuery(".imessage").addClass("active");
   });

@@ -2,8 +2,8 @@
 $terms_message = wp_get_post_terms($post->ID, 'couple_message', '');
 if (!empty($terms_message) && !is_wp_error($terms_message)) :
 ?>
-<div class="imessage">
-    <div class="imess-wrap">
+<div class="imessage efftype1">
+    <div class="imess-wrap efftype1-wrap">
         <div class="imess-close">quay lại</div>
         <div class="imess-fimg">
             <img src="<?php echo get_field('mess_thumb')['url'] ?>" alt="album">

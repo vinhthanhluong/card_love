@@ -12,7 +12,7 @@
       }
 
       // Memory
-      $terms_memory = wp_get_post_terms($post->ID, 'couple_memory', '');
+      $is_memory = get_field('is_memory');
   ?>
       <div class="tpl-main <?php echo $taxonomy_slug_cate ?>">
         <div class="love-slider">
@@ -28,14 +28,16 @@
               <?php endforeach; ?>
             </div>
           <?php endif; ?>
-          <!-- Memory Button -->
-          <?php if (!empty($terms_memory) && !is_wp_error($terms_memory)) : ?>
-            <p class="memory-button" id="openMemory">Xem kỉ niệm</p>
-          <?php endif; ?>
         </div>
+        <!-- Memory Button of Theme1 -->
+        <?php if ($is_memory) : ?>
+          <p class="memory-button" id="openMemory">Xem kỉ niệm</p>
+        <?php endif; ?>
 
-        <!-- Counter -->
-        <?php include 'lib/component/counter_card.php'; ?>
+        <?php if ($taxonomy_slug_cate == "theme1") : ?>
+          <!-- Counter -->
+          <?php include 'lib/component/counter_card.php'; ?>
+        <?php endif; ?>
 
         <div class="ilove">
           <div class="ilove-dots"></div>

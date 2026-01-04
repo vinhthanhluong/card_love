@@ -1,47 +1,10 @@
 @use "../mixins/basic" as *;
 
-@property --maskColorPosition1 {
-    syntax: "<percentage>";
-    inherits: false;
-    initial-value: 0%;
-}
-
-@property --maskColorPosition2 {
-    syntax: "<percentage>";
-    inherits: false;
-    initial-value: 0%;
-}
-
-@property --maskColorPosition3 {
-    syntax: "<percentage>";
-    inherits: false;
-    initial-value: 0%;
-}
-
-@keyframes maskFadeInDegree_paging {
-    0% {
-        --maskColorDeg: -45deg;
-        --maskColorPosition1: 0%;
-        --maskColorPosition2: 0%;
-        --maskColorPosition3: 0%;
-    }
-
-    100% {
-        --maskColorDeg: -45deg;
-        --maskColorPosition1: 100%;
-        --maskColorPosition2: 200%;
-        --maskColorPosition3: 300%;
-    }
-}
-
 .imessage {
     position: absolute;
     inset: 0;
     z-index: 99;
-    // background-color: #f9c5d7;
-    // background-color: #efefeb;
-    background-color: wheat;
-    background: url("https://fcj.f-concierge.biz/NgocNB/videohouse-hvc/www/shared/css/../img/shared/bg2.jpg") repeat;
+    background: url("../images/message/bg2.jpg") repeat;
     overflow-x: hidden;
     overflow-y: auto;
     opacity: 0;
@@ -52,48 +15,10 @@
     &.active {
         opacity: 1;
         visibility: visible;
-
-        .imess-wrap {
-            pointer-events: unset;
-            opacity: 1;
-            transition-timing-function: cubic-bezier(0.17, 0.84, 0.44, 1);
-            -webkit-mask-repeat: no-repeat;
-            mask-repeat: no-repeat;
-            -webkit-mask-position: 200% 0;
-            mask-position: 200% 0;
-            -webkit-mask-size: 100% 100%;
-            mask-size: 100% 100%;
-            -webkit-mask-image: linear-gradient(
-                var(--maskColorDeg),
-                #000 0%,
-                #000 var(--maskColorPosition1),
-                transparent var(--maskColorPosition2),
-                transparent var(--maskColorPosition3)
-            );
-            mask-image: linear-gradient(
-                var(--maskColorDeg),
-                #000 0%,
-                #000 var(--maskColorPosition1),
-                transparent var(--maskColorPosition2),
-                transparent var(--maskColorPosition3)
-            );
-            will-change: -webkit-mask, mask, animation;
-            animation-name: maskFadeInDegree_paging;
-            animation-fill-mode: forwards;
-            animation-iteration-count: 1;
-            animation-direction: normal;
-            animation-delay: 0s;
-            animation-duration: 1s;
-            animation-timing-function: linear;
-        }
     }
 
     .imess-wrap {
         padding-top: 20px;
-        opacity: 0;
-        pointer-events: none;
-        transition: 0.8s cubic-bezier(0.65, 0.05, 0.36, 1);
-        transition-property: background-color, opacity, transform;
         z-index: 102;
     }
 }

@@ -10,9 +10,9 @@ if (!empty($terms_album) && !is_wp_error($terms_album)) {
     <?php
     $imagesAlb = get_field('alb_bg_loop');
     ?>
-    <div class="album-bg">
+    <div class="album-bg efftype1">
         <?php if ($taxonomy_slug_bg_album === "bg_alb1"): ?>
-            <div class="alb alb1">
+            <div class="alb efftype1-wrap alb1">
                 <p class="alb1-tt">Kỉ niệm</p>
                 <p class="alb1-img">
                     <img src="<?php echo esc_url($imagesAlb[0]['url']); ?>" class="alb1-ig" alt="Kỉ niệm">
@@ -22,7 +22,7 @@ if (!empty($terms_album) && !is_wp_error($terms_album)) {
         <?php endif ?>
 
         <?php if ($taxonomy_slug_bg_album === "bg_alb2"): ?>
-            <div class="alb alb2">
+            <div class="alb efftype1-wrap alb2">
                 <div class="alb2-text">
                     <p class="alb2-tt">Kỉ niệm</p>
                     <p class="alb2-year">
@@ -52,7 +52,7 @@ if (!empty($terms_album) && !is_wp_error($terms_album)) {
         <?php endif ?>
 
         <?php if ($taxonomy_slug_bg_album === "bg_alb3"): ?>
-            <div class="alb alb3">
+            <div class="alb efftype1-wrap alb3">
                 <p class="alb3-tt">Kỉ niệm</p>
                 <p class="alb3-year"><?php echo get_field('alb_bg_year') ?></p>
                 <div class="alb3-bg">
@@ -65,8 +65,6 @@ if (!empty($terms_album) && !is_wp_error($terms_album)) {
                 </div>
             </div>
         <?php endif ?>
-
-        <div class="album-bg-overlay"></div>
         <div class="album-bg-ctn"><span>Kéo để tiếp tục</span></div>
     </div>
 <?php endif ?>

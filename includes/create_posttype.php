@@ -53,7 +53,6 @@ function prefix_register_all() {
 				'couple_mp3',
 				'couple_albums',
 				'couple_background_album',
-				'couple_memory'
 			),
 			'has_archive' => true,
 			'menu_icon' => 'dashicons-welcome-write-blog'
@@ -227,44 +226,6 @@ function prefix_register_all() {
 
 	register_taxonomy(
 		'couple_background_album',
-		array(
-			'couple_card'
-		),
-		array(
-			'labels'            => array(
-				'name'              => _x($tax_name, 'couple_card', 'text_domain'),
-				'singular_name'     => _x($tax_singular_name, 'couple_card', 'text_domain'),
-				'menu_name'         => __($tax_menu_name, 'text_domain'),
-				'all_items'         => __($tax_all_items, 'text_domain'),
-				'edit_item'         => __($tax_edit_item, 'text_domain'),
-				'view_item'         => __($tax_view_item, 'text_domain'),
-				'update_item'       => __($tax_update_item, 'text_domain'),
-				'add_new_item'      => __($tax_add_new_item, 'text_domain'),
-				'parent_item'       => __($tax_parent_item, 'text_domain'),
-				'parent_item_colon' => __($tax_parent_item_colon, 'text_domain'),
-				'search_items'      => __($tax_search_items, 'text_domain')
-			),
-			'show_admin_column' => true,
-			'hierarchical'      => true,
-			'show_in_rest'=> true
-		)
-	);
-
-	// FOR MEMORY
-	$tax_name = "Memory";
-	$tax_singular_name = "Memory";
-	$tax_menu_name = "Memory";
-	$tax_all_items = "All Memory";
-	$tax_edit_item = "Edit Memory";
-	$tax_view_item = "View Memory";
-	$tax_update_item = "Update Memory";
-	$tax_add_new_item = "Add New Memory";
-	$tax_parent_item = "Parent Category";
-	$tax_parent_item_colon = "Parent Category:";
-	$tax_search_items = "Search Memory";
-
-	register_taxonomy(
-		'couple_memory',
 		array(
 			'couple_card'
 		),
