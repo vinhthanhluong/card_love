@@ -14,6 +14,10 @@
         wrapRecord.classList.remove("show");
     });
 
+    window.togglePlay = togglePlay;
+    window.seekAudio = seekAudio;
+    window.changeVolume = changeVolume;
+    window.toggleMute = toggleMute;
 
     // Custom Audio Player Functions
     function togglePlay(audioId, btn) {
