@@ -1,3 +1,6 @@
+/*==========================================================================*/
+/*                           Common-Setting                                 */
+/*==========================================================================*/
 @import url(./lib/aos.css);
 @import url(./lib/slick.css);
 @import url(./lib/slick-theme.css);
@@ -689,6 +692,7 @@ body::-webkit-scrollbar-track {
   transition-property: background-color, opacity, transform;
 }
 
+/*============================= H_E_A_D_E_R =============================*/
 /*==========================================================================*/
 /*                              H E A D E R                                 */
 /*==========================================================================*/
@@ -788,6 +792,7 @@ body::-webkit-scrollbar-track {
   width: 26px;
 }
 
+/*============================= C_O_N_T_E_N_T =============================*/
 /*==========================================================================*/
 /*                                M A I N                                   */
 /*==========================================================================*/
@@ -1274,14 +1279,14 @@ body::-webkit-scrollbar-track {
   position: absolute;
   left: 0;
   right: 0;
-  top: 70vh;
+  top: 67vh;
   width: 160px;
   padding: 6px 10px 5px;
   font-size: 14px;
   font-weight: 600;
   margin: 0 auto;
   color: #fff;
-  background: linear-gradient(135deg, rgb(247, 86, 115), rgb(159, 59, 241));
+  background: linear-gradient(135deg, rgb(247, 86, 115), rgb(193, 154, 225));
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
   background-size: 200% 200%;
   border: none;
@@ -1295,6 +1300,7 @@ body::-webkit-scrollbar-track {
   text-align: center;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
+  z-index: 10;
 }
 .memory-button.active {
   transform: scale(0.95);
@@ -1394,9 +1400,6 @@ body::-webkit-scrollbar-track {
 }
 .memory-overlay.active .mtimeline .head {
   animation: fadeIn 1s ease-out 1.2s forwards;
-}
-.memory-overlay.active .mft {
-  animation: fadeIn 1s ease-out 2.4s forwards;
 }
 .memory-overlay .memory-close {
   position: absolute;
@@ -1634,34 +1637,50 @@ body::-webkit-scrollbar-track {
   position: relative;
   margin-bottom: 35px;
   opacity: 0;
+  animation: slideIn 0.6s ease-out 1.6s forwards;
 }
 .memory-overlay .mtimeline .item:last-child {
   margin-bottom: 0;
 }
-.memory-overlay .mtimeline .item:nth-child(1) {
-  animation: slideIn 0.6s ease-out 1.6s forwards;
-}
 .memory-overlay .mtimeline .item:nth-child(2) {
-  animation: slideIn 0.6s ease-out 1.8s forwards;
+  animation-delay: 1.8s;
 }
 .memory-overlay .mtimeline .item:nth-child(3) {
-  animation: slideIn 0.6s ease-out 2s forwards;
+  animation-delay: 2s;
 }
 .memory-overlay .mtimeline .item:nth-child(4) {
-  animation: slideIn 0.6s ease-out 2.2s forwards;
+  animation-delay: 2.2s;
 }
-.memory-overlay .mtimeline .item.left .cnt {
+.memory-overlay .mtimeline .item:nth-child(5) {
+  animation-delay: 2.4s;
+}
+.memory-overlay .mtimeline .item:nth-child(6) {
+  animation-delay: 2.6s;
+}
+.memory-overlay .mtimeline .item:nth-child(7) {
+  animation-delay: 2.8s;
+}
+.memory-overlay .mtimeline .item:nth-child(8) {
+  animation-delay: 3s;
+}
+.memory-overlay .mtimeline .item:nth-child(9) {
+  animation-delay: 3.2s;
+}
+.memory-overlay .mtimeline .item:nth-child(10) {
+  animation-delay: 3.4s;
+}
+.memory-overlay .mtimeline .item:nth-child(odd) .cnt {
   margin-right: 55%;
   text-align: right;
 }
-.memory-overlay .mtimeline .item.left .date {
+.memory-overlay .mtimeline .item:nth-child(odd) .date {
   justify-content: flex-end;
 }
-.memory-overlay .mtimeline .item.right .cnt {
+.memory-overlay .mtimeline .item:nth-child(even) .cnt {
   margin-left: 55%;
   text-align: left;
 }
-.memory-overlay .mtimeline .item.right .date {
+.memory-overlay .mtimeline .item:nth-child(even) .date {
   justify-content: flex-start;
 }
 .memory-overlay .mtimeline .dot {
@@ -1701,39 +1720,6 @@ body::-webkit-scrollbar-track {
   font-size: 14px;
   color: #555;
   line-height: 1.5;
-}
-.memory-overlay .mft {
-  text-align: center;
-  margin-top: 20px;
-  padding-top: 20px;
-  border-top: 2px dashed rgba(255, 105, 180, 0.2);
-  opacity: 0;
-}
-.memory-overlay .mft .mft-names {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  margin-bottom: 12px;
-}
-.memory-overlay .mft .name-tag {
-  font-size: 15px;
-  font-weight: 600;
-  color: #ff69b4;
-  padding: 8px 16px;
-  background: linear-gradient(135deg, rgba(255, 182, 193, 0.2), rgba(255, 240, 245, 0.3));
-  border-radius: 20px;
-  border: 1.5px solid rgba(255, 105, 180, 0.2);
-}
-.memory-overlay .mft .name-heart {
-  font-size: 20px;
-  animation: heartBeat 1.5s infinite;
-}
-.memory-overlay .mft .mft-text {
-  font-size: 13px;
-  color: #999;
-  font-style: italic;
-  margin-top: 10px;
 }
 
 @keyframes album-bg-ctn {
@@ -5354,6 +5340,7 @@ audio {
   height: 100%;
 }
 
+/*============================= F_O_O_T_E_R =============================*/
 /*==========================================================================*/
 /*                              F O O T E R                                 */
 /*==========================================================================*/
@@ -5366,6 +5353,7 @@ address {
   display: none;
 }
 
+/*========================== R_E_S_P_O_N_S_I_V_E ==========================*/
 /*==========================================================================*/
 /*                        M O B I L E    D E V I C E                        */
 /*==========================================================================*/
@@ -5406,12 +5394,5 @@ address {
 /*==========================================================================*/
 /*                             E N D   A L L                                */
 /*==========================================================================*/
-/*==========================================================================*/
-/*                           Common-Setting                                 */
-/*==========================================================================*/
-/*============================= H_E_A_D_E_R =============================*/
-/*============================= C_O_N_T_E_N_T =============================*/
-/*============================= F_O_O_T_E_R =============================*/
-/*========================== R_E_S_P_O_N_S_I_V_E ==========================*/
 
 /*# sourceMappingURL=styles.css.map */

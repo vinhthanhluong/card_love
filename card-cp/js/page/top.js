@@ -228,13 +228,14 @@ if (openBtnMemory || modalMemory) {
     }, 800);
 
     // Timeline
-    document.getElementById("daysTimelineMemory1").textContent = Math.floor(
-      days / 4
-    );
-    document.getElementById("daysTimelineMemory2").textContent = Math.floor(
-      (days / 4) * 2
-    );
-    document.getElementById("daysTimelineMemory3").textContent = days;
+    // document.getElementById("daysTimelineMemory1").textContent = Math.floor(
+    //   days / 4
+    // );
+    // document.getElementById("daysTimelineMemory2").textContent = Math.floor(
+    //   (days / 4) * 2
+    // );
+    // document.getElementById("daysTimelineMemory3").textContent = days;
+
     // animateValue(document.getElementById("daysTimelineMemory1"), 0, days, 0);
     // animateValue(document.getElementById("daysTimelineMemory2"), 0, days, 0);
     // animateValue(document.getElementById("daysTimelineMemory3"), 0, days, 0);

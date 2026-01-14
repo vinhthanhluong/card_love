@@ -30,8 +30,14 @@
           <?php endif; ?>
         </div>
         <!-- Memory Button of Theme1 -->
-        <?php if ($is_memory) : ?>
-          <p class="memory-button" id="openMemory">Xem kỉ niệm</p>
+        <?php if ($is_memory && $taxonomy_slug_cate == 'theme1') : ?>
+          <p class="memory-button" id="openMemory">
+            <span class="heart">♥</span>
+            <span class="heart">♥</span>
+            <span class="heart">♥</span>
+            <span class="heart">♥</span>
+            Xem kỉ niệm
+          </p>
         <?php endif; ?>
 
         <?php if ($taxonomy_slug_cate == "theme1") : ?>
@@ -97,7 +103,10 @@
       </div>
 
       <!-- Memory -->
-      <?php include 'lib/component/memory_card.php'; ?>
+      <?php if ($taxonomy_slug_cate == "theme1") : ?>
+        <?php include 'lib/component/memory_card.php'; ?>
+      <?php endif; ?>
+
       <!-- Album Background -->
       <?php include 'lib/component/album_bg_card.php'; ?>
       <!-- Album -->
