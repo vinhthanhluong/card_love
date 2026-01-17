@@ -362,7 +362,7 @@
     </div>
 
     <!-- Màn hình đếm ngày -->
-    <div class="counter-screen" id="counterScreen" data-love="<?php echo get_field("date-love") ?>">
+    <div class="counter-screen" id="counterScreen" data-love="2024-09-18">
       <div class="postcard">
         <div class="stamp">💌</div>
 
@@ -414,19 +414,33 @@
     </div>
 
     <script>
-      const startDate = new Date("2024-09-18");
+      const counterScreen = document.getElementById("counterScreen");
+
+      // Lấy ngày từ data-love (định dạng YYYY-MM-DD)
+      const startDate = new Date(counterScreen.dataset.love);
+
+      const btnOpenCT2 = document.getElementById("counter2_btn");
+      const btnCloseCT2 = document.getElementById("counter2_close_btn");
+
+      let counterInterval = null;
+
+      btnOpenCT2.addEventListener("click", showCounter);
+      btnCloseCT2.addEventListener("click", hideCounter);
 
       function showCounter() {
-        document.getElementById("startScreen").style.display = "none";
-        document.getElementById("counterScreen").classList.add("active");
+        counterScreen.classList.add("active");
+
         updateCounter();
         createCalendar();
-        setInterval(updateCounter, 1000);
+
+        if (counterInterval) clearInterval(counterInterval);
+        counterInterval = setInterval(updateCounter, 1000);
       }
 
       function hideCounter() {
-        document.getElementById("startScreen").style.display = "flex";
-        document.getElementById("counterScreen").classList.remove("active");
+        counterScreen.classList.remove("active");
+
+        if (counterInterval) clearInterval(counterInterval);
       }
 
       function updateCounter() {
@@ -444,6 +458,8 @@
 
       function createCalendar() {
         const calendar = document.getElementById("calendar");
+        calendar.innerHTML = "";
+
         const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
         const month = startDate.getMonth();
@@ -454,29 +470,25 @@
 
         const dayLabels = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
         dayLabels.forEach((label) => {
-          const dayLabel = document.createElement("div");
-          dayLabel.className = "calendar-day-label";
-          dayLabel.textContent = label;
-          calendar.appendChild(dayLabel);
+          const el = document.createElement("div");
+          el.className = "calendar-day-label";
+          el.textContent = label;
+          calendar.appendChild(el);
         });
 
-        // Adjust first day to start on Monday (0 = Sunday -> 6, 1 = Monday -> 0)
         let firstDay = new Date(year, month, 1).getDay();
         firstDay = firstDay === 0 ? 6 : firstDay - 1;
 
         const daysInMonth = new Date(year, month + 1, 0).getDate();
 
         for (let i = 0; i < firstDay; i++) {
-          const emptyDay = document.createElement("div");
-          calendar.appendChild(emptyDay);
+          calendar.appendChild(document.createElement("div"));
         }
 
         for (let day = 1; day <= daysInMonth; day++) {
           const dayDiv = document.createElement("div");
           dayDiv.className = "calendar-day";
-          if (day === specialDay) {
-            dayDiv.classList.add("special");
-          }
+          if (day === specialDay) dayDiv.classList.add("special");
           dayDiv.textContent = day;
           calendar.appendChild(dayDiv);
         }

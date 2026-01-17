@@ -45,25 +45,92 @@ jQuery(window).bind("load", function () {
 jQuery(document).ready(function () {
   "use strict";
 
-  // Counter
-  var btnCounter2 = document.getElementById("counter2_btn");
+  // begin counter2
+  const counterScreen = document.getElementById("counterScreen");
 
-  btnCounter2.addEventListener("click", function () {
-    document.getElementById("startScreen").style.display = "none";
-    document.getElementById("counterScreen").classList.add("active");
+  // parse dd/mm/yyyy
+  const [day, month, year] = counterScreen.dataset.love.split("/").map(Number);
+  const startDate = new Date(year, month - 1, day);
+
+  const btnOpenCT2 = document.getElementById("counter2_btn");
+  const btnCloseCT2 = document.getElementById("counter2_close_btn");
+
+  let counterInterval = null;
+
+  btnOpenCT2.addEventListener("click", showCounter);
+  btnCloseCT2.addEventListener("click", hideCounter);
+
+  function showCounter() {
+    counterScreen.classList.add("active");
+
     updateCounter();
     createCalendar();
-    setInterval(updateCounter, 1000);
-  });
 
-  if (jQuery("#counter2_btn").length > 0) {
-
+    if (counterInterval) clearInterval(counterInterval);
+    counterInterval = setInterval(updateCounter, 1000);
   }
 
   function hideCounter() {
-    document.getElementById("startScreen").style.display = "flex";
-    document.getElementById("counterScreen").classList.remove("active");
+    counterScreen.classList.remove("active");
+
+    if (counterInterval) clearInterval(counterInterval);
   }
+
+  function updateCounter() {
+    const now = new Date();
+    const diff = now - startDate;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+    document.getElementById("days").textContent = String(days).padStart(3, "0");
+    document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+    document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+  }
+
+  function createCalendar() {
+    const calendar = document.getElementById("calendar");
+    calendar.innerHTML = "";
+
+    const monthNames = [
+      "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+
+    const month = startDate.getMonth();
+    const year = startDate.getFullYear();
+    const specialDay = startDate.getDate();
+
+    document.getElementById("monthTitle").textContent = monthNames[month];
+
+    const dayLabels = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
+    dayLabels.forEach(label => {
+      const el = document.createElement("div");
+      el.className = "calendar-day-label";
+      el.textContent = label;
+      calendar.appendChild(el);
+    });
+
+    let firstDay = new Date(year, month, 1).getDay();
+    firstDay = firstDay === 0 ? 6 : firstDay - 1;
+
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    for (let i = 0; i < firstDay; i++) {
+      calendar.appendChild(document.createElement("div"));
+    }
+
+    for (let day = 1; day <= daysInMonth; day++) {
+      const dayDiv = document.createElement("div");
+      dayDiv.className = "calendar-day";
+      if (day === specialDay) dayDiv.classList.add("special");
+      dayDiv.textContent = day;
+      calendar.appendChild(dayDiv);
+    }
+  }
+  // end counter2
+
 
   if (jQuery(".icounter .icounter-type1").length > 0) {
     const getData = jQuery(".icounter").attr("data-love");

@@ -35,7 +35,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap"
     rel="stylesheet">
-
+  <link
+    href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap"
+    rel="stylesheet">
   <!-- Album -->
   <link href="https://fonts.googleapis.com/css2?family=Luxurious+Script&display=swap"
     rel="stylesheet">

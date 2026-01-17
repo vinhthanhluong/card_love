@@ -2,8 +2,9 @@
 
 <main id="main">
   <?php
-  if (have_posts()) :
-    while (have_posts()) : the_post();
+  if (have_posts()):
+    while (have_posts()):
+      the_post();
       // cate
       $taxonomy_slug_cate = "";
       $terms_bg = wp_get_post_terms($post->ID, 'couple_cate', '');
@@ -13,7 +14,7 @@
 
       // Memory
       $is_memory = get_field('is_memory');
-  ?>
+      ?>
       <div class="tpl-main <?php echo $taxonomy_slug_cate ?>">
         <div class="love-slider">
           <?php
@@ -23,14 +24,15 @@
             <div class="love-slr">
               <?php foreach ($images as $image): ?>
                 <div class="lover-slider-img">
-                  <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
+                  <img src="<?php echo esc_url($image['url']); ?>"
+                    alt="<?php echo esc_attr($image['alt']); ?>" />
                 </div>
               <?php endforeach; ?>
             </div>
           <?php endif; ?>
         </div>
         <!-- Memory Button of Theme1 -->
-        <?php if ($is_memory && $taxonomy_slug_cate == 'theme1') : ?>
+        <?php if ($is_memory && $taxonomy_slug_cate == 'theme1'): ?>
           <p class="memory-button" id="openMemory">
             <span class="heart">♥</span>
             <span class="heart">♥</span>
@@ -40,23 +42,29 @@
           </p>
         <?php endif; ?>
 
-        <?php if ($taxonomy_slug_cate == "theme1") : ?>
+        <?php if ($taxonomy_slug_cate == "theme1"): ?>
           <!-- Counter -->
           <?php include 'lib/component/counter_card_theme1.php'; ?>
         <?php endif; ?>
 
-        <?php if ($taxonomy_slug_cate == "theme2") : ?>
+        <?php if ($taxonomy_slug_cate == "theme2"): ?>
           <!-- Counter -->
-          <button class="love-button" id="counter2_btn">Đếm ngày yêu</button>
           <?php include 'lib/component/counter_card_theme2.php'; ?>
         <?php endif; ?>
 
         <div class="ilove">
+          <?php if ($taxonomy_slug_cate == "theme2"): ?>
+            <p class="counter2-btn">
+              <button class="love-button" id="counter2_btn">Đếm ngày yêu</button>
+            </p>
+          <?php endif; ?>
+
           <div class="ilove-dots"></div>
           <div class="ilove-wrapper">
             <div class="ilove-item ilove-male">
               <p class="ilove-img">
-                <img src="<?php echo get_field("male")['avatar']['url'] ?>" alt="<?php echo get_field("male")['name'] ?>">
+                <img src="<?php echo get_field("male")['avatar']['url'] ?>"
+                  alt="<?php echo get_field("male")['name'] ?>">
               </p>
               <p class="ilove-name"><?php echo get_field("male")['name'] ?></p>
               <div class="ilove-info">
@@ -76,12 +84,15 @@
                   }
                 }
                 ?>
-                <p class="ilove-zodiac  <?php echo esc_attr($zodiacM_value) ?>"><?php echo esc_html($zodiacM_label) ?></p>
+                <p class="ilove-zodiac  <?php echo esc_attr($zodiacM_value) ?>">
+                  <?php echo esc_html($zodiacM_label) ?>
+                </p>
               </div>
             </div>
             <div class="ilove-item ilove-female">
               <p class="ilove-img">
-                <img src="<?php echo get_field("female")['avatar']['url'] ?>" alt="<?php echo get_field("female")['name'] ?>">
+                <img src="<?php echo get_field("female")['avatar']['url'] ?>"
+                  alt="<?php echo get_field("female")['name'] ?>">
               </p>
               <p class="ilove-name"><?php echo get_field("female")['name'] ?></p>
               <div class="ilove-info">
@@ -101,7 +112,9 @@
                   }
                 }
                 ?>
-                <p class="ilove-zodiac  <?php echo esc_attr($zodiacF_value) ?>"><?php echo esc_html($zodiacF_label) ?></p>
+                <p class="ilove-zodiac  <?php echo esc_attr($zodiacF_value) ?>">
+                  <?php echo esc_html($zodiacF_label) ?>
+                </p>
               </div>
             </div>
           </div>
@@ -109,7 +122,7 @@
       </div>
 
       <!-- Memory -->
-      <?php if ($taxonomy_slug_cate == "theme1") : ?>
+      <?php if ($taxonomy_slug_cate == "theme1"): ?>
         <?php include 'lib/component/memory_card.php'; ?>
       <?php endif; ?>
 
@@ -119,7 +132,7 @@
       <?php include 'lib/component/album_card.php'; ?>
       <!-- Message -->
       <?php include 'lib/component/message_card.php'; ?>
-  <?php
+      <?php
     endwhile;
   endif;
   ?>

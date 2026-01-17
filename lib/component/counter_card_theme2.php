@@ -5,7 +5,21 @@
     <!-- Photo section -->
     <div class="photo-section">
       <div class="photo-frame">
-        <div class="photo-placeholder">👫</div>
+        <div class="photo-placeholder">
+          <?php
+          $images = get_field('gallery_images');
+          $sizes = 'full';
+          if ($images): ?>
+            <div class="slider">
+              <?php foreach ($images as $image): ?>
+                <div class="slider-img">
+                  <img src="<?php echo esc_url($image['url']); ?>"
+                    alt="<?php echo esc_attr($image['alt']); ?>" />
+                </div>
+              <?php endforeach; ?>
+            </div>
+          <?php endif; ?>
+        </div>
       </div>
       <div class="save-date-text">Save the Date</div>
     </div>
@@ -45,5 +59,5 @@
       </div>
     </div>
   </div>
-  <button class="back-button" id="counter2_btn_close">QUAY LẠI</button>
+  <button class="back-button" id="counter2_close_btn">QUAY LẠI</button>
 </div>
