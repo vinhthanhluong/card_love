@@ -57,7 +57,6 @@ jQuery(document).ready(function () {
   });
 
   if (jQuery("#counter2_btn").length > 0) {
-
   }
 
   function hideCounter() {
@@ -65,77 +64,77 @@ jQuery(document).ready(function () {
     document.getElementById("counterScreen").classList.remove("active");
   }
 
-  if (jQuery(".icounter .icounter-type1").length > 0) {
-    const getData = jQuery(".icounter").attr("data-love");
-    const [dataDay, dataMonth, dataYear] = getData.split("/");
-    const past = new Date(`${dataYear}/${dataMonth}/${dataDay}`);
-    const now = new Date();
+  // if (jQuery(".icounter .icounter-type1").length > 0) {
+  //   const getData = jQuery(".icounter").attr("data-love");
+  //   const [dataDay, dataMonth, dataYear] = getData.split("/");
+  //   const past = new Date(`${dataYear}/${dataMonth}/${dataDay}`);
+  //   const now = new Date();
 
-    function padStart(value) {
-      return String(value).padStart(2, "0");
-    }
+  //   function padStart(value) {
+  //     return String(value).padStart(2, "0");
+  //   }
 
-    // Years
-    let years = now.getFullYear() - past.getFullYear();
+  //   // Years
+  //   let years = now.getFullYear() - past.getFullYear();
 
-    //Months
-    let months = now.getMonth() - past.getMonth();
-    if (months < 0) {
-      years--;
-      months += 12;
-    }
+  //   //Months
+  //   let months = now.getMonth() - past.getMonth();
+  //   if (months < 0) {
+  //     years--;
+  //     months += 12;
+  //   }
 
-    // Days
-    let days = now.getDate() - past.getDate();
-    if (days < 0) {
-      months--;
-      const lastMonth = new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        0
-      ).getDate();
-      days += lastMonth;
-    }
+  //   // Days
+  //   let days = now.getDate() - past.getDate();
+  //   if (days < 0) {
+  //     months--;
+  //     const lastMonth = new Date(
+  //       now.getFullYear(),
+  //       now.getMonth(),
+  //       0
+  //     ).getDate();
+  //     days += lastMonth;
+  //   }
 
-    // Weeks
-    const weeks = Math.floor(days / 7);
-    days = days % 7;
+  //   // Weeks
+  //   const weeks = Math.floor(days / 7);
+  //   days = days % 7;
 
-    // Set Data
-    jQuery(".icounter .icounter-first").text(getData);
-    // Set Year Month Week Day
-    jQuery(".iyear span").text(padStart(years));
-    jQuery(".imonth span").text(padStart(months));
-    jQuery(".iweek span").text(padStart(weeks));
-    jQuery(".iday span").text(padStart(days));
+  //   // Set Data
+  //   jQuery(".icounter .icounter-first").text(getData);
+  //   // Set Year Month Week Day
+  //   jQuery(".iyear span").text(padStart(years));
+  //   jQuery(".imonth span").text(padStart(months));
+  //   jQuery(".iweek span").text(padStart(weeks));
+  //   jQuery(".iday span").text(padStart(days));
 
-    // Set Hours Minute Second
-    setInterval(() => {
-      const now = new Date();
-      const hours = now.getHours();
-      const minutes = now.getMinutes();
-      const seconds = now.getSeconds();
-      jQuery(".ihours").text(padStart(hours));
-      jQuery(".iminute").text(padStart(minutes));
-      jQuery(".isecond").text(padStart(seconds));
-    }, 1000);
-  }
+  //   // Set Hours Minute Second
+  //   setInterval(() => {
+  //     const now = new Date();
+  //     const hours = now.getHours();
+  //     const minutes = now.getMinutes();
+  //     const seconds = now.getSeconds();
+  //     jQuery(".ihours").text(padStart(hours));
+  //     jQuery(".iminute").text(padStart(minutes));
+  //     jQuery(".isecond").text(padStart(seconds));
+  //   }, 1000);
+  // }
 
-  if (jQuery(".icounter .icounter-type2").length > 0) {
-    const daySumItem = jQuery(".iday-sum");
-    const getData = jQuery(".icounter").attr("data-love");
-    const [dataDay, dataMonth, dataYear] = getData.split("/");
-    const past = new Date(`${dataYear}/${dataMonth}/${dataDay}`);
-    const now = new Date();
+  // if (jQuery(".icounter .icounter-type2").length > 0) {
+  //   const daySumItem = jQuery(".iday-sum");
+  //   const getData = jQuery(".icounter").attr("data-love");
+  //   const [dataDay, dataMonth, dataYear] = getData.split("/");
+  //   const past = new Date(`${dataYear}/${dataMonth}/${dataDay}`);
+  //   const now = new Date();
 
-    const diffMs = now - past;
+  //   const diffMs = now - past;
 
-    const oneDay = 1000 * 60 * 60 * 24;
-    const daysTotal = Math.floor(diffMs / oneDay);
+  //   const oneDay = 1000 * 60 * 60 * 24;
+  //   const daysTotal = Math.floor(diffMs / oneDay);
 
-    daySumItem.text(daysTotal);
-    daySumItem.attr("data-dayTotal", daysTotal);
-  }
+  //   daySumItem.text(daysTotal);
+  //   daySumItem.attr("data-dayTotal", daysTotal);
+  // }
 });
 
 // Memory
