@@ -1,4 +1,7 @@
 @charset "UTF-8";
+/*==========================================================================*/
+/*                           Common-Setting                                 */
+/*==========================================================================*/
 @import url(./lib/aos.css);
 @import url(./lib/slick.css);
 @import url(./lib/slick-theme.css);
@@ -690,6 +693,7 @@ body::-webkit-scrollbar-track {
   transition-property: background-color, opacity, transform;
 }
 
+/*============================= H_E_A_D_E_R =============================*/
 /*==========================================================================*/
 /*                              H E A D E R                                 */
 /*==========================================================================*/
@@ -789,6 +793,7 @@ body::-webkit-scrollbar-track {
   width: 26px;
 }
 
+/*============================= C_O_N_T_E_N_T =============================*/
 /*==========================================================================*/
 /*                                M A I N                                   */
 /*==========================================================================*/
@@ -1431,7 +1436,7 @@ body::-webkit-scrollbar-track {
 .memory-overlay .container {
   width: 100%;
   height: 100%;
-  background: white;
+  background: linear-gradient(180deg, #F5F5F0 0%, #FFFFF0 100%);
   border-radius: 30px;
   padding: 35px 20px;
   box-shadow: 0 20px 60px rgba(255, 105, 180, 0.15);
@@ -1719,6 +1724,72 @@ body::-webkit-scrollbar-track {
   font-size: 14px;
   color: #555;
   line-height: 1.5;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.hero-content {
+  text-align: center;
+  z-index: 2;
+  animation: fadeInScale 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-monogram {
+  font-family: "Cormorant", serif;
+  font-size: 7em;
+  font-weight: 300;
+  background: linear-gradient(135deg, #C9A961 0%, #F5F5F0 50%, #9CAF88 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 20px;
+  letter-spacing: 0.05em;
+  text-shadow: 0 5px 15px rgba(201, 169, 97, 0.2);
+}
+
+.hero-names {
+  font-family: "Lora", serif;
+  font-size: 1.9em;
+  color: #3E3E3E;
+  margin-bottom: 15px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+}
+
+.hero-divider {
+  width: 100px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #C9A961, transparent);
+  margin: 25px auto;
+  position: relative;
+}
+
+.hero-divider::before {
+  content: "◆";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #C9A961;
+  background: #FFFFF0;
+  padding: 0 10px;
+  font-size: 0.8em;
+}
+
+.hero-date {
+  font-size: 0.9em;
+  color: #B8A99A;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 300;
 }
 
 @keyframes album-bg-ctn {
@@ -6068,6 +6139,7 @@ audio {
   height: 100%;
 }
 
+/*============================= F_O_O_T_E_R =============================*/
 /*==========================================================================*/
 /*                              F O O T E R                                 */
 /*==========================================================================*/
@@ -6080,6 +6152,7 @@ address {
   display: none;
 }
 
+/*========================== R_E_S_P_O_N_S_I_V_E ==========================*/
 /*==========================================================================*/
 /*                        M O B I L E    D E V I C E                        */
 /*==========================================================================*/
@@ -6120,12 +6193,5 @@ address {
 /*==========================================================================*/
 /*                             E N D   A L L                                */
 /*==========================================================================*/
-/*==========================================================================*/
-/*                           Common-Setting                                 */
-/*==========================================================================*/
-/*============================= H_E_A_D_E_R =============================*/
-/*============================= C_O_N_T_E_N_T =============================*/
-/*============================= F_O_O_T_E_R =============================*/
-/*========================== R_E_S_P_O_N_S_I_V_E ==========================*/
 
 /*# sourceMappingURL=styles.css.map */
