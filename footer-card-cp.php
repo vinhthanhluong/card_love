@@ -20,6 +20,7 @@
  <script src="<?php echo get_theme_file_uri()?>/card-cp/js/header.js"></script>
 
  <script src="<?php echo get_theme_file_uri()?>/card-cp/js/page/top.js"></script>
+ <script src="<?php echo get_theme_file_uri()?>/card-cp/js/page/timeline.js"></script>
  <script src="<?php echo get_theme_file_uri()?>/card-cp/js/page/mp3.js"></script>
  <script src="<?php echo get_theme_file_uri()?>/card-cp/js/page/record.js"></script>
  <script src="<?php echo get_theme_file_uri()?>/card-cp/js/page/svg.js"></script>

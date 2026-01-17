@@ -45,6 +45,11 @@
           <?php include 'lib/component/counter_card.php'; ?>
         <?php endif; ?>
 
+        <?php if ($taxonomy_slug_cate == "theme3") : ?>
+          <!-- Counter -->
+          <?php include 'lib/component/counter_card_album4.php'; ?>
+        <?php endif; ?>
+
         <div class="ilove">
           <div class="ilove-dots"></div>
           <div class="ilove-wrapper">

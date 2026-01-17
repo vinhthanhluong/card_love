@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đếm Ngày Yêu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Garamond", "Times New Roman", serif;
+        overflow-x: hidden;
+        background: linear-gradient(135deg, #e8c5c5 0%, #d4a5a5 100%);
+        min-height: 100vh;
+      }
+
+      .start-screen {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .love-button {
+        background: white;
+        border: 3px solid #d4a5a5;
+        padding: 20px 50px;
+        font-size: 22px;
+        font-weight: 600;
+        color: #8b6f6f;
+        border-radius: 5px;
+        cursor: pointer;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s ease;
+        letter-spacing: 2px;
+      }
+
+      .love-button:active {
+        transform: scale(0.95);
+      }
+
+      .counter-screen {
+        display: none;
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      .counter-screen.active {
+        display: block;
+      }
+
+      /* Postcard style container */
+      .postcard {
+        background: linear-gradient(135deg, #f5e6e6 0%, #e8d5d5 100%);
+        border-radius: 8px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        position: relative;
+        overflow: hidden;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      /* Stamp decoration */
+      .stamp {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        width: 60px;
+        height: 60px;
+        background: white;
+        border: 2px dashed #d4a5a5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        transform: rotate(5deg);
+        z-index: 10;
+      }
+
+      /* Photo section */
+      .photo-section {
+        padding: 50px 30px 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .photo-frame {
+        width: 100%;
+        max-width: 280px;
+        aspect-ratio: 3/4;
+        background: linear-gradient(135deg, #fff 0%, #f9f9f9 100%);
+        padding: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        border: 1px solid #e0e0e0;
+        margin-bottom: 25px;
+        transition: all 0.4s ease;
+        animation: photo-float 3s ease-in-out infinite;
+      }
+
+      .photo-frame:hover {
+        transform: scale(1.02) rotate(-1deg);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+      }
+
+      @keyframes photo-float {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-10px) rotate(1deg);
+        }
+      }
+
+      .photo-placeholder {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #d4a5a5 0%, #b89090 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 70px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .photo-placeholder::before {
+        content: "";
+        position: absolute;
+        top: -120%;
+        left: -120%;
+        width: 220%;
+        height: 220%;
+        background: linear-gradient(120deg, rgba(255, 255, 255, 0) 35%, rgba(255, 255, 255, 0.45) 50%, rgba(255, 255, 255, 0) 65%);
+        transform: rotate(0deg);
+        animation: shineMove 4s ease-in-out infinite;
+      }
+
+      @keyframes shineMove {
+        0% {
+          transform: translate(-40%, -40%);
+          opacity: 0;
+        }
+        20% {
+          opacity: 0.6;
+        }
+        50% {
+          transform: translate(40%, 40%);
+          opacity: 0.8;
+        }
+        80% {
+          opacity: 0.2;
+        }
+        100% {
+          transform: translate(60%, 60%);
+          opacity: 0;
+        }
+      }
+
+      .photo-placeholder::after {
+        content: "💕";
+        position: absolute;
+        font-size: 25px;
+        opacity: 0;
+        animation: heart-pop 2s ease-in-out infinite;
+      }
+
+      @keyframes heart-pop {
+        0%,
+        100% {
+          opacity: 0;
+          transform: scale(0) translateY(0);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.2) translateY(-30px);
+        }
+      }
+
+      .save-date-text {
+        font-size: 38px;
+        font-family: "Playfair Display", serif;
+        color: #c9a881;
+        text-align: center;
+        font-style: italic;
+      }
+
+      /* Info section */
+      .info-section {
+        padding: 30px;
+      }
+
+      .names {
+        text-align: center;
+        margin-bottom: 25px;
+        font-size: 16px;
+        letter-spacing: 3px;
+        color: #4a4a4a;
+        font-weight: 600;
+      }
+
+      .names .and {
+        font-family: "Playfair Display", serif;
+        font-size: 28px;
+        margin: 0 10px;
+        font-weight: normal;
+        color: #c9a881;
+        font-style: italic;
+      }
+
+      .month-title {
+        text-align: center;
+        font-size: 44px;
+        font-family: "Playfair Display", serif;
+        color: #c9a881;
+        margin-bottom: 20px;
+        font-weight: normal;
+        font-style: italic;
+      }
+
+      /* Calendar */
+      .calendar {
+        background: rgba(255, 255, 255, 0.6);
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 25px;
+      }
+
+      .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 6px;
+      }
+
+      .calendar-day-label {
+        text-align: center;
+        font-size: 10px;
+        font-weight: 700;
+        color: #666;
+        padding: 6px 0;
+        letter-spacing: 0.5px;
+      }
+
+      .calendar-day {
+        aspect-ratio: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        color: #4a4a4a;
+        font-weight: 500;
+      }
+
+      .calendar-day.special {
+        background: #c9a881;
+        color: white;
+        border-radius: 50%;
+        font-weight: 700;
+        position: relative;
+      }
+
+      .calendar-day.special::after {
+        content: "💕";
+        position: absolute;
+        font-size: 18px;
+        top: -22px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      /* Counter display */
+      .counter-info {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .counter-title {
+        font-size: 12px;
+        letter-spacing: 2px;
+        color: #8b6f6f;
+        margin-bottom: 15px;
+        font-weight: 600;
+      }
+
+      .time-display {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+
+      .time-unit {
+        text-align: center;
+      }
+
+      .time-number {
+        font-size: 28px;
+        font-weight: bold;
+        color: #8b6f6f;
+        font-family: "Courier New", monospace;
+        background: rgba(255, 255, 255, 0.6);
+        padding: 8px 12px;
+        border-radius: 5px;
+        min-width: 60px;
+      }
+
+      .time-label {
+        font-size: 10px;
+        color: #666;
+        margin-top: 4px;
+        font-weight: 600;
+        letter-spacing: 1px;
+      }
+
+      .location {
+        font-size: 10px;
+        letter-spacing: 2px;
+        color: #8b6f6f;
+        margin-bottom: 5px;
+        font-weight: 600;
+      }
+
+      .tagline {
+        font-size: 12px;
+        font-style: italic;
+        color: #666;
+      }
+
+      .back-button {
+        display: block;
+        margin: 20px auto 0;
+        background: white;
+        border: 2px solid #d4a5a5;
+        padding: 12px 35px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #8b6f6f;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        letter-spacing: 2px;
+      }
+
+      .back-button:active {
+        transform: scale(0.95);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Màn hình bắt đầu -->
+    <div class="start-screen" id="startScreen">
+      <button class="love-button" onclick="showCounter()">ĐẾM NGÀY YÊU</button>
+    </div>
+
+    <!-- Màn hình đếm ngày -->
+    <div class="counter-screen" id="counterScreen">
+      <div class="postcard">
+        <div class="stamp">💌</div>
+
+        <!-- Photo section -->
+        <div class="photo-section">
+          <div class="photo-frame">
+            <div class="photo-placeholder">👫</div>
+          </div>
+          <div class="save-date-text">Save the Date</div>
+        </div>
+
+        <!-- Info section -->
+        <div class="info-section">
+          <div class="names">
+            <span>ZENDAYA</span>
+            <span class="and">and</span>
+            <span>WILLIAM</span>
+          </div>
+
+          <div class="month-title" id="monthTitle">September</div>
+
+          <div class="calendar">
+            <div class="calendar-grid" id="calendar"></div>
+          </div>
+
+          <div class="counter-info">
+            <div class="counter-title">CHÚNG TA ĐÃ YÊU NHAU</div>
+            <div class="time-display">
+              <div class="time-unit">
+                <div class="time-number" id="days">000</div>
+                <div class="time-label">NGÀY</div>
+              </div>
+              <div class="time-unit">
+                <div class="time-number" id="hours">00</div>
+                <div class="time-label">GIỜ</div>
+              </div>
+              <div class="time-unit">
+                <div class="time-number" id="minutes">00</div>
+                <div class="time-label">PHÚT</div>
+              </div>
+            </div>
+            <div class="location">EVERY MOMENT WITH YOU</div>
+            <div class="tagline">is a beautiful memory in the making</div>
+          </div>
+        </div>
+      </div>
+
+      <button class="back-button" onclick="hideCounter()">QUAY LẠI</button>
+    </div>
+
+    <script>
+      const startDate = new Date("2024-09-18");
+
+      function showCounter() {
+        document.getElementById("startScreen").style.display = "none";
+        document.getElementById("counterScreen").classList.add("active");
+        updateCounter();
+        createCalendar();
+        setInterval(updateCounter, 1000);
+      }
+
+      function hideCounter() {
+        document.getElementById("startScreen").style.display = "flex";
+        document.getElementById("counterScreen").classList.remove("active");
+      }
+
+      function updateCounter() {
+        const now = new Date();
+        const diff = now - startDate;
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+        document.getElementById("days").textContent = String(days).padStart(3, "0");
+        document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+        document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+      }
+
+      function createCalendar() {
+        const calendar = document.getElementById("calendar");
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+        const month = startDate.getMonth();
+        const year = startDate.getFullYear();
+        const specialDay = startDate.getDate();
+
+        document.getElementById("monthTitle").textContent = monthNames[month];
+
+        const dayLabels = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
+        dayLabels.forEach((label) => {
+          const dayLabel = document.createElement("div");
+          dayLabel.className = "calendar-day-label";
+          dayLabel.textContent = label;
+          calendar.appendChild(dayLabel);
+        });
+
+        // Adjust first day to start on Monday (0 = Sunday -> 6, 1 = Monday -> 0)
+        let firstDay = new Date(year, month, 1).getDay();
+        firstDay = firstDay === 0 ? 6 : firstDay - 1;
+
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+        for (let i = 0; i < firstDay; i++) {
+          const emptyDay = document.createElement("div");
+          calendar.appendChild(emptyDay);
+        }
+
+        for (let day = 1; day <= daysInMonth; day++) {
+          const dayDiv = document.createElement("div");
+          dayDiv.className = "calendar-day";
+          if (day === specialDay) {
+            dayDiv.classList.add("special");
+          }
+          dayDiv.textContent = day;
+          calendar.appendChild(dayDiv);
+        }
+      }
+    </script>
+  </body>
+</html>

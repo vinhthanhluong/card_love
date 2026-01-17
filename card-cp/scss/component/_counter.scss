@@ -19,18 +19,21 @@
     padding: 20px;
     background-color: rgba($color: #000000, $alpha: 0.3);
     border-radius: 14px;
+
     .icounter-head {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 15px;
         margin-bottom: 30px;
+
         p {
             margin: 0;
             text-align: center;
             font-family: var(--font-allura);
             font-size: min(calc(20 / 320 * 100vw), 26px);
         }
+
         span {
             font-size: 84.6153%;
             width: min(calc(46 / 320 * 100vw), 56px);
@@ -47,6 +50,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+
         p {
             margin: 0;
             font-family: var(--font-allura);
@@ -68,6 +72,7 @@
     justify-content: space-between;
     flex-direction: column;
     text-align: center;
+
     &::before {
         content: "";
         position: absolute;
@@ -88,6 +93,7 @@
         margin: 0;
         line-height: 1;
     }
+
     @keyframes textBg {
         to {
             background-position:
@@ -101,6 +107,7 @@
         text-transform: uppercase;
         color: rgba($color: #fff, $alpha: 0.5);
         position: relative;
+
         &::before {
             content: attr(data-dayTotal);
             position: absolute;
@@ -113,5 +120,320 @@
                 radial-gradient(1.17em at 50% -0.8em, #0000 99%, var(--main-cl) 101%) 50% 0.8em/0.8em 100% repeat-x text;
             animation: textBg 2s linear infinite;
         }
+    }
+}
+
+.counter-screen {
+    display: none;
+    min-height: 100vh;
+    padding: 20px;
+
+    .counter-screen.active {
+        display: block;
+    }
+
+    /* Postcard style container */
+    .postcard {
+        background: linear-gradient(135deg, #f5e6e6 0%, #e8d5d5 100%);
+        border-radius: 8px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        position: relative;
+        overflow: hidden;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    /* Stamp decoration */
+    .stamp {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        width: 60px;
+        height: 60px;
+        background: white;
+        border: 2px dashed #d4a5a5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        transform: rotate(5deg);
+        z-index: 10;
+    }
+
+    /* Photo section */
+    .photo-section {
+        padding: 50px 30px 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .photo-frame {
+        width: 100%;
+        max-width: 280px;
+        aspect-ratio: 3/4;
+        background: linear-gradient(135deg, #fff 0%, #f9f9f9 100%);
+        padding: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        border: 1px solid #e0e0e0;
+        margin-bottom: 25px;
+        transition: all 0.4s ease;
+        animation: photo-float 3s ease-in-out infinite;
+    }
+
+    .photo-frame:hover {
+        transform: scale(1.02) rotate(-1deg);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    @keyframes photo-float {
+
+        0%,
+        100% {
+            transform: translateY(0) rotate(0deg);
+        }
+
+        50% {
+            transform: translateY(-10px) rotate(1deg);
+        }
+    }
+
+    .photo-placeholder {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #d4a5a5 0%, #b89090 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 70px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .photo-placeholder::before {
+        content: "";
+        position: absolute;
+        top: -120%;
+        left: -120%;
+        width: 220%;
+        height: 220%;
+        background: linear-gradient(120deg, rgba(255, 255, 255, 0) 35%, rgba(255, 255, 255, 0.45) 50%, rgba(255, 255, 255, 0) 65%);
+        transform: rotate(0deg);
+        animation: shineMove 4s ease-in-out infinite;
+    }
+
+    @keyframes shineMove {
+        0% {
+            transform: translate(-40%, -40%);
+            opacity: 0;
+        }
+
+        20% {
+            opacity: 0.6;
+        }
+
+        50% {
+            transform: translate(40%, 40%);
+            opacity: 0.8;
+        }
+
+        80% {
+            opacity: 0.2;
+        }
+
+        100% {
+            transform: translate(60%, 60%);
+            opacity: 0;
+        }
+    }
+
+    .photo-placeholder::after {
+        content: "💕";
+        position: absolute;
+        font-size: 25px;
+        opacity: 0;
+        animation: heart-pop 2s ease-in-out infinite;
+    }
+
+    @keyframes heart-pop {
+
+        0%,
+        100% {
+            opacity: 0;
+            transform: scale(0) translateY(0);
+        }
+
+        50% {
+            opacity: 1;
+            transform: scale(1.2) translateY(-30px);
+        }
+    }
+
+    .save-date-text {
+        font-size: 38px;
+        font-family: "Playfair Display", serif;
+        color: #c9a881;
+        text-align: center;
+        font-style: italic;
+    }
+
+    /* Info section */
+    .info-section {
+        padding: 30px;
+    }
+
+    .names {
+        text-align: center;
+        margin-bottom: 25px;
+        font-size: 16px;
+        letter-spacing: 3px;
+        color: #4a4a4a;
+        font-weight: 600;
+    }
+
+    .names .and {
+        font-family: "Playfair Display", serif;
+        font-size: 28px;
+        margin: 0 10px;
+        font-weight: normal;
+        color: #c9a881;
+        font-style: italic;
+    }
+
+    .month-title {
+        text-align: center;
+        font-size: 44px;
+        font-family: "Playfair Display", serif;
+        color: #c9a881;
+        margin-bottom: 20px;
+        font-weight: normal;
+        font-style: italic;
+    }
+
+    /* Calendar */
+    .calendar {
+        background: rgba(255, 255, 255, 0.6);
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 25px;
+    }
+
+    .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 6px;
+    }
+
+    .calendar-day-label {
+        text-align: center;
+        font-size: 10px;
+        font-weight: 700;
+        color: #666;
+        padding: 6px 0;
+        letter-spacing: 0.5px;
+    }
+
+    .calendar-day {
+        aspect-ratio: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        color: #4a4a4a;
+        font-weight: 500;
+    }
+
+    .calendar-day.special {
+        background: #c9a881;
+        color: white;
+        border-radius: 50%;
+        font-weight: 700;
+        position: relative;
+    }
+
+    .calendar-day.special::after {
+        content: "💕";
+        position: absolute;
+        font-size: 18px;
+        top: -22px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    /* Counter display */
+    .counter-info {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .counter-title {
+        font-size: 12px;
+        letter-spacing: 2px;
+        color: #8b6f6f;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .time-display {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    .time-unit {
+        text-align: center;
+    }
+
+    .time-number {
+        font-size: 28px;
+        font-weight: bold;
+        color: #8b6f6f;
+        font-family: "Courier New", monospace;
+        background: rgba(255, 255, 255, 0.6);
+        padding: 8px 12px;
+        border-radius: 5px;
+        min-width: 60px;
+    }
+
+    .time-label {
+        font-size: 10px;
+        color: #666;
+        margin-top: 4px;
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+
+    .location {
+        font-size: 10px;
+        letter-spacing: 2px;
+        color: #8b6f6f;
+        margin-bottom: 5px;
+        font-weight: 600;
+    }
+
+    .tagline {
+        font-size: 12px;
+        font-style: italic;
+        color: #666;
+    }
+
+    .back-button {
+        display: block;
+        margin: 20px auto 0;
+        background: white;
+        border: 2px solid #d4a5a5;
+        padding: 12px 35px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #8b6f6f;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        letter-spacing: 2px;
+    }
+
+    .back-button:active {
+        transform: scale(0.95);
     }
 }

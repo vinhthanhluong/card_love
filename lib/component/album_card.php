@@ -11,11 +11,14 @@ $colorsvg = "#fea7af";
 if ($taxonomy_slug_album === "album3") {
     $colorsvg = "#eee";
 }
+if ($taxonomy_slug_album === "album4") {
+    $colorsvg = "#fff";
+}
 
 
 $svg = '<div class="svg-container">
               <svg id="trackSVG" width="326" height="2985" viewBox="0 0 326 2985" fill="none" preserveAspectRatio="xMidYMin meet">
-                <path id="progressPath" stroke="'.$colorsvg.'" stroke-width="2" class="progress" d="M102.987 0.429438C102.987 0.429438 277.433 103.351 315.987 214.929C386.59 419.267 11.8486 459.752 9.48657 675.929C7.13381 891.257 365.797 936.301 303.487 1142.43C269.374 1255.28 225.486 1379.43 104.487 1369.43C43.7415 1364.41 5.35494 1283.47 34.4866 1229.93C52.9863 1195.93 100.486 1134.93 185.486 1197.93C191.412 1202.32 230.32 1240.76 254.986 1282.43C273.289 1313.35 253.195 1396.38 247.987 1431.93C229.159 1560.44 49.8416 1557.96 34.4866 1686.93C15.1827 1849.06 242.38 1864.54 283.987 2022.43C346.92 2261.25 82.4863 2858.93 72.4866 2618.43C70.9399 2581.23 -6.31505 2616.94 0.986576 2580.43C10.4866 2532.93 126.038 2505.67 168.487 2526.43C209.796 2546.63 222.303 2576.87 241.987 2618.43C313.977 2770.43 14.9866 2984.43 14.9866 2984.43" />
+                <path id="progressPath" stroke="' . $colorsvg . '" stroke-width="2" class="progress" d="M102.987 0.429438C102.987 0.429438 277.433 103.351 315.987 214.929C386.59 419.267 11.8486 459.752 9.48657 675.929C7.13381 891.257 365.797 936.301 303.487 1142.43C269.374 1255.28 225.486 1379.43 104.487 1369.43C43.7415 1364.41 5.35494 1283.47 34.4866 1229.93C52.9863 1195.93 100.486 1134.93 185.486 1197.93C191.412 1202.32 230.32 1240.76 254.986 1282.43C273.289 1313.35 253.195 1396.38 247.987 1431.93C229.159 1560.44 49.8416 1557.96 34.4866 1686.93C15.1827 1849.06 242.38 1864.54 283.987 2022.43C346.92 2261.25 82.4863 2858.93 72.4866 2618.43C70.9399 2581.23 -6.31505 2616.94 0.986576 2580.43C10.4866 2532.93 126.038 2505.67 168.487 2526.43C209.796 2546.63 222.303 2576.87 241.987 2618.43C313.977 2770.43 14.9866 2984.43 14.9866 2984.43" />
               </svg>
             </div>';
 ?>
@@ -442,6 +445,91 @@ $svg = '<div class="svg-container">
                         <?php endif ?>
                     </div>
                 <?php endif ?>
+            </div>
+        </div>
+    </div>
+<?php endif ?>
+
+<?php if ($taxonomy_slug_album === "album4"): ?>
+    <?php
+    $imagesAlb3 = get_field('alb4_loop');
+    ?>
+    <div class="album album4">
+        <div class="abm-wrap">
+            <?php echo $svg ?>
+            <div class="abm-close">quay lại</div>
+            <div class="abm-wimg">
+                <div class="timeline-container">
+                    <div class="timeline-line"></div>
+
+                    <div class="year-sticky">
+                        <div class="year-number" id="yearNumber"></div>
+                    </div>
+                    <?php
+                    // Get the repeater field
+                    if (have_rows('alb4_loop')):
+
+                        // Loop through rows
+                        while (have_rows('alb4_loop')):
+                            the_row();
+
+                            // Get sub field values
+                            $year = get_sub_field('year');
+                            $title = get_sub_field('tit'); // Changed from 'title' to 'tit'
+                            $text = get_sub_field('text');
+                            $layout_style = get_sub_field('layout_style'); // Radio button value: 1, 2, 3, or 4
+                            $images = get_sub_field('image'); // Gallery field with URL return format
+                
+                            ?>
+
+                            <div class="timeline-section" data-year="<?php echo esc_attr($year); ?>">
+                                <div class="section-content">
+                                    <p class="section-year"><?php echo esc_html($year); ?></p>
+
+                                    <?php if ($images): ?>
+                                        <div class="section-images layout-<?php echo esc_attr($layout_style); ?>">
+                                            <?php
+                                            // Limit images based on layout
+                                            $max_images = intval($layout_style);
+                                            $image_count = 0;
+
+                                            // Images is array of image URLs since return format is URL
+                                            foreach ($images as $image_url):
+                                                if ($image_count >= $max_images)
+                                                    break;
+                                                $image_count++;
+                                                ?>
+                                                <div class="image">
+                                                    <img src="<?php echo esc_url($image_url); ?>"
+                                                        alt="<?php echo esc_attr($title); ?>" />
+                                                </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <div class="desc">
+                                        <?php if ($title): ?>
+                                            <p class="section-title"><?php echo esc_html($title); ?></p>
+                                        <?php endif; ?>
+
+                                        <?php if ($text): ?>
+                                            <div class="section-text">
+                                                <p class="txt"><?php echo nl2br(esc_html($text)); ?></p>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <?php
+                        endwhile;
+
+                    else:
+                        echo '<p>Chưa có nội dung timeline.</p>';
+                    endif;
+                    ?>
+
+                </div>
             </div>
         </div>
     </div>
