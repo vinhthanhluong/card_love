@@ -97,44 +97,6 @@ function prefix_register_all() {
 		)
 	);
 
-	// FOR COUNTER DAYS
-	$tax_name = "Counter Days";
-	$tax_singular_name = "Counter Days";
-	$tax_menu_name = "Counter Days";
-	$tax_all_items = "All Counter Days";
-	$tax_edit_item = "Edit Counter Days";
-	$tax_view_item = "View Counter Days";
-	$tax_update_item = "Update Counter Days";
-	$tax_add_new_item = "Add New Counter Days";
-	$tax_parent_item = "Parent Category";
-	$tax_parent_item_colon = "Parent Category:";
-	$tax_search_items = "Search Counter Days";
-
-	register_taxonomy(
-		'couple_counterdays',
-		array(
-			'couple_card'
-		),
-		array(
-			'labels'            => array(
-				'name'              => _x($tax_name, 'couple_card', 'text_domain'),
-				'singular_name'     => _x($tax_singular_name, 'couple_card', 'text_domain'),
-				'menu_name'         => __($tax_menu_name, 'text_domain'),
-				'all_items'         => __($tax_all_items, 'text_domain'),
-				'edit_item'         => __($tax_edit_item, 'text_domain'),
-				'view_item'         => __($tax_view_item, 'text_domain'),
-				'update_item'       => __($tax_update_item, 'text_domain'),
-				'add_new_item'      => __($tax_add_new_item, 'text_domain'),
-				'parent_item'       => __($tax_parent_item, 'text_domain'),
-				'parent_item_colon' => __($tax_parent_item_colon, 'text_domain'),
-				'search_items'      => __($tax_search_items, 'text_domain')
-			),
-			'show_admin_column' => true,
-			'hierarchical'      => true,
-			'show_in_rest'=> true
-		)
-	);
-
 	// FOR ALBUMS
 	$tax_name = "Albums";
 	$tax_singular_name = "Albums";

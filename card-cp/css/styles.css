@@ -812,6 +812,9 @@ body::-webkit-scrollbar-track {
 .tpl-main.theme1 .slick-active img {
   animation: sliderFace 3s linear;
 }
+.tpl-main.theme1 .slick-arrow {
+  opacity: 0;
+}
 .tpl-main.theme2 {
   background: linear-gradient(135deg, rgba(255, 105, 108, 0.08), rgba(255, 20, 66, 0.08));
 }
