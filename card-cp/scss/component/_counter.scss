@@ -123,6 +123,25 @@
     }
 }
 
+//THEME 2
+.love-button {
+    background: white;
+    border: 3px solid #d4a5a5;
+    padding: 20px 50px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #8b6f6f;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    letter-spacing: 2px;
+}
+
+.love-button:active {
+    transform: scale(0.95);
+}
+
 .counter-screen {
     display: none;
     min-height: 100vh;

@@ -42,12 +42,13 @@
 
         <?php if ($taxonomy_slug_cate == "theme1") : ?>
           <!-- Counter -->
-          <?php include 'lib/component/counter_card.php'; ?>
+          <?php include 'lib/component/counter_card_theme1.php'; ?>
         <?php endif; ?>
 
-        <?php if ($taxonomy_slug_cate == "theme3") : ?>
+        <?php if ($taxonomy_slug_cate == "theme2") : ?>
           <!-- Counter -->
-          <?php include 'lib/component/counter_card_album4.php'; ?>
+          <button class="love-button" id="counter2_btn">Đếm ngày yêu</button>
+          <?php include 'lib/component/counter_card_theme2.php'; ?>
         <?php endif; ?>
 
         <div class="ilove">

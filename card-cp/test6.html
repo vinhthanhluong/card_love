@@ -358,11 +358,11 @@
   <body>
     <!-- Màn hình bắt đầu -->
     <div class="start-screen" id="startScreen">
-      <button class="love-button" onclick="showCounter()">ĐẾM NGÀY YÊU</button>
+      <button class="love-button" id="counter2_btn">ĐẾM NGÀY YÊU</button>
     </div>
 
     <!-- Màn hình đếm ngày -->
-    <div class="counter-screen" id="counterScreen">
+    <div class="counter-screen" id="counterScreen" data-love="<?php echo get_field("date-love") ?>">
       <div class="postcard">
         <div class="stamp">💌</div>
 
@@ -410,7 +410,7 @@
         </div>
       </div>
 
-      <button class="back-button" onclick="hideCounter()">QUAY LẠI</button>
+      <button class="back-button" id="counter2_btn_close">QUAY LẠI</button>
     </div>
 
     <script>

@@ -46,6 +46,25 @@ jQuery(document).ready(function () {
   "use strict";
 
   // Counter
+  var btnCounter2 = document.getElementById("counter2_btn");
+
+  btnCounter2.addEventListener("click", function () {
+    document.getElementById("startScreen").style.display = "none";
+    document.getElementById("counterScreen").classList.add("active");
+    updateCounter();
+    createCalendar();
+    setInterval(updateCounter, 1000);
+  });
+
+  if (jQuery("#counter2_btn").length > 0) {
+
+  }
+
+  function hideCounter() {
+    document.getElementById("startScreen").style.display = "flex";
+    document.getElementById("counterScreen").classList.remove("active");
+  }
+
   if (jQuery(".icounter .icounter-type1").length > 0) {
     const getData = jQuery(".icounter").attr("data-love");
     const [dataDay, dataMonth, dataYear] = getData.split("/");
