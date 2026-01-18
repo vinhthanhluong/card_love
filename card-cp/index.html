@@ -32,6 +32,9 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap"
       rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet">
 
     <!-- Album -->
     <link
@@ -163,6 +166,42 @@
               </ul>
 
               <!-- Header -->
+              <div class="mheader">
+                <h1>Our Love Story</h1>
+                <p>"Mỗi khoảnh khắc bên nhau đều là kỷ niệm đáng trân trọng"</p>
+              </div>
+
+              <!-- Memory Wall -->
+              <div class="memory-wall section-loading">
+                <div class="polaroid-grid">
+                  <div class="polaroid" style="--rotate: -3deg;">
+                    <img
+                      src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=400&h=400&fit=crop"
+                      alt="Memory 1">
+                    <div class="polaroid-caption">Ngày đầu tiên</div>
+                  </div>
+                  <div class="polaroid" style="--rotate: 2deg;">
+                    <img
+                      src="https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?w=400&h=400&fit=crop"
+                      alt="Memory 2">
+                    <div class="polaroid-caption">Chuyến đi đáng nhớ</div>
+                  </div>
+                  <div class="polaroid" style="--rotate: -2deg;">
+                    <img
+                      src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=400&h=400&fit=crop"
+                      alt="Memory 3">
+                    <div class="polaroid-caption">Khoảnh khắc hạnh phúc</div>
+                  </div>
+
+                  <div class="polaroid" style="--rotate: 3deg;">
+                    <img
+                      src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=400&h=400&fit=crop"
+                      alt="Memory 1">
+                    <div class="polaroid-caption">Ngày kỉ niệm</div>
+                  </div>
+                </div>
+              </div>
+
               <div class="mhead">
                 <div class="mdate-display">
                   <span id="currentDateMemory">04/04/2022</span>
@@ -223,7 +262,10 @@
                         <span>🌸</span>
                         <span>Ngày đầu tiên</span>
                       </div>
-                      <div class="txt">Ngày chúng ta bắt đầu</div>
+                      <div class="txt">Ngày chúng ta bắt đầu hành trình tình
+                        yêu. Một khởi đầu tuyệt vời cho câu chuyện của hai ta,
+                        nơi mọi thứ bắt đầu từ những ánh nhìn, nụ cười và trái
+                        tim rung động.</div>
                     </div>
                   </div>
 
@@ -232,10 +274,12 @@
                     <div class="cnt">
                       <div class="date">
                         <span>💝</span>
-                        <span>Kỷ niệm <span id="daysTimelineMemory1">100</span>
-                          ngày</span>
+                        <span>Tháng Đầu Tiên</span>
                       </div>
-                      <div class="txt">Tình yêu ngày càng sâu đậm</div>
+                      <div class="txt">Một tháng tròn bên nhau, mọi thứ vẫn mới
+                        mẻ và ngọt ngào như ngày đầu. Những kỷ niệm đầu tiên,
+                        những lần hẹn hò, những cuộc trò chuyện dài vô
+                        tận.</div>
                     </div>
                   </div>
 
@@ -244,10 +288,12 @@
                     <div class="cnt">
                       <div class="date">
                         <span>🎂</span>
-                        <span><span id="daysTimelineMemory2">200</span>
-                          ngày</span>
+                        <span>Kỷ Niệm 6 Tháng</span>
                       </div>
-                      <div class="txt">Những phút giây ngọt ngào</div>
+                      <div class="txt">Nửa năm bên nhau, chúng ta đã trải qua
+                        biết bao kỷ niệm đáng nhớ. Từ những ngày vui đến những
+                        lúc khó khăn, cùng nhau vượt qua và thấu hiểu nhau
+                        hơn.</div>
                     </div>
                   </div>
 
@@ -256,11 +302,40 @@
                     <div class="cnt">
                       <div class="date">
                         <span>💕</span>
-                        <span>Hôm nay - <span id="daysTimelineMemory3">300</span>
-                          ngày</span>
+                        <span>Sinh Nhật 1 Năm</span>
                       </div>
-                      <div class="txt">Và sẽ còn mãi mãi...</div>
+                      <div class="txt">Một năm đầy yêu thương và hạnh phúc. Cùng
+                        nhau vượt qua mọi thử thách, ngày càng gắn bó và trưởng
+                        thành hơn. Hứa hẹn một tương lai tươi sáng phía
+                        trước.</div>
                     </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Love Statistics -->
+              <div class="love-stats section-loading">
+                <h2>Thống Kê Tình Yêu</h2>
+                <div class="stats-grid">
+                  <div class="stat-card">
+                    <div class="stat-icon">💌</div>
+                    <span class="stat-number" id="messagesCount">1,247</span>
+                    <span class="stat-label">Tin Nhắn</span>
+                  </div>
+                  <div class="stat-card">
+                    <div class="stat-icon">📸</div>
+                    <span class="stat-number" id="photosCount">532</span>
+                    <span class="stat-label">Ảnh Chung</span>
+                  </div>
+                  <div class="stat-card">
+                    <div class="stat-icon">🎬</div>
+                    <span class="stat-number" id="datesCount">87</span>
+                    <span class="stat-label">Buổi Hẹn</span>
+                  </div>
+                  <div class="stat-card">
+                    <div class="stat-icon">😊</div>
+                    <span class="stat-number">∞</span>
+                    <span class="stat-label">Nụ Cười</span>
                   </div>
                 </div>
               </div>

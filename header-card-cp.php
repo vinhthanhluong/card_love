@@ -38,6 +38,9 @@
   <link
     href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap"
     rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+    rel="stylesheet">
   <!-- Album -->
   <link href="https://fonts.googleapis.com/css2?family=Luxurious+Script&display=swap"
     rel="stylesheet">
@@ -257,7 +260,7 @@
       $music_link = get_field('id_music');
       if ($music_link):
         $embed_url = 'https://w.soundcloud.com/player/?url=' . urlencode($music_link) . '&auto_play=false';
-        ?>
+      ?>
         <div class="music-wrapper">
           <iframe id="sc-player" width="100%" height="166" scrolling="no" frameborder="no"
             allow="autoplay" style="display:none" src="<?php echo $embed_url; ?>">
