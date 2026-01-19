@@ -1412,20 +1412,20 @@ body::-webkit-scrollbar-track {
   right: 15px;
   width: 35px;
   height: 35px;
-  background: rgba(255, 105, 180, 0.1);
-  border: 2px solid rgba(255, 105, 180, 0.3);
+  background: rgba(255, 105, 105, 0.19);
+  border: 2px solid rgba(255, 105, 105, 0.3);
   border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 20px;
-  color: #ff69b4;
+  color: #f75673;
   transition: all 0.3s ease;
   z-index: 10;
+  padding-bottom: 2px;
 }
 .memory-overlay .memory-close:hover {
-  background: rgba(255, 105, 180, 0.2);
   transform: rotate(90deg);
 }
 .memory-overlay .memory-wrap {
@@ -1480,34 +1480,33 @@ body::-webkit-scrollbar-track {
 .memory-overlay .mheader {
   text-align: center;
   padding: 28px 20px;
-  background: linear-gradient(135deg, rgba(201, 160, 220, 0.1) 0%, rgba(232, 180, 188, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(220, 160, 160, 0.1) 0%, rgba(232, 180, 188, 0.1) 100%);
   border-radius: 20px;
   margin-bottom: 30px;
   position: relative;
   overflow: hidden;
 }
-.memory-overlay .mheader::before {
+.memory-overlay .mheader::before, .memory-overlay .mheader::after {
   content: "❤";
   position: absolute;
-  top: -20px;
-  left: -20px;
   font-size: 100px;
   opacity: 0.05;
+  color: red;
+}
+.memory-overlay .mheader::before {
+  top: -20px;
+  left: -20px;
   transform: rotate(-15deg);
 }
 .memory-overlay .mheader::after {
-  content: "❤";
-  position: absolute;
   bottom: -20px;
   right: -20px;
-  font-size: 100px;
-  opacity: 0.05;
   transform: rotate(15deg);
 }
 .memory-overlay .mheader h1 {
   font-size: 36px;
   line-height: 1.2;
-  color: #9b6b9e;
+  color: #fe748d;
   margin-bottom: 10px;
   font-weight: 600;
   letter-spacing: 2px;
@@ -1526,7 +1525,7 @@ body::-webkit-scrollbar-track {
 }
 .memory-overlay .mhead .mdate-display {
   font-size: 16px;
-  color: #ff69b4;
+  color: #f17e7e;
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -1549,23 +1548,23 @@ body::-webkit-scrollbar-track {
   text-align: center;
   margin: 0px 0 15px;
   opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 }
 .memory-overlay .mcounter .num {
   font-size: 72px;
   font-weight: 700;
-  background: linear-gradient(135deg, #ff69b4, #ff1493, #ff69b4);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #f75673;
   line-height: 1;
-  margin-bottom: 10px;
 }
 .memory-overlay .mcounter .lb {
   font-size: 18px;
-  color: #ff69b4;
-  font-weight: 600;
+  color: #f75673;
+  font-weight: 700;
   letter-spacing: 1px;
+  padding-bottom: 10px;
+  padding-left: 5px;
 }
 .memory-overlay .mquote {
   text-align: center;
@@ -1671,11 +1670,11 @@ body::-webkit-scrollbar-track {
 .memory-overlay .mtimeline .item-wrap::before {
   content: "";
   position: absolute;
-  left: 50%;
+  left: 20px;
   top: 0;
   bottom: 0;
   width: 3px;
-  background: linear-gradient(180deg, transparent 0%, #D4A5C6 10%, #E8B4BC 50%, #F5C6CB 90%, transparent 100%);
+  background: linear-gradient(180deg, transparent 0%, #d4a5c6 10%, #e8b4bc 50%, #f5c6cb 90%, transparent 100%);
   transform: translateX(-50%);
   height: 0;
 }
@@ -1684,6 +1683,8 @@ body::-webkit-scrollbar-track {
   margin-bottom: 35px;
   opacity: 0;
   animation: slideIn 0.6s ease-out 1.6s forwards;
+  width: calc(100% - 60px);
+  margin-left: 60px;
 }
 .memory-overlay .mtimeline .item:last-child {
   margin-bottom: 0;
@@ -1715,23 +1716,9 @@ body::-webkit-scrollbar-track {
 .memory-overlay .mtimeline .item:nth-child(10) {
   animation-delay: 3.4s;
 }
-.memory-overlay .mtimeline .item:nth-child(odd) .cnt {
-  margin-right: 55%;
-  text-align: right;
-}
-.memory-overlay .mtimeline .item:nth-child(odd) .date {
-  justify-content: flex-end;
-}
-.memory-overlay .mtimeline .item:nth-child(even) .cnt {
-  margin-left: 55%;
-  text-align: left;
-}
-.memory-overlay .mtimeline .item:nth-child(even) .date {
-  justify-content: flex-start;
-}
 .memory-overlay .mtimeline .dot {
   position: absolute;
-  left: 50%;
+  left: -40px;
   top: 5px;
   width: 16px;
   height: 16px;
@@ -1744,19 +1731,21 @@ body::-webkit-scrollbar-track {
   animation: dotPulse 2s ease-in-out infinite;
 }
 .memory-overlay .mtimeline .cnt {
-  background: linear-gradient(135deg, #fff5f8, #ffffff);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(253, 251, 247, 0.95) 100%);
+  border: 1px solid #f0e6ed;
   padding: 15px 18px;
   border-radius: 18px;
   box-shadow: 0 4px 15px rgba(255, 105, 180, 0.1);
   transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(139, 90, 125, 0.12), inset 0 1px 2px rgba(255, 255, 255, 0.8);
 }
 .memory-overlay .mtimeline .cnt:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 25px rgba(255, 105, 180, 0.2);
 }
 .memory-overlay .mtimeline .date {
-  font-size: 13px;
-  color: #ff69b4;
+  font-size: 16px;
+  color: #f75673;
   font-weight: 600;
   margin-bottom: 5px;
   display: flex;
@@ -1771,18 +1760,29 @@ body::-webkit-scrollbar-track {
 .memory-overlay .love-stats {
   margin: 35px 0;
   padding: 30px 20px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 252, 254, 0.8) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(250, 240, 240, 0.8) 100%);
   border-radius: 0;
-  border: 2px solid rgba(212, 165, 198, 0.2);
+  border: 2px solid rgba(247, 86, 115, 0.1);
   border-radius: 14px;
 }
 .memory-overlay .love-stats h2 {
-  color: #8b5a7d;
+  color: #f75673;
   margin-bottom: 20px;
   font-size: 20px;
   font-weight: 600;
   letter-spacing: 0.8px;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.memory-overlay .love-stats h2::before {
+  content: "";
+  display: inline-block;
+  margin-right: 5px;
+  width: 20px;
+  height: 20px;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="800px" height="800px" viewBox="0 0 24 24" fill="none" style="&%2310;"><path d="M21 21H6.2C5.07989 21 4.51984 21 4.09202 20.782C3.71569 20.5903 3.40973 20.2843 3.21799 19.908C3 19.4802 3 18.9201 3 17.8V3M7 15L12 9L16 13L21 7" stroke="%23000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="&%2310; stroke: %23f75673;&%2310;"/></svg>') center/contain no-repeat;
 }
 .memory-overlay .love-stats .stats-grid {
   display: grid;
@@ -1790,7 +1790,7 @@ body::-webkit-scrollbar-track {
   gap: 15px;
 }
 .memory-overlay .love-stats .stat-card {
-  background: white;
+  background: #fff;
   padding: 25px 15px;
   border-radius: 18px;
   text-align: center;
@@ -1845,7 +1845,7 @@ body::-webkit-scrollbar-track {
 .memory-overlay .love-stats .stat-number {
   font-size: 28px;
   font-weight: 700;
-  color: #d4a5c6;
+  color: #ea9191;
   display: block;
   margin-bottom: 5px;
   font-family: var(--font-playfair);
