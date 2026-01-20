@@ -275,37 +275,96 @@ if (openBtnMemory || modalMemory) {
       (today.getMonth() - startDate.getMonth());
     const years = today.getFullYear() - startDate.getFullYear();
 
+    // Calculate seasons (3 months = 1 season)
+    const seasons = Math.floor(days / 91.25); // 1 mùa ≈ 3 tháng
+
+
+    // Calculate Christmas (count how many Dec 25 have passed)
+    let christmas = 0;
+    for (
+      let year = startDate.getFullYear();
+      year <= today.getFullYear();
+      year++
+    ) {
+      const christmasDate = new Date(year, 11, 25); // Dec 25
+      if (christmasDate >= startDate && christmasDate <= today) {
+        christmas++;
+      }
+    }
+
+    // Calculate Tet/Lunar New Year (approximate - usually late Jan to mid Feb)
+    // Simplified: count how many Feb 1 have passed as proxy
+    let tet = 0;
+    for (
+      let year = startDate.getFullYear();
+      year <= today.getFullYear();
+      year++
+    ) {
+      const tetDate = new Date(year, 1, 1); // Approximate as Feb 1
+      if (tetDate >= startDate && tetDate <= today) {
+        tet++;
+      }
+    }
+
     // Main days counter
     animateValue(document.getElementById("daysCounterMemory"), 0, days, 2000);
 
     // Stats counters with different durations for variety
-    setTimeout(() => {
+    // setTimeout(() => {
+    //   animateValue(
+    //     document.getElementById("weeksCounterMemory"),
+    //     0,
+    //     weeks,
+    //     2200,
+    //   );
+    // }, 400);
+
+    // setTimeout(() => {
+    //   animateValue(
+    //     document.getElementById("monthsCounterMemory"),
+    //     0,
+    //     months,
+    //     1800,
+    //   );
+    // }, 600);
+
+    // setTimeout(() => {
+    //   animateValue(
+    //     document.getElementById("yearsCounterMemory"),
+    //     0,
+    //     years,
+    //     1500,
+    //   );
+    // }, 800);
+
+     setTimeout(() => {
       animateValue(
-        document.getElementById("weeksCounterMemory"),
+        document.getElementById("seasonsCounterMemory"),
         0,
-        weeks,
+        seasons,
         2200,
       );
     }, 400);
 
     setTimeout(() => {
       animateValue(
-        document.getElementById("monthsCounterMemory"),
+        document.getElementById("christmasCounterMemory"),
         0,
-        months,
+        christmas,
         1800,
       );
     }, 600);
 
     setTimeout(() => {
       animateValue(
-        document.getElementById("yearsCounterMemory"),
+        document.getElementById("tetCounterMemory"),
         0,
-        years,
+        tet,
         1500,
       );
     }, 800);
 
+ 
     // Timeline
     // document.getElementById("daysTimelineMemory1").textContent = Math.floor(
     //   days / 4
