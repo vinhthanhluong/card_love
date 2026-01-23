@@ -1,0 +1,8 @@
+.acf-postbox:has(.acf-common){
+    background-color: #90cef5;
+    
+}
+
+.acf-postbox:has(.acf-common) .acf-fields{
+    background-color: transparent;
+}
