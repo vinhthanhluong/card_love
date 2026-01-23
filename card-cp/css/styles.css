@@ -1507,7 +1507,7 @@ body::-webkit-scrollbar-track {
   transform: rotate(15deg);
 }
 .memory-overlay .mheader h1 {
-  font-size: 36px;
+  font-size: min(8vw, 34px);
   line-height: 1.2;
   color: #fe748d;
   margin-bottom: 10px;
@@ -1556,7 +1556,7 @@ body::-webkit-scrollbar-track {
   align-items: flex-end;
 }
 .memory-overlay .mcounter .num {
-  font-size: 72px;
+  font-size: min(16vw, 72px);
   font-weight: 700;
   color: #f75673;
   line-height: 1;
@@ -1648,7 +1648,7 @@ body::-webkit-scrollbar-track {
   opacity: 0;
 }
 .memory-overlay .mtimeline .ttl {
-  font-size: 16px;
+  font-size: min(4.5333333333vw, 20px);
   font-weight: 600;
   color: #f75673;
   margin-bottom: 8px;
@@ -1668,7 +1668,7 @@ body::-webkit-scrollbar-track {
 .memory-overlay .mtimeline .item-wrap::before {
   content: "";
   position: absolute;
-  left: 20px;
+  left: 10px;
   top: 0;
   bottom: 0;
   width: 3px;
@@ -1681,8 +1681,8 @@ body::-webkit-scrollbar-track {
   margin-bottom: 35px;
   opacity: 0;
   animation: slideIn 0.6s ease-out 1.6s forwards;
-  width: calc(100% - 60px);
-  margin-left: 60px;
+  width: calc(100% - 40px);
+  margin-left: 40px;
 }
 .memory-overlay .mtimeline .item:last-child {
   margin-bottom: 0;
@@ -1716,7 +1716,7 @@ body::-webkit-scrollbar-track {
 }
 .memory-overlay .mtimeline .dot {
   position: absolute;
-  left: -40px;
+  left: -30px;
   top: 5px;
   width: 16px;
   height: 16px;
@@ -1853,10 +1853,11 @@ body::-webkit-scrollbar-track {
 }
 .memory-overlay .love-stats .stat-number {
   font-size: 28px;
+  line-height: 1.1;
   font-weight: 700;
   color: #ea9191;
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 3px;
   font-family: var(--font-playfair);
 }
 .memory-overlay .love-stats .stat-label {
