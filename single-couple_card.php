@@ -42,11 +42,6 @@
           </p>
         <?php endif; ?>
 
-        <?php if ($taxonomy_slug_cate == "theme1"): ?>
-          <!-- Counter -->
-          <!-- <?php include 'lib/component/counter_card_theme1.php'; ?> -->
-        <?php endif; ?>
-
         <?php if ($taxonomy_slug_cate == "theme2"): ?>
           <!-- Counter -->
           <?php include 'lib/component/counter_card_theme2.php'; ?>

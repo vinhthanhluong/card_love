@@ -17,39 +17,84 @@ if ($is_memory) :
         </ul>
 
         <!-- Header -->
+        <div class="mheader">
+          <h1>Our Love Story</h1>
+          <p>"Mỗi khoảnh khắc bên nhau đều là kỷ niệm đáng trân trọng"</p>
+        </div>
+
+        <!-- Memory Wall -->
+        <div class="memory-wall section-loading">
+          <div class="polaroid-grid">
+            <?php
+            $imagesWall = get_field('gallery_images');
+            ?>
+            <?php if ($imagesWall[0]): ?>
+              <div class="polaroid" style="--rotate: -3deg;">
+                <img
+                  src="<?php echo esc_url($imagesWall[0]['url']); ?>"
+                  alt="Memory 1">
+                <div class="polaroid-caption">Ngày đầu tiên</div>
+              </div>
+            <?php endif; ?>
+            <?php if ($imagesWall[1]): ?>
+              <div class="polaroid" style="--rotate: 2deg;">
+                <img
+                  src="<?php echo esc_url($imagesWall[1]['url']); ?>"
+                  alt="Memory 2">
+                <div class="polaroid-caption">Chuyến đi đáng nhớ</div>
+              </div>
+            <?php endif; ?>
+            <?php if ($imagesWall[1]): ?>
+              <div class="polaroid" style="--rotate: -2deg;">
+                <img
+                  src="<?php echo esc_url($imagesWall[1]['url']); ?>"
+                  alt="Memory 3">
+                <div class="polaroid-caption">Khoảnh khắc hạnh phúc</div>
+              </div>
+            <?php endif; ?>
+            <?php if ($imagesWall[2]): ?>
+              <div class="polaroid" style="--rotate: 3deg;">
+                <img
+                  src="<?php echo esc_url($imagesWall[2]['url']); ?>"
+                  alt="Memory 1">
+                <div class="polaroid-caption">Ngày kỉ niệm</div>
+              </div>
+            <?php endif; ?>
+          </div>
+        </div>
+
         <div class="mhead">
           <div class="mdate-display">
-            <span id="currentDateMemory">04/04/2022</span>
-            <!-- <span id="currentDateMemory">10/12/2025</span> -->
+            <span id="currentDateMemory"><?php echo get_field("date-love") ?></span>
             <span class="ic">💕</span>
             <span>Hôm nay</span>
           </div>
-          <div class="mquote">Mỗi ngày là một kỷ niệm</div>
+          <div class="mquote">Chúng Ta Đã Bên Nhau</div>
         </div>
 
         <!-- Counter -->
         <div class="mcounter">
           <div class="num" id="daysCounterMemory">0</div>
-          <div class="lb">ngày bên nhau</div>
+          <div class="lb">Ngày</div>
         </div>
 
         <!-- Stats Section - Elegant Horizontal -->
         <div class="mstats">
           <div class="mstats-row">
             <div class="item">
-              <span class="ic">📅</span>
-              <span class="vale" id="weeksCounterMemory">0</span>
-              <span class="lb">Tuần</span>
+              <span class="ic">🌸</span>
+              <span class="vale" id="seasonsCounterMemory">0</span>
+              <span class="lb">Mùa</span>
             </div>
             <div class="item">
-              <span class="ic">🌙</span>
-              <span class="vale" id="monthsCounterMemory">0</span>
-              <span class="lb">Tháng</span>
+              <span class="ic">🎄</span>
+              <span class="vale" id="christmasCounterMemory">0</span>
+              <span class="lb">Giáng Sinh</span>
             </div>
             <div class="item">
-              <span class="ic">✨</span>
-              <span class="vale" id="yearsCounterMemory">0</span>
-              <span class="lb">Năm</span>
+              <span class="ic">🎆</span>
+              <span class="vale" id="tetCounterMemory">0</span>
+              <span class="lb">Tết</span>
             </div>
           </div>
         </div>
@@ -62,8 +107,7 @@ if ($is_memory) :
               <span>Hành Trình Yêu Thương</span>
               <span>💕</span>
             </div>
-            <div class="subttl">Những mốc đáng nhớ của chúng
-              ta</div>
+            <div class="subttl">Những mốc đáng nhớ của chúng ta</div>
           </div>
 
           <div class="item-wrap">
@@ -81,7 +125,6 @@ if ($is_memory) :
                   <div class="dot"></div>
                   <div class="cnt">
                     <div class="date">
-                      <span>🌸</span>
                       <span><?php echo $title ?></span>
                     </div>
                     <div class="txt"><?php echo $desc ?></div>
@@ -91,42 +134,33 @@ if ($is_memory) :
               endforeach;
             endif;
             ?>
+          </div>
+        </div>
 
-            <!-- <div class="item">
-              <div class="dot"></div>
-              <div class="cnt">
-                <div class="date">
-                  <span>💝</span>
-                  <span>Kỷ niệm <span id="daysTimelineMemory1">100</span>
-                    ngày</span>
-                </div>
-                <div class="txt">Tình yêu ngày càng sâu đậm</div>
-              </div>
+        <!-- Love Statistics -->
+        <div class="love-stats section-loading">
+          <h2>Thống Kê Tình Yêu</h2>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon">💌</div>
+              <span class="stat-number" id="messagesCount"><?php echo get_field('memory_r')['number1'] ?></span>
+              <span class="stat-label">Tin Nhắn</span>
             </div>
-
-            <div class="item">
-              <div class="dot"></div>
-              <div class="cnt">
-                <div class="date">
-                  <span>🎂</span>
-                  <span><span id="daysTimelineMemory2">200</span>
-                    ngày</span>
-                </div>
-                <div class="txt">Những phút giây ngọt ngào</div>
-              </div>
+            <div class="stat-card">
+              <div class="stat-icon">📸</div>
+              <span class="stat-number" id="photosCount"><?php echo get_field('memory_r')['number2'] ?></span>
+              <span class="stat-label">Ảnh Chung</span>
             </div>
-
-            <div class="item">
-              <div class="dot"></div>
-              <div class="cnt">
-                <div class="date">
-                  <span>💕</span>
-                  <span>Hôm nay - <span id="daysTimelineMemory3">300</span>
-                    ngày</span>
-                </div>
-                <div class="txt">Và sẽ còn mãi mãi...</div>
-              </div>
-            </div> -->
+            <div class="stat-card">
+              <div class="stat-icon">🎬</div>
+              <span class="stat-number" id="datesCount"><?php echo get_field('memory_r')['number3'] ?></span>
+              <span class="stat-label">Buổi Hẹn</span>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">😊</div>
+              <span class="stat-number"><?php echo get_field('memory_r')['number4'] ?></span>
+              <span class="stat-label">Nụ Cười</span>
+            </div>
           </div>
         </div>
 
