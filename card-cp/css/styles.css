@@ -1,7 +1,4 @@
 @charset "UTF-8";
-/*==========================================================================*/
-/*                           Common-Setting                                 */
-/*==========================================================================*/
 @import url(./lib/aos.css);
 @import url(./lib/slick.css);
 @import url(./lib/slick-theme.css);
@@ -694,7 +691,6 @@ body::-webkit-scrollbar-track {
   transition-property: background-color, opacity, transform;
 }
 
-/*============================= H_E_A_D_E_R =============================*/
 /*==========================================================================*/
 /*                              H E A D E R                                 */
 /*==========================================================================*/
@@ -733,16 +729,20 @@ body::-webkit-scrollbar-track {
   height: 55px;
   z-index: 1000;
 }
-#header .hd-wrapper.col3 .hicon {
+#header .hd-wrapper.col3 .hicon:not(.hd-toggle) {
   width: 50px;
   height: 50px;
+}
+#header .hd-wrapper.col4 .hicon:not(.hd-toggle) {
+  width: 40px;
+  height: 40px;
 }
 #header .hicon {
   position: absolute;
   top: 0;
   right: 0;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border-radius: 100%;
   display: flex;
   align-items: center;
@@ -756,12 +756,12 @@ body::-webkit-scrollbar-track {
 #header .hicon img {
   filter: brightness(0) invert(1);
 }
-#header .hd-toggle {
+#header .hicon.hd-toggle {
   z-index: 10;
-  width: 100%;
-  height: 100%;
+  width: 50px;
+  height: 50px;
 }
-#header .hd-toggle img {
+#header .hicon.hd-toggle img {
   width: 26px;
 }
 #header .hd-toggle.active {
@@ -794,7 +794,6 @@ body::-webkit-scrollbar-track {
   width: 26px;
 }
 
-/*============================= C_O_N_T_E_N_T =============================*/
 /*==========================================================================*/
 /*                                M A I N                                   */
 /*==========================================================================*/
@@ -4223,7 +4222,7 @@ body::-webkit-scrollbar-track {
   height: 260px;
 }
 .album4 .section-images.layout-2 .image:nth-child(1) {
-  width: 150px;
+  width: 160px;
   height: 175px;
   top: 0;
   left: 0;
@@ -4456,8 +4455,8 @@ body::-webkit-scrollbar-track {
   opacity: 0;
   visibility: hidden;
   background: linear-gradient(135deg, #f5e6e6 0%, #e8d5d5 100%);
-  padding: 20px;
   overflow-y: scroll;
+  padding-top: 15px;
   /* Postcard style container */
   /* Stamp decoration */
   /* Photo section */
@@ -4465,9 +4464,22 @@ body::-webkit-scrollbar-track {
   /* Calendar */
   /* Counter display */
 }
+.counter-screen::-webkit-scrollbar {
+  width: 0px;
+}
+.counter-screen::-webkit-scrollbar-thumb {
+  background: var(--main-cl);
+  border-radius: 990px;
+}
+.counter-screen::-webkit-scrollbar-track {
+  background: transparent;
+}
 .counter-screen.active {
   opacity: 1;
   visibility: visible;
+}
+.counter-screen .wrap-postcard {
+  padding: 20px;
 }
 .counter-screen .postcard {
   border-radius: 8px;
@@ -4596,7 +4608,7 @@ body::-webkit-scrollbar-track {
 }
 .counter-screen .save-date-text {
   font-size: 38px;
-  font-family: "Dancing Script";
+  font-family: var(--font-dancing);
   color: #c9a881;
   text-align: center;
   font-style: italic;
@@ -4607,15 +4619,15 @@ body::-webkit-scrollbar-track {
 .counter-screen .names {
   text-align: center;
   margin-bottom: 25px;
-  font-size: 16px;
+  font-size: min(20px, max(14px, 3.6vw));
   letter-spacing: 3px;
   color: #4a4a4a;
   font-weight: 600;
 }
 .counter-screen .names .and {
-  font-family: "Dancing Script";
-  font-size: 28px;
-  margin: 0 10px;
+  font-family: var(--font-dancing);
+  font-size: 110%;
+  margin: 0 1.5%;
   font-weight: normal;
   color: #c9a881;
   font-style: italic;
@@ -4623,7 +4635,7 @@ body::-webkit-scrollbar-track {
 .counter-screen .month-title {
   text-align: center;
   font-size: 44px;
-  font-family: "Dancing Script";
+  font-family: var(--font-dancing);
   color: #c9a881;
   margin-bottom: 20px;
   font-weight: normal;
@@ -4633,7 +4645,8 @@ body::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.6);
   padding: 20px;
   border-radius: 8px;
-  margin-bottom: 25px;
+  max-width: 355px;
+  margin: 0 auto 25px;
 }
 .counter-screen .calendar-grid {
   display: grid;
@@ -4647,13 +4660,14 @@ body::-webkit-scrollbar-track {
   color: #666;
   padding: 6px 0;
   letter-spacing: 0.5px;
+  margin-bottom: 15px;
 }
 .counter-screen .calendar-day {
   aspect-ratio: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
+  font-size: 14px;
   color: #4a4a4a;
   font-weight: 500;
 }
@@ -4668,9 +4682,8 @@ body::-webkit-scrollbar-track {
   content: "💕";
   position: absolute;
   font-size: 18px;
-  top: -22px;
-  left: 50%;
-  transform: translateX(-50%);
+  top: -15px;
+  left: 65%;
 }
 .counter-screen .counter-info {
   text-align: center;
@@ -4696,7 +4709,7 @@ body::-webkit-scrollbar-track {
   font-size: 28px;
   font-weight: bold;
   color: #8b6f6f;
-  font-family: "Courier New", monospace;
+  font-family: var(--font-dancing);
   background: rgba(255, 255, 255, 0.6);
   padding: 8px 12px;
   border-radius: 5px;
@@ -4715,28 +4728,44 @@ body::-webkit-scrollbar-track {
   color: #8b6f6f;
   margin-bottom: 5px;
   font-weight: 600;
+  text-align: center;
 }
 .counter-screen .tagline {
   font-size: 12px;
   font-style: italic;
   color: #666;
+  text-align: center;
 }
-.counter-screen .back-button {
-  display: block;
-  margin: 20px auto 0;
-  background: white;
-  border: 2px solid #d4a5a5;
-  padding: 12px 35px;
-  font-size: 14px;
+.counter-screen .abm-close {
+  position: relative;
+  text-transform: capitalize;
+  width: fit-content;
+  padding: 0 5px 10px 20px;
   font-weight: 600;
-  color: #8b6f6f;
-  border-radius: 5px;
+  border-radius: 100px;
+  margin: 0 0 0 15px;
+  font-size: 14px;
+  z-index: 0;
+  opacity: 0.9;
   cursor: pointer;
-  transition: all 0.3s ease;
-  letter-spacing: 2px;
 }
-.counter-screen .back-button:active {
-  transform: scale(0.95);
+.counter-screen .abm-close::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 0;
+  width: 14px;
+  aspect-ratio: 1;
+  background: url("../images/ic-back.png") center/contain no-repeat;
+  filter: brightness(0) invert(0);
+}
+.counter-screen .abm-close:after {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  right: -5px;
+  bottom: -5px;
 }
 
 .imessage {
@@ -6336,7 +6365,6 @@ audio {
   height: 100%;
 }
 
-/*============================= F_O_O_T_E_R =============================*/
 /*==========================================================================*/
 /*                              F O O T E R                                 */
 /*==========================================================================*/
@@ -6349,7 +6377,6 @@ address {
   display: none;
 }
 
-/*========================== R_E_S_P_O_N_S_I_V_E ==========================*/
 /*==========================================================================*/
 /*                        M O B I L E    D E V I C E                        */
 /*==========================================================================*/
@@ -6390,5 +6417,12 @@ address {
 /*==========================================================================*/
 /*                             E N D   A L L                                */
 /*==========================================================================*/
+/*==========================================================================*/
+/*                           Common-Setting                                 */
+/*==========================================================================*/
+/*============================= H_E_A_D_E_R =============================*/
+/*============================= C_O_N_T_E_N_T =============================*/
+/*============================= F_O_O_T_E_R =============================*/
+/*========================== R_E_S_P_O_N_S_I_V_E ==========================*/
 
 /*# sourceMappingURL=styles.css.map */

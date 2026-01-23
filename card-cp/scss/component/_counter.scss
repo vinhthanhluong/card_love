@@ -1,3 +1,5 @@
+@use "../mixins/basic" as *;
+
 .icounter {
     position: absolute;
     top: 0;
@@ -163,12 +165,17 @@
     opacity: 0;
     visibility: hidden;
     background: linear-gradient(135deg, #f5e6e6 0%, #e8d5d5 100%);
-    padding: 20px;
     overflow-y: scroll;
+    padding-top: 15px;
+    @include scrollbar-v();
 
     &.active {
         opacity: 1;
         visibility: visible;
+    }
+
+    .wrap-postcard {
+        padding: 20px;
     }
 
     /* Postcard style container */
@@ -325,7 +332,7 @@
 
     .save-date-text {
         font-size: 38px;
-        font-family: 'Dancing Script';
+        font-family: var(--font-dancing);
         color: #c9a881;
         text-align: center;
         font-style: italic;
@@ -339,16 +346,16 @@
     .names {
         text-align: center;
         margin-bottom: 25px;
-        font-size: 16px;
+        font-size: min(20px, max(14px, 3.6vw));
         letter-spacing: 3px;
         color: #4a4a4a;
         font-weight: 600;
     }
 
     .names .and {
-        font-family: 'Dancing Script';
-        font-size: 28px;
-        margin: 0 10px;
+        font-family: var(--font-dancing);
+        font-size: 110%;
+        margin: 0 1.5%;
         font-weight: normal;
         color: #c9a881;
         font-style: italic;
@@ -357,7 +364,7 @@
     .month-title {
         text-align: center;
         font-size: 44px;
-        font-family: 'Dancing Script';
+        font-family: var(--font-dancing);
         color: #c9a881;
         margin-bottom: 20px;
         font-weight: normal;
@@ -369,7 +376,8 @@
         background: rgba(255, 255, 255, 0.6);
         padding: 20px;
         border-radius: 8px;
-        margin-bottom: 25px;
+        max-width: 355px;
+        margin: 0 auto 25px;
     }
 
     .calendar-grid {
@@ -385,6 +393,7 @@
         color: #666;
         padding: 6px 0;
         letter-spacing: 0.5px;
+        margin-bottom: 15px;
     }
 
     .calendar-day {
@@ -392,7 +401,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 13px;
+        font-size: 14px;
         color: #4a4a4a;
         font-weight: 500;
     }
@@ -409,9 +418,8 @@
         content: "💕";
         position: absolute;
         font-size: 18px;
-        top: -22px;
-        left: 50%;
-        transform: translateX(-50%);
+        top: -15px;
+        left: 65%;
     }
 
     /* Counter display */
@@ -443,7 +451,7 @@
         font-size: 28px;
         font-weight: bold;
         color: #8b6f6f;
-        font-family: "Courier New", monospace;
+        font-family: var(--font-dancing);
         background: rgba(255, 255, 255, 0.6);
         padding: 8px 12px;
         border-radius: 5px;
@@ -464,30 +472,47 @@
         color: #8b6f6f;
         margin-bottom: 5px;
         font-weight: 600;
+        text-align: center;
     }
 
     .tagline {
         font-size: 12px;
         font-style: italic;
         color: #666;
+        text-align: center;
     }
 
-    .back-button {
-        display: block;
-        margin: 20px auto 0;
-        background: white;
-        border: 2px solid #d4a5a5;
-        padding: 12px 35px;
-        font-size: 14px;
+    .abm-close {
+        position: relative;
+        text-transform: capitalize;
+        width: fit-content;
+        padding: 0 5px 10px 20px;
         font-weight: 600;
-        color: #8b6f6f;
-        border-radius: 5px;
+        border-radius: 100px;
+        margin: 0 0 0 15px;
+        font-size: 14px;
+        z-index: 0;
+        opacity: 0.9;
         cursor: pointer;
-        transition: all 0.3s ease;
-        letter-spacing: 2px;
-    }
 
-    .back-button:active {
-        transform: scale(0.95);
+        &::before {
+            content: "";
+            position: absolute;
+            top: 3px;
+            left: 0;
+            width: 14px;
+            aspect-ratio: 1;
+            background: url("../images/ic-back.png") center/contain no-repeat;
+            filter: brightness(0) invert(0);
+        }
+
+        &:after {
+            content: "";
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -5px;
+            bottom: -5px;
+        }
     }
 }

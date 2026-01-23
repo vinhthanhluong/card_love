@@ -57,9 +57,14 @@
         <h1><?php the_title() ?></h1>
         <?php
         $record_link = get_field('id_record');
+        $music_link = get_field('id_music');
 
-        if (!$record_link) {
-          $wrapper_class .= 'col3';
+        $wrapper_class = '';
+
+        if ($record_link && $music_link) {
+          $wrapper_class = 'col4';
+        } elseif ($record_link || $music_link) {
+          $wrapper_class = 'col3';
         }
         ?>
 
@@ -72,15 +77,11 @@
           <div class="hicon hd-album">
             <img src="<?php echo get_theme_file_uri() ?>/card-cp/images/ic-album.svg" alt="album">
           </div>
+
+          <div class="hicon hd-mail">
+            <img src="<?php echo get_theme_file_uri() ?>/card-cp/images/ic-mail.svg" alt="mail">
+          </div>
           <?php
-          $terms_message = wp_get_post_terms($post->ID, 'couple_message', '');
-          if (!empty($terms_message) && !is_wp_error($terms_message)): ?>
-            <div class="hicon hd-mail">
-              <img src="<?php echo get_theme_file_uri() ?>/card-cp/images/ic-mail.svg" alt="mail">
-            </div>
-          <?php endif; ?>
-          <?php
-          $music_link = get_field('id_music');
           if ($music_link): ?>
             <button id="toggle-sound" class="hicon hd-sound">
               <img id="sound-icon"
@@ -88,7 +89,6 @@
             </button>
           <?php endif; ?>
           <?php
-          $record_link = get_field('id_record');
           if ($record_link): ?>
             <div class="hicon hd-record" id="toggle-record">
               <img
@@ -260,7 +260,7 @@
       $music_link = get_field('id_music');
       if ($music_link):
         $embed_url = 'https://w.soundcloud.com/player/?url=' . urlencode($music_link) . '&auto_play=false';
-      ?>
+        ?>
         <div class="music-wrapper">
           <iframe id="sc-player" width="100%" height="166" scrolling="no" frameborder="no"
             allow="autoplay" style="display:none" src="<?php echo $embed_url; ?>">

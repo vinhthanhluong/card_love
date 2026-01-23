@@ -1,7 +1,3 @@
-<?php
-$terms_message = wp_get_post_terms($post->ID, 'couple_message', '');
-if (!empty($terms_message) && !is_wp_error($terms_message)) :
-?>
 <div class="imessage efftype1">
     <div class="imess-wrap efftype1-wrap">
         <div class="imess-close">quay lại</div>
@@ -71,4 +67,3 @@ if (!empty($terms_message) && !is_wp_error($terms_message)) :
         </div>
     </div>
 </div>
-<?php endif; ?>

@@ -54,7 +54,7 @@ if (!empty($terms_album) && !is_wp_error($terms_album)) {
         <?php if ($taxonomy_slug_bg_album === "bg_alb3"): ?>
             <div class="alb efftype1-wrap alb3">
                 <p class="alb3-tt">Kỉ niệm</p>
-                <p class="alb3-year"><?php echo get_field('alb_bg_year') ?></p>
+                <p class="alb3-year"><?php echo substr(get_field('date-love'), -4); ?></p>
                 <div class="alb3-bg">
                     <img src="<?php echo esc_url($imagesAlb[0]['url']); ?>" alt="Kỉ niệm">
                 </div>

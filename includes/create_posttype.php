@@ -49,7 +49,6 @@ function prefix_register_all() {
 			'taxonomies' => array(
 				'couple_cate',
 				'couple_counterdays',
-				'couple_message',
 				'couple_mp3',
 				'couple_albums',
 				'couple_background_album',
@@ -112,44 +111,6 @@ function prefix_register_all() {
 
 	register_taxonomy(
 		'couple_albums',
-		array(
-			'couple_card'
-		),
-		array(
-			'labels'            => array(
-				'name'              => _x($tax_name, 'couple_card', 'text_domain'),
-				'singular_name'     => _x($tax_singular_name, 'couple_card', 'text_domain'),
-				'menu_name'         => __($tax_menu_name, 'text_domain'),
-				'all_items'         => __($tax_all_items, 'text_domain'),
-				'edit_item'         => __($tax_edit_item, 'text_domain'),
-				'view_item'         => __($tax_view_item, 'text_domain'),
-				'update_item'       => __($tax_update_item, 'text_domain'),
-				'add_new_item'      => __($tax_add_new_item, 'text_domain'),
-				'parent_item'       => __($tax_parent_item, 'text_domain'),
-				'parent_item_colon' => __($tax_parent_item_colon, 'text_domain'),
-				'search_items'      => __($tax_search_items, 'text_domain')
-			),
-			'show_admin_column' => true,
-			'hierarchical'      => true,
-			'show_in_rest'=> true
-		)
-	);
-
-	// FOR MESSAGE
-	$tax_name = "Message";
-	$tax_singular_name = "Message";
-	$tax_menu_name = "Message";
-	$tax_all_items = "All Message";
-	$tax_edit_item = "Edit Message";
-	$tax_view_item = "View Message";
-	$tax_update_item = "Update Message";
-	$tax_add_new_item = "Add New Message";
-	$tax_parent_item = "Parent Category";
-	$tax_parent_item_colon = "Parent Category:";
-	$tax_search_items = "Search Message";
-
-	register_taxonomy(
-		'couple_message',
 		array(
 			'couple_card'
 		),

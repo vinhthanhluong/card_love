@@ -121,6 +121,14 @@ jQuery(document).ready(function () {
     }
   });
 
+  jQuery("#counter2_btn").on("click", function () {
+    jQuery("#main").css({ "z-index": "100" });
+  });
+  jQuery("#counter2_close_btn").on("click", function () {
+    jQuery("#main").css({ "z-index": "1", height: "auto" });
+  });
+
+
   jQuery("#header .hd-mail").on("click", function () {
     jQuery("#main").css({ "z-index": "100" });
     jQuery(".imessage").addClass("active");

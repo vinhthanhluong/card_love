@@ -15,7 +15,26 @@ jQuery(document).ready(function () {
   // Phần tư thứ 3 trên màn hình: Trái-Dưới (xoay thêm để xuống dưới nhiều hơn)
   function calculatePositions(buttonCount) {
     const radius = 85; // Bán kính
-    // Xoay thêm để các nút xổ xuống dưới nhiều hơn
+
+    // Nếu chỉ có 2 nút, cho chúng gần nhau hơn
+    if (buttonCount === 2) {
+      const radius = 70; // Bán kính
+      const startAngle = 190; // Góc bắt đầu
+      const endAngle = 260; // Góc kết thúc - chỉ cách nhau 40°
+      const angleRange = endAngle - startAngle;
+      const angleStep = angleRange / (buttonCount - 1);
+
+      const positions = [];
+      for (let i = 0; i < buttonCount; i++) {
+        const angle = ((startAngle + angleStep * i) * Math.PI) / 180;
+        const x = Math.cos(angle) * radius;
+        const y = -Math.sin(angle) * radius;
+        positions.push({ x, y });
+      }
+      return positions;
+    }
+
+    // Với 3 nút trở lên, dùng góc rộng hơn
     const startAngle = 180; // Góc bắt đầu - Gần trái
     const endAngle = 270; // Góc kết thúc - Xuống dưới
     const angleRange = endAngle - startAngle; // 90° range
