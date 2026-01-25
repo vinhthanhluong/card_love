@@ -94,23 +94,15 @@ function contact_btn()
 {
     $phone = preg_replace('/[^0-9+]/', '', get_field('phone_stk', 'option'));
     $zalo = get_field('zalo_stk', 'option');
-<<<<<<< Updated upstream
-?>
-=======
     ?>
->>>>>>> Stashed changes
     <div id="button-contact-vr">
         <div id="zalo-vr" class="button-contact">
             <div class="phone-vr">
                 <a target="_blank" href="https://zalo.me/<?php echo $zalo ?>"></a>
                 <div class="phone-vr-circle-fill"></div>
                 <div class="phone-vr-img-circle">
-<<<<<<< Updated upstream
-                    <img alt="Zalo" src="<?php echo get_stylesheet_directory_uri(); ?>/images/uic-zalo.svg">
-=======
                     <img alt="Zalo"
                         src="<?php echo get_stylesheet_directory_uri(); ?>/images/uic-zalo.svg">
->>>>>>> Stashed changes
                 </div>
             </div>
         </div>
@@ -119,23 +111,15 @@ function contact_btn()
                 <a href="tel:<?php echo $phone ?>"></a>
                 <div class="phone-vr-circle-fill"></div>
                 <div class="phone-vr-img-circle">
-<<<<<<< Updated upstream
-                    <img alt="Phone" src="<?php echo get_stylesheet_directory_uri(); ?>/images/phone.png">
-=======
                     <img alt="Phone"
                         src="<?php echo get_stylesheet_directory_uri(); ?>/images/phone.png">
->>>>>>> Stashed changes
                 </div>
             </div>
         </div>
     </div>
 
 
-<<<<<<< Updated upstream
-<?php
-=======
     <?php
->>>>>>> Stashed changes
 }
 // END Create Shortcode
 
@@ -151,14 +135,9 @@ function show_qr_code_in_editor($post)
     $short_url = home_url('/c/' . $post_id);
     $saved_color = get_post_meta($post_id, '_qr_code_color', true);
     $qr_color = $saved_color ? $saved_color : '#8B2E2E';
-<<<<<<< Updated upstream
-?>
-    <div id="qr-code-section" style="margin: 20px 0; padding: 20px; border: 1px solid #ddd; background: #f9f9f9; border-radius: 8px;">
-=======
     ?>
     <div id="qr-code-section"
         style="margin: 20px 0; padding: 20px; border: 1px solid #ddd; background: #f9f9f9; border-radius: 8px;">
->>>>>>> Stashed changes
         <h3 style="margin-top: 0;">QR Code</h3>
 
         <!-- Color Picker -->
@@ -167,41 +146,16 @@ function show_qr_code_in_editor($post)
                 Chọn màu QR Code:
             </label>
             <div style="display: flex; align-items: center; gap: 15px;">
-<<<<<<< Updated upstream
-                <input
-                    type="color"
-                    id="qr_code_color"
-                    name="qr_code_color"
-                    value="<?php echo esc_attr($qr_color); ?>"
-                    style="width: 60px; height: 40px; border: 2px solid #ddd; border-radius: 4px; cursor: pointer;" />
-                <input
-                    type="text"
-                    id="qr_color_hex"
-=======
                 <input type="color" id="qr_code_color" name="qr_code_color"
->>>>>>> Stashed changes
                     value="<?php echo esc_attr($qr_color); ?>"
                     style="width: 60px; height: 40px; border: 2px solid #ddd; border-radius: 4px; cursor: pointer;" />
                 <input type="text" id="qr_color_hex" value="<?php echo esc_attr($qr_color); ?>"
                     placeholder="#8B2E2E"
                     style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; font-family: monospace; width: 120px;" />
-<<<<<<< Updated upstream
-                <button
-                    type="button"
-                    id="save_qr_color"
-                    class="button button-primary">
-                    Lưu màu QR
-                </button>
-                <button
-                    type="button"
-                    id="download_qr"
-                    class="button">
-=======
                 <button type="button" id="save_qr_color" class="button button-primary">
                     Lưu màu QR
                 </button>
                 <button type="button" id="download_qr" class="button">
->>>>>>> Stashed changes
                     📥 Tải xuống PNG
                 </button>
                 <span id="save-status" style="color: #46b450; display: none;">✓ Đã lưu</span>
@@ -242,11 +196,7 @@ function show_qr_code_in_editor($post)
     <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
 
     <script>
-<<<<<<< Updated upstream
-        jQuery(document).ready(function($) {
-=======
         jQuery(document).ready(function ($) {
->>>>>>> Stashed changes
             let qrCode;
 
             function generateQR(color) {
@@ -288,21 +238,13 @@ function show_qr_code_in_editor($post)
             generateQR("<?php echo $qr_color; ?>");
 
             // Color picker events - Auto regenerate khi đổi màu
-<<<<<<< Updated upstream
-            $('#qr_code_color').on('input', function() {
-=======
             $('#qr_code_color').on('input', function () {
->>>>>>> Stashed changes
                 let color = $(this).val();
                 $('#qr_color_hex').val(color);
                 generateQR(color);
             });
 
-<<<<<<< Updated upstream
-            $('#qr_color_hex').on('input', function() {
-=======
             $('#qr_color_hex').on('input', function () {
->>>>>>> Stashed changes
                 let color = $(this).val();
                 if (/^#[0-9A-F]{6}$/i.test(color)) {
                     $('#qr_code_color').val(color);
@@ -310,11 +252,7 @@ function show_qr_code_in_editor($post)
                 }
             });
 
-<<<<<<< Updated upstream
-            $('.color-preset').on('click', function() {
-=======
             $('.color-preset').on('click', function () {
->>>>>>> Stashed changes
                 let color = $(this).data('color');
                 $('#qr_code_color').val(color);
                 $('#qr_color_hex').val(color);
@@ -322,11 +260,7 @@ function show_qr_code_in_editor($post)
             });
 
             // Lưu màu vào database
-<<<<<<< Updated upstream
-            $('#save_qr_color').on('click', function() {
-=======
             $('#save_qr_color').on('click', function () {
->>>>>>> Stashed changes
                 let button = $(this);
                 let status = $('#save-status');
                 let color = $('#qr_code_color').val();
@@ -343,11 +277,7 @@ function show_qr_code_in_editor($post)
                         color: color,
                         nonce: '<?php echo wp_create_nonce('qr_color_nonce'); ?>'
                     },
-<<<<<<< Updated upstream
-                    success: function(response) {
-=======
                     success: function (response) {
->>>>>>> Stashed changes
                         if (response.success) {
                             status.text('✓ Đã lưu màu').show();
                             setTimeout(() => status.fadeOut(), 2000);
@@ -356,11 +286,7 @@ function show_qr_code_in_editor($post)
                         }
                         button.prop('disabled', false).text('Lưu màu QR');
                     },
-<<<<<<< Updated upstream
-                    error: function() {
-=======
                     error: function () {
->>>>>>> Stashed changes
                         status.text('✗ Lỗi').css('color', '#dc3232').show();
                         button.prop('disabled', false).text('Lưu màu QR');
                     }
@@ -368,11 +294,7 @@ function show_qr_code_in_editor($post)
             });
 
             // Download QR as PNG
-<<<<<<< Updated upstream
-            $('#download_qr').on('click', function() {
-=======
             $('#download_qr').on('click', function () {
->>>>>>> Stashed changes
                 if (qrCode) {
                     qrCode.download({
                         name: 'qr_code_<?php echo $post_id; ?>',
@@ -567,8 +489,6 @@ add_action('admin_enqueue_scripts', function () {
     );
 });
 
-<<<<<<< Updated upstream
-=======
 
 add_action('admin_footer', function () {
     $screen = get_current_screen();
@@ -594,5 +514,4 @@ add_action('admin_footer', function () {
 });
 
 
->>>>>>> Stashed changes
 ?>
