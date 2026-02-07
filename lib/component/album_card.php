@@ -1,17 +1,29 @@
 <?php
 
-$taxonomy_slug_album = '';
-$terms_album = wp_get_post_terms($post->ID, 'couple_albums', '');
-if (!empty($terms_album) && !is_wp_error($terms_album)) {
-    $taxonomy_slug_album = $terms_album[0]->slug;
+// $taxonomy_slug_album = '';
+// $terms_album = wp_get_post_terms($post->ID, 'couple_albums', '');
+// if (!empty($terms_album) && !is_wp_error($terms_album)) {
+//     $taxonomy_slug_album = $terms_album[0]->slug;
+// }
+
+$taxonomy_slug_album_theme1 = '';
+$terms_album_theme1 = wp_get_post_terms($post->ID, 'couple_albums_theme1', '');
+if (!empty($terms_album_theme1) && !is_wp_error($terms_album_theme1)) {
+    $taxonomy_slug_album_theme1 = $terms_album_theme1[0]->slug;
+}
+
+$taxonomy_slug_album_theme2 = '';
+$terms_album_theme2 = wp_get_post_terms($post->ID, 'couple_albums_theme2', '');
+if (!empty($terms_album_theme2) && !is_wp_error($terms_album_theme2)) {
+    $taxonomy_slug_album_theme2 = $terms_album_theme2[0]->slug;
 }
 
 $colorsvg = "#fea7af";
 
-if ($taxonomy_slug_album === "album3") {
+if ($taxonomy_slug_album_theme1 === "album3") {
     $colorsvg = "#eee";
 }
-if ($taxonomy_slug_album === "album4") {
+if ($taxonomy_slug_album_theme2 === "album4") {
     $colorsvg = "#fff";
 }
 
@@ -23,7 +35,7 @@ $svg = '<div class="svg-container">
             </div>';
 ?>
 
-<?php if ($taxonomy_slug_album === "album1"): ?>
+<?php if ($taxonomy_slug_album_theme1 === "album1"): ?>
     <?php
     $imagesAlb1 = get_field('alb1_loop');
     ?>
@@ -171,7 +183,7 @@ $svg = '<div class="svg-container">
     </div>
 <?php endif ?>
 
-<?php if ($taxonomy_slug_album === "album2"): ?>
+<?php if ($taxonomy_slug_album_theme1 === "album2"): ?>
     <?php
     $imagesAlb2 = get_field('alb2_loop');
     ?>
@@ -313,7 +325,7 @@ $svg = '<div class="svg-container">
     </div>
 <?php endif ?>
 
-<?php if ($taxonomy_slug_album === "album3"): ?>
+<?php if ($taxonomy_slug_album_theme1 === "album3"): ?>
     <?php
     $imagesAlb3 = get_field('alb3_loop');
     ?>
@@ -450,7 +462,7 @@ $svg = '<div class="svg-container">
     </div>
 <?php endif ?>
 
-<?php if ($taxonomy_slug_album === "album4"): ?>
+<?php if ($taxonomy_slug_album_theme2 === "album4"): ?>
     <?php
     $imagesAlb3 = get_field('alb4_loop');
     ?>

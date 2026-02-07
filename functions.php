@@ -94,7 +94,7 @@ function contact_btn()
 {
     $phone = preg_replace('/[^0-9+]/', '', get_field('phone_stk', 'option'));
     $zalo = get_field('zalo_stk', 'option');
-    ?>
+?>
     <div id="button-contact-vr">
         <div id="zalo-vr" class="button-contact">
             <div class="phone-vr">
@@ -119,7 +119,7 @@ function contact_btn()
     </div>
 
 
-    <?php
+<?php
 }
 // END Create Shortcode
 
@@ -135,7 +135,7 @@ function show_qr_code_in_editor($post)
     $short_url = home_url('/c/' . $post_id);
     $saved_color = get_post_meta($post_id, '_qr_code_color', true);
     $qr_color = $saved_color ? $saved_color : '#8B2E2E';
-    ?>
+?>
     <div id="qr-code-section"
         style="margin: 20px 0; padding: 20px; border: 1px solid #ddd; background: #f9f9f9; border-radius: 8px;">
         <h3 style="margin-top: 0;">QR Code</h3>
@@ -196,7 +196,7 @@ function show_qr_code_in_editor($post)
     <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
 
     <script>
-        jQuery(document).ready(function ($) {
+        jQuery(document).ready(function($) {
             let qrCode;
 
             function generateQR(color) {
@@ -238,13 +238,13 @@ function show_qr_code_in_editor($post)
             generateQR("<?php echo $qr_color; ?>");
 
             // Color picker events - Auto regenerate khi đổi màu
-            $('#qr_code_color').on('input', function () {
+            $('#qr_code_color').on('input', function() {
                 let color = $(this).val();
                 $('#qr_color_hex').val(color);
                 generateQR(color);
             });
 
-            $('#qr_color_hex').on('input', function () {
+            $('#qr_color_hex').on('input', function() {
                 let color = $(this).val();
                 if (/^#[0-9A-F]{6}$/i.test(color)) {
                     $('#qr_code_color').val(color);
@@ -252,7 +252,7 @@ function show_qr_code_in_editor($post)
                 }
             });
 
-            $('.color-preset').on('click', function () {
+            $('.color-preset').on('click', function() {
                 let color = $(this).data('color');
                 $('#qr_code_color').val(color);
                 $('#qr_color_hex').val(color);
@@ -260,7 +260,7 @@ function show_qr_code_in_editor($post)
             });
 
             // Lưu màu vào database
-            $('#save_qr_color').on('click', function () {
+            $('#save_qr_color').on('click', function() {
                 let button = $(this);
                 let status = $('#save-status');
                 let color = $('#qr_code_color').val();
@@ -277,7 +277,7 @@ function show_qr_code_in_editor($post)
                         color: color,
                         nonce: '<?php echo wp_create_nonce('qr_color_nonce'); ?>'
                     },
-                    success: function (response) {
+                    success: function(response) {
                         if (response.success) {
                             status.text('✓ Đã lưu màu').show();
                             setTimeout(() => status.fadeOut(), 2000);
@@ -286,7 +286,7 @@ function show_qr_code_in_editor($post)
                         }
                         button.prop('disabled', false).text('Lưu màu QR');
                     },
-                    error: function () {
+                    error: function() {
                         status.text('✗ Lỗi').css('color', '#dc3232').show();
                         button.prop('disabled', false).text('Lưu màu QR');
                     }
@@ -294,7 +294,7 @@ function show_qr_code_in_editor($post)
             });
 
             // Download QR as PNG
-            $('#download_qr').on('click', function () {
+            $('#download_qr').on('click', function() {
                 if (qrCode) {
                     qrCode.download({
                         name: 'qr_code_<?php echo $post_id; ?>',
@@ -481,11 +481,21 @@ add_action('pre_get_posts', 'set_query_parameters');
 
 // CSS ADMIN
 add_action('admin_enqueue_scripts', function () {
+    // Enqueue CSS cho admin
     wp_enqueue_style(
         'acf-admin-style',
         get_stylesheet_directory_uri() . '/adminwp.css',
         [],
         '1.0'
+    );
+
+    // Enqueue JS cho admin
+    wp_enqueue_script(
+        'couple-taxonomy-toggle',
+        get_stylesheet_directory_uri() . '/adminwp-js.js',
+        ['jquery'],
+        '1.0',
+        true
     );
 });
 
@@ -494,23 +504,46 @@ add_action('admin_footer', function () {
     $screen = get_current_screen();
     if (!$screen || $screen->post_type !== 'couple_card')
         return;
-    ?>
+?>
     <script>
-        (function ($) {
-            const taxonomy = 'couple_albums';
+        (function($) {
+
+            const couple_albums = 'couple_albums';
 
             $(document).on(
                 'change',
-                '#taxonomy-' + taxonomy + ' input[type="checkbox"]',
-                function () {
-                    $('#taxonomy-' + taxonomy + ' input[type="checkbox"]')
+                '#taxonomy-' + couple_albums + ' input[type="checkbox"]',
+                function() {
+                    $('#taxonomy-' + couple_albums + ' input[type="checkbox"]')
+                        .not(this)
+                        .prop('checked', false);
+                }
+            );
+
+            const couple_albums_theme1 = 'couple_albums_theme1';
+            $(document).on(
+                'change',
+                '#taxonomy-' + couple_albums_theme1 + ' input[type="checkbox"]',
+                function() {
+                    $('#taxonomy-' + couple_albums_theme1 + ' input[type="checkbox"]')
+                        .not(this)
+                        .prop('checked', false);
+                }
+            );
+
+            const couple_albums_theme2 = 'couple_albums_theme2';
+            $(document).on(
+                'change',
+                '#taxonomy-' + couple_albums_theme2 + ' input[type="checkbox"]',
+                function() {
+                    $('#taxonomy-' + couple_albums_theme2 + ' input[type="checkbox"]')
                         .not(this)
                         .prop('checked', false);
                 }
             );
         })(jQuery);
     </script>
-    <?php
+<?php
 });
 
 

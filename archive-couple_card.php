@@ -54,13 +54,13 @@
 
                                 // Dịch tên tháng ra tiếng Việt
                                 $thang = 'Tháng ' . $month;
-                                ?>
+                        ?>
                                 <a href="<?php echo esc_url($url); ?>" class="item">
                                     <span class="month"><?php echo esc_html($thang); ?></span>
                                     <span class="year"><?php echo esc_html($year); ?></span>
                                     <span class="count"><?php echo esc_html($count); ?></span>
                                 </a>
-                                <?php
+                        <?php
                             }
                         } else {
                             echo '<p>Chưa có bài viết nào.</p>';
@@ -109,10 +109,15 @@
                             }
 
                             // Albums
-                            $cate_name_albums = '';
-                            $terms_albums = wp_get_post_terms($post->ID, 'couple_albums', array());
+                            $cate_name_albums_theme1 = '';
+                            $terms_albums = wp_get_post_terms($post->ID, 'couple_albums_theme1', array());
                             if (!empty($terms_albums) && !is_wp_error($terms_albums)) {
-                                $cate_name_albums = $terms_albums[0]->name;
+                                $cate_name_albums_theme1 = $terms_albums[0]->name;
+                            }
+                            $cate_name_albums_theme2 = '';
+                            $terms_albums = wp_get_post_terms($post->ID, 'couple_albums_theme2', array());
+                            if (!empty($terms_albums) && !is_wp_error($terms_albums)) {
+                                $cate_name_albums_theme2 = $terms_albums[0]->name;
                             }
                             // Albums Background
                             $cate_name_albums_bg = '';
@@ -130,16 +135,16 @@
 
                             // Mp3
                             $cate_name_mp3 = get_field('id_music');
-                            ?>
+                    ?>
                             <div class="item">
                                 <div class="item-header">
                                     <div class="title"><?php the_title(); ?></div>
                                     <div class="date"><?php echo get_the_date('Y.m.d'); ?></div>
                                 </div>
-                                <?php if(get_field('otp_number')) : ?>
-                                <div class="itm-otp-code">
-                                    Password: <?php echo get_field('otp_number') ?>
-                                </div>
+                                <?php if (get_field('otp_number')) : ?>
+                                    <div class="itm-otp-code">
+                                        Password: <?php echo get_field('otp_number') ?>
+                                    </div>
                                 <?php endif; ?>
                                 <ul class="details">
                                     <?php if ($cate_name_bg): ?>
@@ -148,8 +153,11 @@
                                     <?php if ($cate_name_counterday): ?>
                                         <li><?php echo esc_html($cate_name_counterday); ?></li>
                                     <?php endif; ?>
-                                    <?php if ($cate_name_albums): ?>
-                                        <li><?php echo esc_html($cate_name_albums); ?></li>
+                                    <?php if ($cate_name_albums_theme1): ?>
+                                        <li><?php echo esc_html($cate_name_albums_theme1); ?></li>
+                                    <?php endif; ?>
+                                    <?php if ($cate_name_albums_theme2): ?>
+                                        <li><?php echo esc_html($cate_name_albums_theme2); ?></li>
                                     <?php endif; ?>
                                     <?php if ($cate_name_albums_bg): ?>
                                         <li><?php echo esc_html($cate_name_albums_bg); ?></li>
@@ -165,7 +173,7 @@
                                     <a href="<?php the_permalink() ?>">→ Xem chi tiết</a>
                                 </div>
                             </div>
-                            <?php
+                    <?php
                         endforeach;
                     else:
                         echo '<p>Không tìm thấy</p>';

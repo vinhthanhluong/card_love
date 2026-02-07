@@ -50,7 +50,9 @@ function prefix_register_all() {
 				'couple_cate',
 				'couple_counterdays',
 				'couple_mp3',
-				'couple_albums',
+				// 'couple_albums',
+				'couple_albums_theme1',
+				'couple_albums_theme2',
 				'couple_background_album',
 			),
 			'has_archive' => true,
@@ -97,20 +99,96 @@ function prefix_register_all() {
 	);
 
 	// FOR ALBUMS
-	$tax_name = "Albums";
-	$tax_singular_name = "Albums";
-	$tax_menu_name = "Albums";
-	$tax_all_items = "All Albums";
-	$tax_edit_item = "Edit Albums";
-	$tax_view_item = "View Albums";
-	$tax_update_item = "Update Albums";
-	$tax_add_new_item = "Add New Albums";
+	// $tax_name = "Albums";
+	// $tax_singular_name = "Albums";
+	// $tax_menu_name = "Albums";
+	// $tax_all_items = "All Albums";
+	// $tax_edit_item = "Edit Albums";
+	// $tax_view_item = "View Albums";
+	// $tax_update_item = "Update Albums";
+	// $tax_add_new_item = "Add New Albums";
+	// $tax_parent_item = "Parent Category";
+	// $tax_parent_item_colon = "Parent Category:";
+	// $tax_search_items = "Search Albums";
+
+	// register_taxonomy(
+	// 	'couple_albums',
+	// 	array(
+	// 		'couple_card'
+	// 	),
+	// 	array(
+	// 		'labels'            => array(
+	// 			'name'              => _x($tax_name, 'couple_card', 'text_domain'),
+	// 			'singular_name'     => _x($tax_singular_name, 'couple_card', 'text_domain'),
+	// 			'menu_name'         => __($tax_menu_name, 'text_domain'),
+	// 			'all_items'         => __($tax_all_items, 'text_domain'),
+	// 			'edit_item'         => __($tax_edit_item, 'text_domain'),
+	// 			'view_item'         => __($tax_view_item, 'text_domain'),
+	// 			'update_item'       => __($tax_update_item, 'text_domain'),
+	// 			'add_new_item'      => __($tax_add_new_item, 'text_domain'),
+	// 			'parent_item'       => __($tax_parent_item, 'text_domain'),
+	// 			'parent_item_colon' => __($tax_parent_item_colon, 'text_domain'),
+	// 			'search_items'      => __($tax_search_items, 'text_domain')
+	// 		),
+	// 		'show_admin_column' => true,
+	// 		'hierarchical'      => true,
+	// 		'show_in_rest'=> true
+	// 	)
+	// );
+
+	// FOR ALBUMS Theme 1
+	$tax_name = "Albums Theme 1";
+	$tax_singular_name = "Albums Theme 1";
+	$tax_menu_name = "Albums Theme 1";
+	$tax_all_items = "All Albums Theme 1";
+	$tax_edit_item = "Edit Albums Theme 1";
+	$tax_view_item = "View Albums Theme 1";
+	$tax_update_item = "Update Albums Theme 1";
+	$tax_add_new_item = "Add New Albums Theme 1";
 	$tax_parent_item = "Parent Category";
 	$tax_parent_item_colon = "Parent Category:";
-	$tax_search_items = "Search Albums";
+	$tax_search_items = "Search Albums Theme 1";
 
 	register_taxonomy(
-		'couple_albums',
+		'couple_albums_theme1',
+		array(
+			'couple_card'
+		),
+		array(
+			'labels'            => array(
+				'name'              => _x($tax_name, 'couple_card', 'text_domain'),
+				'singular_name'     => _x($tax_singular_name, 'couple_card', 'text_domain'),
+				'menu_name'         => __($tax_menu_name, 'text_domain'),
+				'all_items'         => __($tax_all_items, 'text_domain'),
+				'edit_item'         => __($tax_edit_item, 'text_domain'),
+				'view_item'         => __($tax_view_item, 'text_domain'),
+				'update_item'       => __($tax_update_item, 'text_domain'),
+				'add_new_item'      => __($tax_add_new_item, 'text_domain'),
+				'parent_item'       => __($tax_parent_item, 'text_domain'),
+				'parent_item_colon' => __($tax_parent_item_colon, 'text_domain'),
+				'search_items'      => __($tax_search_items, 'text_domain')
+			),
+			'show_admin_column' => true,
+			'hierarchical'      => true,
+			'show_in_rest'=> true
+		)
+	);
+
+	// FOR ALBUMS Theme 2
+	$tax_name = "Albums Theme 2";
+	$tax_singular_name = "Albums Theme 2";
+	$tax_menu_name = "Albums Theme 2";
+	$tax_all_items = "All Albums Theme 2";
+	$tax_edit_item = "Edit Albums Theme 2";
+	$tax_view_item = "View Albums Theme 2";
+	$tax_update_item = "Update Albums Theme 2";
+	$tax_add_new_item = "Add New Albums Theme 2";
+	$tax_parent_item = "Parent Category";
+	$tax_parent_item_colon = "Parent Category:";
+	$tax_search_items = "Search Albums Theme 2";
+
+	register_taxonomy(
+		'couple_albums_theme2',
 		array(
 			'couple_card'
 		),
