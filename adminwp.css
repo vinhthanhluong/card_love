@@ -1,6 +1,5 @@
-.acf-postbox:has(.acf-common){
-    background-color: #90cef5;
-    
+.acf-postbox:has(.acf-common) .postbox-header h2{
+    color: red;
 }
 
 .acf-postbox:has(.acf-common) .acf-fields{
