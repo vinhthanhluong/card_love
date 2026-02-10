@@ -466,7 +466,7 @@ address {
 }
 :root {
   --content-width: 768px;
-  --main-cl: #fe4080;
+  --main-cl: #f75673;
   --b-cl: #000;
   --w-cl: #fff;
   --lh: 1.5em;
@@ -749,7 +749,7 @@ body::-webkit-scrollbar-track {
   justify-content: center;
   background-color: #fff;
   cursor: pointer;
-  background: linear-gradient(135deg, rgba(255, 105, 108, 0.55), rgba(255, 20, 66, 0.73));
+  background: linear-gradient(135deg, rgb(235, 122, 125), rgb(255, 20, 66));
   border: none;
   transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
@@ -990,7 +990,7 @@ body::-webkit-scrollbar-track {
   transform: rotate(90deg);
 }
 .ilove .ilove-male .ilove-age {
-  background: linear-gradient(135deg, #15a9e2, rgba(21, 98, 226, 0.4));
+  background: linear-gradient(135deg, #15a9e2, rgb(21, 98, 226));
 }
 .ilove .ilove-male .ilove-age::before {
   background-image: url("../images/ic-male.png");
@@ -1000,7 +1000,7 @@ body::-webkit-scrollbar-track {
   transform: scale(-1) rotate(90deg);
 }
 .ilove .ilove-female .ilove-age {
-  background: linear-gradient(135deg, #8f6ff7, rgba(180, 111, 247, 0.5));
+  background: linear-gradient(135deg, #8f6ff7, rgb(180, 111, 247));
 }
 .ilove .ilove-female .ilove-age::before {
   background-image: url("../images/ic-female.png");
@@ -1073,7 +1073,7 @@ body::-webkit-scrollbar-track {
   font-size: 12px;
   line-height: 1;
   color: #fff;
-  background: linear-gradient(315deg, rgba(255, 105, 105, 0.55), rgba(255, 20, 66, 0.73));
+  background: linear-gradient(135deg, rgb(235, 122, 125), rgb(255, 20, 66));
   border-radius: 100px;
   padding: 6px 8px 6px 26px;
   position: relative;
@@ -1290,7 +1290,7 @@ body::-webkit-scrollbar-track {
   font-weight: 600;
   margin: 0 auto;
   color: #fff;
-  background: linear-gradient(135deg, rgb(247, 86, 115), rgb(193, 154, 225));
+  background: linear-gradient(135deg, rgb(235, 122, 125), rgb(255, 20, 66));
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
   background-size: 200% 200%;
   border: none;
@@ -4839,7 +4839,7 @@ body::-webkit-scrollbar-track {
 .imess-slider .imess-ftxt {
   text-align: center;
   font-size: 30px;
-  color: #b71518;
+  color: var(--main-cl);
   font-family: var(--font-allura);
   line-height: 1.2;
   position: relative;
@@ -5100,8 +5100,7 @@ body::-webkit-scrollbar-track {
   visibility: hidden;
   z-index: 9999;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  background: #1a0a1e;
-  backdrop-filter: blur(10px);
+  background: url(../images/message/bg2.jpg) repeat;
 }
 
 .music-wrapper::before {
@@ -5141,7 +5140,7 @@ body::-webkit-scrollbar-track {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 15px 30px;
   position: relative;
   z-index: 1;
 }
@@ -5231,12 +5230,12 @@ body::-webkit-scrollbar-track {
   }
 }
 .custom-player {
-  background: rgba(35, 20, 45, 0.85);
+  background: #fff;
   backdrop-filter: blur(30px);
   border-radius: 35px;
   padding: 50px 35px 40px;
   width: 100%;
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 107, 157, 0.1);
+  box-shadow: 0 0px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 107, 157, 0.1);
   position: relative;
   overflow: hidden;
   animation: fadeIn 0.6s ease-out;
@@ -5350,7 +5349,7 @@ body::-webkit-scrollbar-track {
 
 .music-artist {
   font-size: 15px;
-  color: #d4a5d8;
+  color: var(--main-cl);
   margin-bottom: 30px;
   font-weight: 500;
 }
@@ -5517,7 +5516,7 @@ body::-webkit-scrollbar-track {
   height: 65px;
   min-width: 65px;
   border-radius: 50%;
-  background: #ff6b9d;
+  background: linear-gradient(135deg, rgb(235, 122, 125), rgb(255, 20, 66));
   border: none;
   display: flex;
   align-items: center;
@@ -5549,43 +5548,41 @@ body::-webkit-scrollbar-track {
 
 .btn-back {
   position: absolute;
-  top: 25px;
-  left: 25px;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: rgba(255, 107, 157, 0.12);
-  border: 1px solid rgba(255, 107, 157, 0.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  top: 15px;
+  left: 15px;
+  text-transform: capitalize;
+  width: fit-content;
+  padding: 0 5px 10px 20px;
+  font-weight: 600;
+  border-radius: 100px;
+  font-size: 14px;
   z-index: 10;
-  color: #ff8db3;
+  opacity: 0.9;
+  cursor: pointer;
 }
-
-.btn-back:hover {
-  transform: scale(1.1);
-  background: rgba(255, 107, 157, 0.2);
-  box-shadow: 0 6px 20px rgba(255, 107, 157, 0.3);
-  border-color: rgba(255, 107, 157, 0.4);
+.btn-back::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 0;
+  width: 14px;
+  aspect-ratio: 1;
+  background: url("../images/ic-back.png") center/contain no-repeat;
+  filter: brightness(0) invert(0);
 }
-
-.btn-back:active {
-  transform: scale(0.95);
-}
-
-.btn-back svg {
-  width: 24px;
-  height: 24px;
+.btn-back:after {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  right: -5px;
+  bottom: -5px;
 }
 
 @media screen and (max-width: 480px) {
   .music-wrapper .box-music {
     max-width: 100%;
-    padding: 15px;
+    padding: 15px 30px;
   }
   .custom-player {
     padding: 40px 28px 35px;
@@ -5611,16 +5608,6 @@ body::-webkit-scrollbar-track {
   .control-btn {
     width: 42px;
     height: 42px;
-  }
-  .btn-back {
-    top: 18px;
-    left: 18px;
-    width: 44px;
-    height: 44px;
-  }
-  .btn-back svg {
-    width: 22px;
-    height: 22px;
   }
   .progress-bar-wrapper {
     height: 45px;
@@ -5651,6 +5638,7 @@ body::-webkit-scrollbar-track {
   top: 0;
   left: 0;
   right: 0;
+  bottom: 0;
   width: var(--content-width);
   max-width: 100%;
   margin: 0 auto;
@@ -5658,12 +5646,12 @@ body::-webkit-scrollbar-track {
   visibility: hidden;
   z-index: 9999;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  background: #1a0a1e;
-  backdrop-filter: blur(10px);
+  background: url(../images/message/bg2.jpg) repeat;
 }
 
 .record-scroll {
   overflow-y: scroll;
+  height: 100%;
 }
 .record-scroll::-webkit-scrollbar {
   width: 0px;
@@ -5709,7 +5697,6 @@ body::-webkit-scrollbar-track {
   margin: 0 auto;
   width: 100%;
   max-width: 500px;
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -5729,7 +5716,7 @@ body::-webkit-scrollbar-track {
 
 .heart-deco {
   position: absolute;
-  opacity: 0.08;
+  opacity: 0.2;
   pointer-events: none;
 }
 
@@ -5748,7 +5735,6 @@ body::-webkit-scrollbar-track {
   width: 120px;
   height: 120px;
   color: #c56cf0;
-  opacity: 0.06;
   animation: floatHeart2 8s ease-in-out infinite;
 }
 
@@ -5758,7 +5744,6 @@ body::-webkit-scrollbar-track {
   width: 60px;
   height: 60px;
   color: #ff6b9d;
-  opacity: 0.05;
   animation: floatHeart3 7s ease-in-out infinite;
 }
 
@@ -5768,7 +5753,6 @@ body::-webkit-scrollbar-track {
   width: 200px;
   height: 200px;
   color: #c56cf0;
-  opacity: 0.07;
   animation: floatHeart4 5s ease-in-out infinite;
 }
 
@@ -5805,14 +5789,12 @@ body::-webkit-scrollbar-track {
   }
 }
 .record-card {
-  background: rgba(35, 20, 45, 0.85);
-  backdrop-filter: blur(30px);
-  border-radius: 30px;
+  background: #fff;
+  border-radius: 20px;
   padding: 35px 30px;
   width: 100%;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 107, 157, 0.1);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
   position: relative;
-  overflow: hidden;
   animation: slideIn 0.6s ease-out;
 }
 
@@ -5847,14 +5829,14 @@ body::-webkit-scrollbar-track {
 .record-title {
   font-size: 18px;
   font-weight: 700;
-  color: #fff;
+  color: #333;
   margin-bottom: 8px;
   text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
 }
 
 .record-subtitle {
   font-size: 14px;
-  color: #d4a5d8;
+  color: var(--main-cl);
   font-weight: 500;
 }
 
@@ -5896,7 +5878,7 @@ body::-webkit-scrollbar-track {
   height: 45px;
   min-width: 45px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #ff6b9d, #c56cf0);
+  background: linear-gradient(135deg, rgb(235, 122, 125), rgb(255, 20, 66));
   border: none;
   cursor: pointer;
   display: flex;
@@ -6038,41 +6020,6 @@ body::-webkit-scrollbar-track {
 /* Hide default audio */
 audio {
   display: none;
-}
-
-.btn-back {
-  position: absolute;
-  top: 25px;
-  left: 25px;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: rgba(255, 107, 157, 0.12);
-  border: 1px solid rgba(255, 107, 157, 0.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-  z-index: 10;
-  color: #ff8db3;
-}
-
-.btn-back:hover {
-  transform: scale(1.1);
-  background: rgba(255, 107, 157, 0.2);
-  box-shadow: 0 6px 20px rgba(255, 107, 157, 0.3);
-  border-color: rgba(255, 107, 157, 0.4);
-}
-
-.btn-back:active {
-  transform: scale(0.95);
-}
-
-.btn-back svg {
-  width: 24px;
-  height: 24px;
 }
 
 /* Love Transfer Animation */
@@ -6279,16 +6226,6 @@ audio {
   .record-avatar {
     width: 70px;
     height: 70px;
-  }
-  .btn-back {
-    top: 18px;
-    left: 18px;
-    width: 44px;
-    height: 44px;
-  }
-  .btn-back svg {
-    width: 22px;
-    height: 22px;
   }
   audio {
     display: none;

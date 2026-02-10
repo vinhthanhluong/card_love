@@ -48,8 +48,8 @@ if (jQuery(".music-wrapper").length > 0) {
         if (isPlayed) {
           // Gradient hồng-tím cho phần đã phát
           var gradient = ctx.createLinearGradient(x, y, x, y + normalizedHeight);
-          gradient.addColorStop(0, '#ff6b9d');
-          gradient.addColorStop(1, '#c56cf0');
+          gradient.addColorStop(0, '#EB7A7D');
+          gradient.addColorStop(1, '#FF1442');
           ctx.fillStyle = gradient;
         } else {
           // Màu mờ cho phần chưa phát

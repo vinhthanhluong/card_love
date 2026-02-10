@@ -33,7 +33,7 @@
       }
     }
 
-    .slick-arrow{
+    .slick-arrow {
       opacity: 0;
     }
   }
@@ -253,7 +253,7 @@
     }
 
     .ilove-age {
-      background: linear-gradient(135deg, #15a9e2, rgb(21 98 226 / 40%));
+      background: linear-gradient(135deg, #15a9e2, rgb(21 98 226));
 
       &::before {
         background-image: url("../images/ic-male.png");
@@ -270,7 +270,7 @@
     }
 
     .ilove-age {
-      background: linear-gradient(135deg, #8f6ff7, rgba(180, 111, 247, 0.5));
+      background: linear-gradient(135deg, #8f6ff7, rgba(180, 111, 247));
 
       &::before {
         background-image: url("../images/ic-female.png");
@@ -355,7 +355,7 @@
     font-size: 12px;
     line-height: 1;
     color: #fff;
-    background: linear-gradient(315deg, rgb(255 105 105 / 55%), rgba(255, 20, 66, 0.73));
+    background: linear-gradient(135deg, rgb(235 122 125), rgb(255 20 66));
     border-radius: 100px;
     padding: 6px 8px 6px 26px;
     position: relative;

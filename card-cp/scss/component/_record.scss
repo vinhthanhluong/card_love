@@ -5,6 +5,7 @@
     top: 0;
     left: 0;
     right: 0;
+    bottom: 0;
     width: var(--content-width);
     max-width: 100%;
     margin: 0 auto;
@@ -12,13 +13,13 @@
     visibility: hidden;
     z-index: 9999;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    background: #1a0a1e;
-    backdrop-filter: blur(10px);
+    background: url(../images/message/bg2.jpg) repeat;
 }
 
 .record-scroll {
     overflow-y: scroll;
     @include scrollbar-v();
+    height: 100%;
 }
 
 .record-wrapper::before {
@@ -54,7 +55,6 @@
     margin: 0 auto;
     width: 100%;
     max-width: 500px;
-    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -74,7 +74,7 @@
 
 .heart-deco {
     position: absolute;
-    opacity: 0.08;
+    opacity: 0.2;
     pointer-events: none;
 }
 
@@ -93,7 +93,6 @@
     width: 120px;
     height: 120px;
     color: #c56cf0;
-    opacity: 0.06;
     animation: floatHeart2 8s ease-in-out infinite;
 }
 
@@ -103,7 +102,6 @@
     width: 60px;
     height: 60px;
     color: #ff6b9d;
-    opacity: 0.05;
     animation: floatHeart3 7s ease-in-out infinite;
 }
 
@@ -113,7 +111,6 @@
     width: 200px;
     height: 200px;
     color: #c56cf0;
-    opacity: 0.07;
     animation: floatHeart4 5s ease-in-out infinite;
 }
 
@@ -166,14 +163,12 @@
 }
 
 .record-card {
-    background: rgba(35, 20, 45, 0.85);
-    backdrop-filter: blur(30px);
-    border-radius: 30px;
+    background: #fff;
+    border-radius: 20px;
     padding: 35px 30px;
     width: 100%;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 107, 157, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
     position: relative;
-    overflow: hidden;
     animation: slideIn 0.6s ease-out;
 }
 
@@ -210,14 +205,14 @@
 .record-title {
     font-size: 18px;
     font-weight: 700;
-    color: #fff;
+    color: #333;
     margin-bottom: 8px;
     text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
 }
 
 .record-subtitle {
     font-size: 14px;
-    color: #d4a5d8;
+    color: var(--main-cl);
     font-weight: 500;
 }
 
@@ -259,7 +254,7 @@
     height: 45px;
     min-width: 45px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #ff6b9d, #c56cf0);
+    background: linear-gradient(135deg, rgb(235, 122, 125), rgb(255, 20, 66));
     border: none;
     cursor: pointer;
     display: flex;
@@ -403,40 +398,39 @@ audio {
     display: none;
 }
 
-.btn-back {
-    position: absolute;
-    top: 25px;
-    left: 25px;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: rgba(255, 107, 157, 0.12);
-    border: 1px solid rgba(255, 107, 157, 0.25);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    z-index: 10;
-    color: #ff8db3;
-}
+// .btn-back {
+//     position: absolute;
+//     top: 25px;
+//     left: 25px;
+//     width: 48px;
+//     height: 48px;
+//     border-radius: 50%;
+//     background: linear-gradient(135deg, rgb(235, 122, 125), rgb(255, 20, 66));
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     cursor: pointer;
+//     transition: all 0.3s ease;
+//     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+//     z-index: 10;
+//     color: #fff;
+// }
 
-.btn-back:hover {
-    transform: scale(1.1);
-    background: rgba(255, 107, 157, 0.2);
-    box-shadow: 0 6px 20px rgba(255, 107, 157, 0.3);
-    border-color: rgba(255, 107, 157, 0.4);
-}
+// .btn-back:hover {
+//     transform: scale(1.1);
+//     background: rgba(255, 107, 157, 0.2);
+//     box-shadow: 0 6px 20px rgba(255, 107, 157, 0.3);
+//     border-color: rgba(255, 107, 157, 0.4);
+// }
 
-.btn-back:active {
-    transform: scale(0.95);
-}
+// .btn-back:active {
+//     transform: scale(0.95);
+// }
 
-.btn-back svg {
-    width: 24px;
-    height: 24px;
-}
+// .btn-back svg {
+//     width: 24px;
+//     height: 24px;
+// }
 
 /* Love Transfer Animation */
 .love-transfer {
@@ -668,18 +662,6 @@ audio {
     .record-avatar {
         width: 70px;
         height: 70px;
-    }
-
-    .btn-back {
-        top: 18px;
-        left: 18px;
-        width: 44px;
-        height: 44px;
-    }
-
-    .btn-back svg {
-        width: 22px;
-        height: 22px;
     }
 
     audio {
