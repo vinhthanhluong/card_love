@@ -2,13 +2,12 @@
 
 .record-wrapper {
     position: fixed;
+    height: 100vh;
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
     width: var(--content-width);
     max-width: 100%;
-    margin: 0 auto;
     opacity: 0;
     visibility: hidden;
     z-index: 9999;
@@ -17,9 +16,9 @@
 }
 
 .record-scroll {
-    overflow-y: scroll;
-    @include scrollbar-v();
+    overflow: auto;
     height: 100%;
+    @include scrollbar-v();
 }
 
 .record-wrapper::before {
@@ -52,17 +51,10 @@
 }
 
 .popup-record {
-    margin: 0 auto;
-    width: 100%;
-    max-width: 500px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    box-sizing: border-box;
     padding: 40px 20px;
     position: relative;
     z-index: 1;
-    gap: 30px;
 }
 
 .decorative-hearts {
@@ -92,7 +84,7 @@
     right: 10%;
     width: 120px;
     height: 120px;
-    color: #c56cf0;
+    color: #ff6b9d;
     animation: floatHeart2 8s ease-in-out infinite;
 }
 
@@ -106,11 +98,11 @@
 }
 
 .heart-4 {
-    bottom: -10%;
+    bottom: 0;
     left: -12%;
     width: 200px;
     height: 200px;
-    color: #c56cf0;
+    color: #ff6b9d;
     animation: floatHeart4 5s ease-in-out infinite;
 }
 
@@ -163,6 +155,8 @@
 }
 
 .record-card {
+    margin: 0 auto;
+    max-width: 500px;
     background: #fff;
     border-radius: 20px;
     padding: 35px 30px;
@@ -290,7 +284,7 @@
     display: flex;
     justify-content: space-between;
     font-size: 11px;
-    color: #d4a5d8;
+    color: var(--main-cl);
     font-weight: 500;
 }
 
@@ -311,7 +305,7 @@
 
 .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, #ff6b9d, #c56cf0);
+    background: var(--main-cl);
     border-radius: 10px;
     width: 0%;
     transition: width 0.1s linear;
@@ -335,7 +329,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    min-width: 100px;
+    min-width: 32px;
 }
 
 .volume-btn {
@@ -374,7 +368,7 @@
 
 .volume-fill {
     height: 100%;
-    background: linear-gradient(90deg, #ff6b9d, #c56cf0);
+    background: var(--main-cl);
     border-radius: 10px;
     width: 100%;
     position: relative;
@@ -398,40 +392,6 @@ audio {
     display: none;
 }
 
-// .btn-back {
-//     position: absolute;
-//     top: 25px;
-//     left: 25px;
-//     width: 48px;
-//     height: 48px;
-//     border-radius: 50%;
-//     background: linear-gradient(135deg, rgb(235, 122, 125), rgb(255, 20, 66));
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     cursor: pointer;
-//     transition: all 0.3s ease;
-//     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-//     z-index: 10;
-//     color: #fff;
-// }
-
-// .btn-back:hover {
-//     transform: scale(1.1);
-//     background: rgba(255, 107, 157, 0.2);
-//     box-shadow: 0 6px 20px rgba(255, 107, 157, 0.3);
-//     border-color: rgba(255, 107, 157, 0.4);
-// }
-
-// .btn-back:active {
-//     transform: scale(0.95);
-// }
-
-// .btn-back svg {
-//     width: 24px;
-//     height: 24px;
-// }
-
 /* Love Transfer Animation */
 .love-transfer {
     width: 100%;
@@ -447,7 +407,7 @@ audio {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #ff6b9d 0%, #c56cf0 100%);
+    background: #ff6b9d;
     position: relative;
     box-shadow: 0 4px 15px rgba(255, 107, 157, 0.4);
 }
@@ -635,108 +595,5 @@ audio {
     50% {
         opacity: 1;
         transform: scale(1);
-    }
-}
-
-/* Responsive */
-@media screen and (max-width: 480px) {
-    .popup-record {
-        max-width: 100%;
-        padding: 30px 15px;
-        gap: 25px;
-    }
-
-    .record-card {
-        padding: 30px 25px;
-        border-radius: 25px;
-    }
-
-    .record-title {
-        font-size: 16px;
-    }
-
-    .record-subtitle {
-        font-size: 13px;
-    }
-
-    .record-avatar {
-        width: 70px;
-        height: 70px;
-    }
-
-    audio {
-        display: none;
-    }
-
-    .play-pause-btn {
-        width: 40px;
-        height: 40px;
-        min-width: 40px;
-    }
-
-    .play-pause-btn svg {
-        width: 18px;
-        height: 18px;
-    }
-
-    .custom-audio-player {
-        padding: 16px;
-    }
-
-    .audio-controls {
-        gap: 12px;
-    }
-
-    .volume-control {
-        min-width: 80px;
-    }
-
-    .audio-times {
-        font-size: 10px;
-    }
-
-    .love-transfer {
-        height: 70px;
-    }
-
-    .face {
-        width: 40px;
-        height: 40px;
-    }
-
-    .face::before,
-    .face::after {
-        width: 5px;
-        height: 5px;
-        top: 14px;
-    }
-
-    .face::before {
-        left: 10px;
-    }
-
-    .face::after {
-        right: 10px;
-    }
-
-    .face .smile {
-        width: 16px;
-        height: 8px;
-        bottom: 10px;
-    }
-
-    .flying-heart {
-        width: 20px;
-        height: 20px;
-    }
-
-    .flying-heart::before,
-    .flying-heart::after {
-        width: 10px;
-        height: 16px;
-    }
-
-    .transfer-line {
-        margin: 0 10px;
     }
 }
