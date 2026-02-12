@@ -329,10 +329,6 @@ header .stuck {
   backdrop-filter: blur(10px);
 }
 
-.stuck .header-main .nav > li > .nav-top-link::before {
-  bottom: 14px;
-}
-
 .stuck .header-main .nav > li > .glow-on-hover {
   line-height: 1.26em;
 }
