@@ -30,56 +30,6 @@ jQuery(document).ready(function () {
 
     const headerHeight = document.querySelector('.stuck .header-main')?.offsetHeight || 0;
 
-    // function scroll_flow() {
-    //     const timeline = gsap
-    //         .timeline({
-    //             scrollTrigger: {
-    //                 trigger: ".concept__flow--trigger",
-    //                 start: `top 0px `,
-    //                 end: "bottom -90% top",
-    //                 // end: '+=1000px',
-    //                 scrub: 0.3,
-    //                 invalidateOnRefresh: true,
-    //                 pin: true,
-    //                 markers: false,
-    //                 onLeave: () => {
-
-    //                 },
-    //                 onEnterBack: () => {
-
-    //                 }
-    //             },
-    //         })
-    //         .to(
-    //             ".concept__flow--text",
-    //             {
-    //                 duration: 1,
-    //                 autoAlpha: 1,
-    //                 ease: "power2.out",
-    //             },
-    //             "vis0"
-    //         )
-    //         .to(
-    //             ".concept__flow--text",
-    //             {
-    //                 duration: 1,
-    //                 color: "#fff",
-    //                 ease: "power2.out",
-    //             },
-    //             "vis1"
-    //         )
-    //         .to(
-    //             ".concept__flow--img-cover",
-    //             {
-    //                 duration: 2,
-    //                 clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
-    //                 ease: "power2.out",
-    //             },
-    //             "vis2"
-    //         )
-    // }
-    // scroll_flow();
-
     if (jQuery(window).width() >= 768) {
 
         //Features
@@ -165,15 +115,6 @@ jQuery(document).ready(function () {
         });
     }
     scrollHoriziontal();
-
-    // window.addEventListener('resize', function (event) {
-    //     timeline.kill();
-    //     timeline.clear();
-
-    //     scroller.kill();
-    //     scroller.clear();
-    // })
-    // ScrollTrigger.refresh()
 });
 
 
@@ -183,45 +124,37 @@ jQuery(window).bind('load', function () {
 
 });
 
-// jQuery(document).ready(function () {
-//     if (jQuery('.header-nav').length) {
-//         jQuery(document).on('scroll', onScroll)
-//         jQuery('.nav a[href*="#"]').on('click', function () {
-//             var e = jQuery(this).attr('href')
-//             var h = jQuery('.nav').outerHeight()
-//             var b = jQuery(e).length ? jQuery(e).offset().top : 0
-//             console.log(b)
-//             console.log(b + 1 - h)
-//             jQuery('html, body').animate({
-//                 scrollTop: (b + 1 - h)
-//             }, 500)
-//         })
-//     }
-// });
+//js 404 PAGE
+// Tạo ngôi sao
+const starsContainer = document.getElementById('stars');
+const numberOfStars = 50;
 
-// function onScroll() {
-//     var scroll = jQuery(window).scrollTop()
-//     var header = jQuery('.nav').outerHeight()
-//     if (jQuery(window).width() > 999) {
-//         var header = jQuery('.nav').outerHeight()
-//     } else {
-//         var header = 60
-//     }
+for (let i = 0; i < numberOfStars; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
 
-//     jQuery('.nav a[href^="#"]').each(function () {
-//         var el = jQuery(this).attr('href')
-//         var offset = jQuery(el).length ? jQuery(el).offset().top : 0
+    const size = Math.random() * 3 + 1;
+    star.style.width = size + 'px';
+    star.style.height = size + 'px';
 
-//         if (scroll === 0) {
-//             jQuery('.nav a').removeClass('active');
-//             jQuery('.nav a').eq(0).addClass('active');
-//             return false;
-//         }
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
 
-//         if ((scroll + header) >= offset && (jQuery(el).outerHeight() + offset) > (scroll + header)) {
-//             jQuery('.nav a').eq(0).removeClass('active');
-//             jQuery('.nav a[href^="#"]').removeClass('active')
-//             jQuery(this).addClass('active')
-//         }
-//     })
-// }
+    star.style.animationDelay = Math.random() * 2 + 's';
+    star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+
+    starsContainer.appendChild(star);
+}
+
+// Hiệu ứng chuột di chuyển cho ghost
+
+const ghost = document.querySelector('.ghost');
+if (ghost) {
+    document.addEventListener('mousemove', (e) => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 20;
+        const y = (e.clientY / window.innerHeight - 0.5) * 20;
+
+        ghost.style.transform = `translate(${x}px, ${y}px)`;
+    });
+}
+//js 404 PAGE
