@@ -56,6 +56,10 @@ function prefix_register_all() {
 				'couple_background_album',
 			),
 			'has_archive' => true,
+			'rewrite' => array(
+				'slug' => 'couple_card',
+				'with_front' => false
+			),
 			'menu_icon' => 'dashicons-welcome-write-blog'
 		)
 	);

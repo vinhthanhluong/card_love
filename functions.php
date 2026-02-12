@@ -1,6 +1,11 @@
 <?php
 // Add custom Theme Functions here
 
+// Flush rewrite rules on theme activation
+add_action('after_switch_theme', function () {
+  flush_rewrite_rules();
+});
+
 function theme_sources()
 {
   // JS REGISTER
@@ -345,6 +350,9 @@ function custom_qr_query_vars($vars)
 {
   $vars[] = 'qr_redirect';
   $vars[] = 'post_id';
+  $vars[] = 'year';
+  $vars[] = 'monthnum';
+  $vars[] = 'paged';
   return $vars;
 }
 add_filter('query_vars', 'custom_qr_query_vars');
@@ -473,7 +481,7 @@ endif;
 function set_query_parameters($query)
 {
   if (!is_admin() && is_post_type_archive('couple_card')) {
-    $query->set('posts_per_page', 8);
+    $query->set('posts_per_page', 2);
   }
   return $query;
 }
@@ -502,4 +510,85 @@ add_action('admin_enqueue_scripts', function () {
     '1.0',
     true
   );
+});
+
+function wp_post_type_archive($options)
+{
+  global $wpdb;
+
+  $postType     = (!empty($options['post_type']))         ? $options['post_type']         : 'post';
+  $homeUrl      = (!empty($options['home_url']))          ? $options['home_url']          : '';
+  $isByYear     = (!empty($options['is_year_archive']))   ? $options['is_year_archive']   : false;
+  $hasCount     = (!empty($options['have_count']))        ? $options['have_count']        : false;
+  $monthPadding = (!empty($options['add_zero_in_month'])) ? $options['add_zero_in_month'] : false;
+  $countPadding = (!empty($options['add_zero_in_count'])) ? $options['add_zero_in_count'] : false;
+
+  if ($homeUrl == "") $homeUrl  = home_url("/");
+  $html = '';
+  $txtCount = "";
+  $posttype = get_post_type_object($postType);
+  $slug = $posttype->rewrite['slug'];
+  $years = $wpdb->get_col("SELECT DISTINCT YEAR(post_date)
+    FROM $wpdb->posts WHERE post_status = 'publish'
+    AND post_type = '{$postType}' ORDER BY post_date DESC");
+
+  foreach ($years as $year) :
+    if ($hasCount) {
+      $count = $wpdb->get_col("SELECT COUNT(*) countpost
+        FROM $wpdb->posts WHERE post_status = 'publish'
+        AND post_type = '{$postType}' and YEAR(post_date) = '" . $year . "'");
+      $txtCount = (!empty($countPadding)) ? '(' . sprintf("%02d", $count[0]) . ')' : '(' . $count[0] . ')';
+    }
+
+    if ($isByYear) {
+      $html .= '<li id="year' . $year . '"><a href="' . $homeUrl . $slug . "/" . $year . '/' . '">' . $year . '年 ' . $txtCount . '</a></li>';
+    } else {
+      $html .= '<li id="year' . $year . '"><p class="dropdown">' . $year . ' ' . $txtCount . '</p><ul class="sub">';
+      $months = $wpdb->get_col("SELECT DISTINCT MONTH(post_date)
+        FROM $wpdb->posts WHERE post_status = 'publish' AND post_type = '{$postType}'
+        AND YEAR(post_date) = '" . $year . "' ORDER BY post_date DESC");
+      foreach ($months as $month) :
+        if ($hasCount) {
+          $count = $wpdb->get_col("SELECT COUNT(*) countpost
+            FROM $wpdb->posts WHERE post_status = 'publish'
+            AND post_type = '{$postType}' and YEAR(post_date) = '" . $year . "' and MONTH(post_date) = '" . $month . "'");
+          $txtCount = (!empty($countPadding)) ? '(' . sprintf("%02d", $count[0]) . ')' : '(' . $count[0] . ')';
+        }
+        $txtMonth = (!empty($monthPadding)) ? sprintf("%02d", $month) : $month;
+        $html .= '<li><a href="' . $homeUrl . $slug . "/" . $year . '/' . $month . '/">' . 'Tháng ' . $txtMonth . ' ' . $txtCount . '</a></li>';
+      endforeach;
+      $html .= '</ul></li>';
+    }
+  endforeach;
+  return $html;
+}
+
+add_action('init', function () {
+  // /couple_card/2025/11/page/2/ - year + month + pagination
+  add_rewrite_rule(
+    '^couple_card/([0-9]{4})/([0-9]{1,2})/page/?([0-9]{1,})/?$',
+    'index.php?post_type=couple_card&year=$matches[1]&monthnum=$matches[2]&paged=$matches[3]',
+    'top'
+  );
+
+  // /couple_card/2025/11/ - year + month only
+  add_rewrite_rule(
+    '^couple_card/([0-9]{4})/([0-9]{1,2})/?$',
+    'index.php?post_type=couple_card&year=$matches[1]&monthnum=$matches[2]',
+    'top'
+  );
+
+  // /couple_card/2025/page/2/ - year + pagination only
+  // add_rewrite_rule(
+  //   '^couple_card/([0-9]{4})/page/?([0-9]{1,})/?$',
+  //   'index.php?post_type=couple_card&year=$matches[1]&paged=$matches[2]',
+  //   'top'
+  // );
+
+  // /couple_card/2025/ - year only
+  // add_rewrite_rule(
+  //   '^couple_card/([0-9]{4})/?$',
+  //   'index.php?post_type=couple_card&year=$matches[1]',
+  //   'top'
+  // );
 });
