@@ -181,22 +181,22 @@
                   </div>
                 </div>
               <?php endif; ?>
-              <!-- Love Transfer Divider -->
-              <div class="love-transfer">
-                <div class="face face-left">
-                  <div class="smile"></div>
-                </div>
-                <div class="transfer-line">
-                  <div class="flying-heart"></div>
-                  <div class="sparkle sparkle-1"></div>
-                  <div class="sparkle sparkle-2"></div>
-                  <div class="sparkle sparkle-3"></div>
-                </div>
-                <div class="face face-right">
-                  <div class="smile"></div>
-                </div>
-              </div>
               <?php if ($audio2): ?>
+                <!-- Love Transfer Divider -->
+                <div class="love-transfer">
+                  <div class="face face-left">
+                    <div class="smile"></div>
+                  </div>
+                  <div class="transfer-line">
+                    <div class="flying-heart"></div>
+                    <div class="sparkle sparkle-1"></div>
+                    <div class="sparkle sparkle-2"></div>
+                    <div class="sparkle sparkle-3"></div>
+                  </div>
+                  <div class="face face-right">
+                    <div class="smile"></div>
+                  </div>
+                </div>
                 <div class="record-card">
                   <div class="record-header">
                     <div class="record-avatar">

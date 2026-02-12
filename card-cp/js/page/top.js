@@ -16,7 +16,7 @@ jQuery(window).bind("load", function () {
 
     const themeOption = {
       theme1: {
-        fade: false,
+        fade: true,
         arrows: false,
       },
       // theme2: {

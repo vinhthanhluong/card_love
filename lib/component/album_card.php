@@ -24,7 +24,7 @@ if ($taxonomy_slug_album_theme1 === "album3") {
     $colorsvg = "#eee";
 }
 if ($taxonomy_slug_album_theme2 === "album4") {
-    $colorsvg = "#fff";
+    $colorsvg = "#fea7af";
 }
 
 

@@ -47,13 +47,15 @@
           <?php include 'lib/component/counter_card_theme2.php'; ?>
         <?php endif; ?>
 
-        <div class="ilove">
-          <?php if ($taxonomy_slug_cate == "theme2"): ?>
-            <p class="counter2-btn">
-              <button class="love-button" id="counter2_btn">Đếm ngày yêu</button>
-            </p>
-          <?php endif; ?>
+        <?php if ($taxonomy_slug_cate == "theme2"): ?>
+          <p class="counter2-btn" id="counter2_btn"> <span class="heart">♥</span>
+            <span class="heart">♥</span>
+            <span class="heart">♥</span>
+            <span class="heart">♥</span>Đếm ngày yêu
+          </p>
+        <?php endif; ?>
 
+        <div class="ilove">
           <div class="ilove-dots"></div>
           <div class="ilove-wrapper">
             <div class="ilove-item ilove-male">

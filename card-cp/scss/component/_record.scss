@@ -19,6 +19,8 @@
     overflow: auto;
     height: 100%;
     @include scrollbar-v();
+    display: flex;
+    align-items: center;
 }
 
 .record-wrapper::before {
@@ -51,6 +53,7 @@
 }
 
 .popup-record {
+    width: 100%;
     box-sizing: border-box;
     padding: 40px 20px;
     position: relative;
