@@ -592,3 +592,22 @@ add_action('init', function () {
   //   'top'
   // );
 });
+
+add_action('template_redirect', function () {
+
+    // Nếu là admin hoặc đang login backend thì bỏ qua
+    if (current_user_can('manage_options') || is_admin()) {
+        return;
+    }
+
+    // Chặn archive post type couple_card
+    if (is_post_type_archive('couple_card')) {
+        wp_die('Bạn không có quyền truy cập.');
+    }
+
+    // Chặn taxonomy của couple_card
+    if (is_tax(['couple_background', 'couple_counterdays', 'couple_albums_theme1', 'couple_albums_theme2', 'couple_background_album', 'couple_message'])) {
+        wp_die('Bạn không có quyền truy cập.');
+    }
+
+});
