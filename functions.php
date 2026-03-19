@@ -208,8 +208,8 @@ function show_qr_code_in_editor($post)
         $('#qr-canvas').html('');
 
         qrCode = new QRCodeStyling({
-          width: 256,
-          height: 256,
+          width: 1024,
+          height: 1024,
           type: "canvas",
           data: "<?php echo $short_url; ?>",
           dotsOptions: {

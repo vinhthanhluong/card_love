@@ -1,7 +1,17 @@
-.acf-postbox:has(.acf-common) .postbox-header h2{
+.acf-postbox:has(.acf-common) .postbox-header h2 {
     color: red;
 }
 
-.acf-postbox:has(.acf-common) .acf-fields{
+.acf-postbox:has(.acf-common) .acf-fields {
     background-color: transparent;
+}
+
+#qr-canvas {
+    width: 256px;
+    height: 256px;
+}
+
+#qr-canvas canvas {
+    width: 100%;
+    height: 100%;
 }
